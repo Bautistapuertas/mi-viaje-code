@@ -1,15 +1,17 @@
 import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero'; // <--- Importamos el nuevo componente
+import Hero from '@/components/Hero';
+import Categories from '@/components/Categories';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50">
       <Navbar />
-      <Hero /> {/* <--- Lo renderizamos acá */}
+      <Hero />
+      <Categories /> {/* <--- Renderizar */}
       
-      {/* Espacio vacío para lo que sigue después */}
-      <div className="py-20 text-center">
-        <p className="text-gray-400">Próximamente: Grilla de productos...</p>
+      {/* Footer Provisorio */}
+      <div className="py-20 text-center bg-black text-white">
+        <p>TIMO DEPORTES © 2026</p>
       </div>
     </main>
   );
