@@ -39,3 +39,5 @@ const { nombre, stack, disponible } = usuario;
 
 // Comprobación (opcional)
 console.log(nombre); // Imprime: Bautista
+const frase=`hola, soy ${nombre}, y domino ${stack[0]},${stack[1]}`;
+console.log(frase)
