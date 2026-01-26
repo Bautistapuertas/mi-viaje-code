@@ -12,3 +12,8 @@ Mi objetivo es dominar el stack de React y crear soluciones monetizables.
 ## 📅 Bitácora
 - [x] Configuración de entorno
 - [ ] Mi primer commit
+### 💻 Lenguajes
+* **JavaScript:** En proceso 🚧
+* **React:** Próximamente ⚛️
+
+> "El único modo de hacer un gran trabajo es amar lo que haces." - Steve Jobs
