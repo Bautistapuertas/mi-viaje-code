@@ -1,6 +1,6 @@
 // 1. CAMBIO DE MENTALIDAD:
 // Declara una variable llamada 'nombre' usando CONST con tu nombre:
-const nombre="Bautista Puertas"
+
 
 // Declara una variable llamada 'edad' usando LET con tu edad:
 let edad=21
@@ -15,7 +15,7 @@ edad=22
 function saludar(nombre) {
     return "Hola " + nombre + ", listo para aprender React!";
 }
-*/const saludar=nombre=> "Hola" + nombre + ",listo para aprender react!"
+*/const saludar=nombre=>`Hola ${nombre},listo pata aprender React!`
 
 // Tu versión moderna aquí (usa const y =>):
 // ...
@@ -26,4 +26,16 @@ console.log("Nombre:", nombre);
 console.log("Edad:", edad);
 // Llama a tu función saludo aquí pasando tu variable 'nombre'
 // console.log( ... );
-console.log((saludar)(nombre));
+console.log(saludar(nombre));
+
+const usuario={
+    nombre:"Bautista",
+    stack:["Git","javaScript","React"],
+    disponible: true
+};
+// 2. Destructuring (Extracción)
+// OJO: Usamos 'disponible' porque así se llama en el objeto de arriba.
+const { nombre, stack, disponible } = usuario;
+
+// Comprobación (opcional)
+console.log(nombre); // Imprime: Bautista
