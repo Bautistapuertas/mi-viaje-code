@@ -1,26 +1,26 @@
-// 1. IMPORTAMOS LA PIEZA NUEVA
-import Header from './Header'; 
+// 1. Importa el componente nuevo
+import Technology from './Technology'; 
+import Header from './Header';
+import Footer from './Footer';
 import './App.css';
-import Footer from './Footer.jsx';
 
 function App() {
   return (
     <div className="App">
-      {/* 2. USAMOS LA PIEZA COMO SI FUERA UNA ETIQUETA HTML */}
       <Header />
-      
 
       <div className="card">
         <h3>Mis Tecnologías:</h3>
-        <ul>
-          <li>Git & GitHub</li>
-          <li>JavaScript Moderno</li>
-          <li>React.js (Cargando...)</li>
-        </ul>
+        
+        {/* 2. REUTILIZAMOS el componente pasándole "props" distintas */}
+        <Technology nombre="Git & GitHub" estado="✅ Dominado" />
+        <Technology nombre="JavaScript" estado="⚡ Avanzado" />
+        <Technology nombre="React.js" estado="👶 Aprendiendo" />
+        <Technology nombre="Inglés Técnico" estado="Reading B2" />
       </div>
+
       <Footer />
     </div>
-   
   )
 }
 
