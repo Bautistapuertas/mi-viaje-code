@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso DS 2026</title>
+    <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+    <style>
+        body { font-family: sans-serif; background: var(--background); color: var(--foreground); margin: 0; padding: 0; }
+        .tab-btn { padding: 10px 22px; font-size: 1rem; font-weight: 600; cursor: pointer; border: none; border-bottom: 3px solid transparent; background: transparent; color: var(--muted-foreground); transition: all 0.2s; }
+        .tab-btn.active { border-bottom-color: var(--primary); color: var(--primary); }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+        .section-title { font-size: 1.5rem; font-weight: 800; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px; }
+        .sub-title { font-size: 1.1rem; font-weight: 700; margin: 18px 0 8px 0; color: var(--foreground); }
+        .txt { color: var(--muted-foreground); line-height: 1.8; margin: 0 0 6px 0; font-size: 0.97rem; }
+        .txt li { margin-bottom: 8px; }
+        .tag { display: inline-block; background: var(--muted); color: var(--foreground); font-family: monospace; font-size: 0.85rem; padding: 1px 6px; border-radius: 4px; }
+        .info-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 14px 18px; border-radius: 0 10px 10px 0; margin-bottom: 20px; font-size: 0.93rem; color: #1e3a5f; }
+        .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 14px 18px; border-radius: 0 10px 10px 0; margin-bottom: 20px; font-size: 0.93rem; color: #78350f; }
+        /* QUIZ */
+        .opt-btn { display: block; width: 100%; text-align: left; padding: 14px 18px; border-radius: 10px; border: 2px solid var(--border); background: transparent; color: var(--foreground); font-size: 0.97rem; cursor: pointer; margin-bottom: 10px; transition: all 0.15s; }
+        .opt-btn:hover:not(:disabled) { border-color: var(--primary); }
+        .opt-btn:disabled { cursor: default; }
+        .opt-correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+        .opt-wrong { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+        .opt-dim { opacity: 0.4; }
+        .exp-correct { background: #d1fae5; border: 2px solid #10b981; color: #065f46; border-radius: 10px; padding: 16px 20px; margin-top: 16px; }
+        .exp-wrong { background: #fee2e2; border: 2px solid #ef4444; color: #991b1b; border-radius: 10px; padding: 16px 20px; margin-top: 16px; }
+        .primary-btn { background: var(--primary); color: var(--primary-foreground); border: none; border-radius: 10px; padding: 13px 28px; font-size: 1rem; font-weight: 700; cursor: pointer; }
+        .primary-btn:hover { opacity: 0.9; }
+        hr.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+        .progress-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 20px; }
+        .progress-fill { height: 100%; background: var(--primary); border-radius: 3px; transition: width 0.4s; }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="position:sticky;top:0;z-index:50;background:var(--card);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div>
+        <div style="font-size:1.5rem;font-weight:800;">Repaso Integral — Desarrollo de Software 2026</div>
+        <div style="font-size:0.88rem;color:var(--muted-foreground);">Clases 01 a 21 · Teoria completa y simulacro dinamico</div>
+    </div>
+    <div style="display:flex;gap:4px;">
+        <button class="tab-btn active" id="btn-theory" onclick="switchTab('theory')">Teoria</button>
+        <button class="tab-btn" id="btn-quiz" onclick="switchTab('quiz')">Simulacro de Examen</button>
+    </div>
+</div>
+
+<!-- ===== THEORY ===== -->
+<div id="tab-theory" style="max-width:900px;margin:0 auto;padding:32px 24px 80px;">
+
+    <div class="info-box">
+        Leer cada modulo de arriba a abajo como un apunte. Cuando te sientas preparado, pasa al Simulacro de Examen.
+    </div>
+
+    <!-- M1 -->
+    <div class="card">
+        <div class="section-title">Modulo 1 — Fundamentos Web, Git y Scrum (C01 a C07)</div>
+
+        <div class="sub-title">Arquitectura Cliente-Servidor y la Web</div>
+        <ul class="txt">
+            <li><strong>Cliente-Servidor:</strong> El cliente (el navegador) hace peticiones HTTP y el servidor las responde. La comunicacion ocurre a traves de una red.</li>
+            <li><strong>HTTP:</strong> Protocolo que permite la comunicacion entre cliente y servidor mediante peticiones y respuestas.</li>
+            <li><strong>SPA (Single Page Application):</strong> Aplicacion que carga una sola vez y actualiza el contenido dinamicamente sin recargar toda la pagina. React permite construir SPAs. Su ventaja principal es una navegacion mas rapida y sin interrupciones.</li>
+            <li><strong>AJAX:</strong> Tecnica para hacer peticiones al servidor en segundo plano sin recargar la pagina, y actualizar partes especificas de la UI.</li>
+            <li><strong>HTML:</strong> El lenguaje para estructurar el contenido de una pagina web.</li>
+            <li><strong>CSS:</strong> El lenguaje para estilizar el HTML (colores, fuentes, Flexbox, Grid).</li>
+            <li><strong>JavaScript:</strong> El unico lenguaje que el navegador entiende y ejecuta. Se incluye en HTML con la etiqueta <span class="tag">script</span>.</li>
+            <li><strong>Servidor web:</strong> Almacena y sirve contenido web a los clientes cuando estos lo solicitan.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">Git — Control de Versiones</div>
+        <ul class="txt">
+            <li><strong>git init:</strong> Crea un repositorio Git nuevo en la carpeta actual (no en GitHub, sino en tu maquina).</li>
+            <li><strong>git clone [url]:</strong> Descarga una copia completa de un repositorio remoto a tu computadora, con todo su historial.</li>
+            <li><strong>git add [archivo]:</strong> Mueve archivos al "staging area", preparandolos para el proximo commit. <span class="tag">git add .</span> agrega todos los cambios.</li>
+            <li><strong>git commit -m "mensaje":</strong> Guarda una foto permanente del staging en el historial local.</li>
+            <li><strong>git push:</strong> Sube los commits locales al servidor remoto (GitHub) para que otros los vean.</li>
+            <li><strong>git pull:</strong> Trae los cambios del servidor remoto y los fusiona en tu rama local.</li>
+            <li><strong>git branch [nombre]:</strong> Crea una rama para trabajar aislado sin romper el codigo principal.</li>
+            <li><strong>git log:</strong> Muestra el historial completo de commits.</li>
+            <li><strong>git status:</strong> Muestra que archivos fueron modificados pero no estan en staging (estado "modified").</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">JavaScript Moderno y Asincronismo</div>
+        <ul class="txt">
+            <li><strong>let / const:</strong> Reemplazan a var. const no puede reasignarse, let si. Ambas tienen scope de bloque.</li>
+            <li><strong>Arrow functions:</strong> Sintaxis corta para funciones: <span class="tag">const suma = (a, b) => a + b</span></li>
+            <li><strong>Desestructuracion:</strong> <span class="tag">const { nombre, edad } = persona</span> — extrae propiedades de objetos directamente en variables.</li>
+            <li><strong>Spread operator (...):</strong> Desparrama el contenido de un array u objeto. Clave en React para no mutar el estado: <span class="tag">[...viejo, nuevoElem]</span></li>
+            <li><strong>Promesas (Promise):</strong> Objeto que representa el resultado futuro de una operacion asincrona. Puede estar <em>pending</em> (esperando), <em>fulfilled</em> (exito) o <em>rejected</em> (fallo).</li>
+            <li><strong>async / await:</strong> Sintaxis mas legible para manejar Promesas. await pausa la ejecucion de esa funcion hasta que la Promesa resuelva, sin bloquear el navegador.</li>
+            <li><strong>fetch():</strong> Funcion nativa que hace peticiones HTTP. Devuelve una Promesa.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">TypeScript</div>
+        <ul class="txt">
+            <li><strong>Que es:</strong> Superconjunto de JavaScript que agrega tipado estatico. Se transpila a JS puro. Detecta errores en tiempo de compilacion (mientras escribis) no en ejecucion.</li>
+            <li><strong>Extension de archivos:</strong> <span class="tag">.ts</span> para TypeScript, <span class="tag">.tsx</span> para TypeScript con JSX (React).</li>
+            <li><strong>Tipos primitivos:</strong> <span class="tag">string</span>, <span class="tag">number</span>, <span class="tag">boolean</span>. Tambien existe <span class="tag">void</span> (funciones que no retornan).</li>
+            <li><strong>any vs unknown:</strong> <span class="tag">any</span> desactiva toda verificacion de tipos. <span class="tag">unknown</span> es la version segura: acepta cualquier valor pero obliga a verificar el tipo antes de usarlo.</li>
+            <li><strong>Interfaces / Types:</strong> Definen la forma que debe tener un objeto. Ej: <span class="tag">interface Usuario { id: number; nombre: string }</span></li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">Metodologia Scrum</div>
+        <ul class="txt">
+            <li><strong>Sprint:</strong> Iteracion de trabajo de 1 a 4 semanas donde se produce un incremento del producto.</li>
+            <li><strong>Product Owner:</strong> Representa al cliente. Prioriza el Product Backlog (la lista total de todo lo que hay que hacer). Es la unica persona responsable de esto.</li>
+            <li><strong>Scrum Master:</strong> Facilita el proceso y elimina obstaculos. No es el jefe del equipo.</li>
+            <li><strong>Developers:</strong> Hacen el trabajo. Se auto-organizan.</li>
+            <li><strong>Sprint Planning:</strong> Al inicio del Sprint. El equipo elige que items del Product Backlog pasan al Sprint Backlog (lo comprometido para ese sprint).</li>
+            <li><strong>Daily Scrum:</strong> Reunion de 15 minutos diaria, solo para los Developers. Objetivo: sincronizarse y detectar bloqueos.</li>
+            <li><strong>Sprint Review:</strong> Al final del Sprint. Se muestra el trabajo terminado al cliente.</li>
+            <li><strong>Sprint Retrospective:</strong> Al final del Sprint. El equipo reflexiona sobre como mejorar su proceso (no el producto).</li>
+        </ul>
+    </div>
+
+    <!-- M2 -->
+    <div class="card">
+        <div class="section-title">Modulo 2 — Frontend con React (C08 a C12)</div>
+
+        <div class="sub-title">Conceptos Core: JSX y Virtual DOM</div>
+        <ul class="txt">
+            <li><strong>Componentes:</strong> Funciones de JavaScript que retornan JSX. Son los bloques de construccion de la UI.</li>
+            <li><strong>JSX:</strong> Sintaxis que mezcla HTML dentro de JavaScript. El compilador lo transforma a llamadas JS puras.</li>
+            <li><strong>Props:</strong> Argumentos que se le pasan a un componente desde afuera para configurar su comportamiento o contenido. Son de solo lectura dentro del hijo.</li>
+            <li><strong>Virtual DOM:</strong> React mantiene una copia ligera del DOM real en memoria. Cuando cambia el estado, compara (Diffing) y solo actualiza las partes minimas necesarias. Esto lo hace muy eficiente.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">Hooks de React</div>
+        <ul class="txt">
+            <li><strong>useState:</strong> Declara una variable de estado. Cuando se actualiza con su funcion setter, React re-renderiza el componente. Una variable <span class="tag">let</span> comun no dispara el re-render.</li>
+            <li><strong>useEffect con [] (array vacio):</strong> El codigo se ejecuta solo una vez al montar el componente. Ideal para llamadas a la API al cargar la pagina.</li>
+            <li><strong>useEffect con [variable]:</strong> Se ejecuta al montar Y cada vez que esa variable cambia.</li>
+            <li><strong>useEffect sin array:</strong> Se ejecuta despues de CADA render (cuidado con loops infinitos).</li>
+            <li><strong>useContext:</strong> Resuelve el "Prop Drilling" (pasar props por muchos niveles de componentes). Permite que cualquier componente acceda a datos globales (ej: usuario logueado) directamente.</li>
+            <li><strong>Regla clave para arrays en estado:</strong> Nunca usar .push() en el array original. Siempre crear uno nuevo: <span class="tag">[...viejo, nuevoElem]</span></li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">Routing y Formularios</div>
+        <ul class="txt">
+            <li><strong>react-router-dom:</strong> Navegacion entre "paginas" sin recargar el navegador. Usa <span class="tag">BrowserRouter</span>, <span class="tag">Routes</span>, <span class="tag">Route</span> y <span class="tag">Link</span> (en lugar de <span class="tag">a href</span>).</li>
+            <li><strong>Formularios controlados:</strong> Los inputs estan atados al estado de React con value y onChange, dando control total sobre los valores.</li>
+            <li><strong>Zod:</strong> Libreria para validar datos con esquemas estrictos. Ej: verificar que el email tenga formato correcto, o que la contrasena tenga minimo 8 caracteres.</li>
+        </ul>
+    </div>
+
+    <!-- M3 -->
+    <div class="card">
+        <div class="section-title">Modulo 3 — Backend: Node, Express y Prisma (C13 a C17)</div>
+
+        <div class="sub-title">Docker</div>
+        <ul class="txt">
+            <li><strong>Que es:</strong> Plataforma para empaquetar aplicaciones en contenedores aislados. No es una maquina virtual: comparte el kernel del SO pero aísla el proceso.</li>
+            <li><strong>Beneficio clave:</strong> La app se ejecuta de forma identica en cualquier entorno (el problema de "en mi maquina funciona" desaparece).</li>
+            <li><strong>docker-compose:</strong> Herramienta para definir y correr multiples contenedores a la vez (ej: la app Node + la base de datos Postgres).</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">APIs REST — Verbos y Codigos HTTP</div>
+        <ul class="txt">
+            <li><strong>Stateless:</strong> Cada peticion debe contener toda la informacion necesaria para que el servidor la entienda, sin depender del contexto de peticiones previas.</li>
+            <li><strong>GET:</strong> Leer datos. No modifica nada. Ideal para recuperar informacion sin afectar el servidor.</li>
+            <li><strong>POST:</strong> Crear un recurso nuevo. Respuesta esperada: <span class="tag">201 Created</span>.</li>
+            <li><strong>PUT:</strong> Reemplazar un recurso existente por completo.</li>
+            <li><strong>PATCH:</strong> Modificar parcialmente un recurso (solo los campos enviados).</li>
+            <li><strong>DELETE:</strong> Eliminar un recurso.</li>
+            <li><strong>200 OK:</strong> Exito general.</li>
+            <li><strong>201 Created:</strong> Recurso creado exitosamente.</li>
+            <li><strong>400 Bad Request:</strong> El cliente mando datos invalidos.</li>
+            <li><strong>401 Unauthorized:</strong> No hay sesion iniciada (token faltante o invalido). Falla de Autenticacion.</li>
+            <li><strong>403 Forbidden:</strong> Hay sesion, pero el rol no tiene permiso. Falla de Autorizacion.</li>
+            <li><strong>404 Not Found:</strong> El recurso pedido no existe.</li>
+            <li><strong>500 Internal Server Error:</strong> Error inesperado en el servidor.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">Express y Middlewares</div>
+        <ul class="txt">
+            <li><strong>Express.js:</strong> Framework minimalista sobre Node.js para crear APIs.</li>
+            <li><strong>Middlewares:</strong> Funciones que interceptan el ciclo request-response. Tienen acceso a req (la peticion), res (la respuesta) y next (para pasar al siguiente middleware).</li>
+            <li><strong>Si el middleware responde</strong> (con res.json, etc.), el ciclo termina. NO debe llamar a next().</li>
+            <li><strong>Si el middleware no responde</strong> (solo valida o loguea), DEBE llamar a next() para que la cadena continue, o la peticion quedara colgada.</li>
+            <li><strong>req.body:</strong> Datos enviados en el cuerpo del POST/PUT.</li>
+            <li><strong>req.params:</strong> Variables en la URL como <span class="tag">/usuarios/:id</span>.</li>
+            <li><strong>req.query:</strong> Datos despues del signo ? en la URL.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">Prisma ORM y Base de Datos</div>
+        <ul class="txt">
+            <li><strong>ORM:</strong> Actua como un puente entre la programacion orientada a objetos y las bases de datos relacionales, permitiendo interactuar con la BD usando objetos de TypeScript en lugar de SQL puro.</li>
+            <li><strong>schema.prisma:</strong> El archivo central donde se definen los modelos (tablas) y sus relaciones (1:N, N:M).</li>
+            <li><strong>npx prisma migrate dev:</strong> El comando clave. Lee los cambios en el schema, genera el SQL, lo ejecuta en la BD y regenera el Prisma Client (el codigo TypeScript) para que tu editor reconozca los modelos.</li>
+            <li><strong>Seeders (seed.ts):</strong> Script para poblar la BD con datos iniciales (ej: el usuario Admin del sistema).</li>
+        </ul>
+    </div>
+
+    <!-- M4 -->
+    <div class="card">
+        <div class="section-title">Modulo 4 — Seguridad e Integracion (C18 a C19)</div>
+
+        <div class="sub-title">Autenticacion vs Autorizacion — CLAVE DE EXAMEN</div>
+        <ul class="txt">
+            <li><strong>Autenticacion (AuthN) — Error 401:</strong> Responde "quien sos?". Verifica la identidad. Si no hay token, o el token es falso/expirado, se devuelve 401 Unauthorized.</li>
+            <li><strong>Autorizacion (AuthZ) — Error 403:</strong> Responde "que podes hacer?". Ocurre DESPUES de autenticar. Verifica el rol. Si sos "Cliente" e intentas borrar un registro de Admin, se devuelve 403 Forbidden.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">Bcrypt — Hasheo de Contrasenas</div>
+        <ul class="txt">
+            <li><strong>NUNCA guardar contrasenas en texto plano.</strong> Se guarda un hash generado por bcrypt.</li>
+            <li><strong>Irreversible:</strong> No existe funcion "desencriptar". El servidor nunca sabe tu clave original.</li>
+            <li><strong>Como verifica el login:</strong> Al ingresar la clave, bcrypt aplica el mismo algoritmo y compara si los hashes coinciden. Funcion: <span class="tag">bcrypt.compare(claveIngresada, hashGuardado)</span></li>
+            <li><strong>Salt:</strong> Texto aleatorio agregado antes de hashear. Hace que dos usuarios con la misma clave tengan hashes distintos.</li>
+            <li><strong>Costo:</strong> Bcrypt es intencionalmente lento (~60ms) para que un ataque de fuerza bruta sea inviable.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">JWT (JSON Web Tokens)</div>
+        <ul class="txt">
+            <li><strong>Que es:</strong> Mecanismo para mantener la sesion de forma stateless. El servidor le da un token al cliente al loguearse, y el cliente lo adjunta en cada peticion futura.</li>
+            <li><strong>Estructura:</strong> Tres partes separadas por punto: Header (algoritmo), Payload (datos del usuario), Signature (firma digital).</li>
+            <li><strong>FIRMADO, no encriptado:</strong> Cualquiera puede decodificar el Payload (esta en Base64). Nunca guardes datos sensibles ahi. La seguridad viene de la Firma: si alguien modifica el payload, la firma deja de coincidir y el servidor rechaza el token.</li>
+            <li><strong>Ventaja sobre sesiones tradicionales:</strong> Es stateless. El servidor no necesita guardar sesiones en la BD.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">OAuth y MFA</div>
+        <ul class="txt">
+            <li><strong>OAuth:</strong> Protocolo para delegar autorizacion de forma segura (ej: "Iniciar sesion con Google"). Permite que una app acceda a recursos de otra en nombre del usuario sin ver su contrasena.</li>
+            <li><strong>MFA (Autenticacion Multi-Factor):</strong> Agrega capas de seguridad ademas de la contrasena. Factores: algo que sabes (contrasena), algo que tenes (token fisico), algo que sos (biometria). El email solo NO es un factor MFA.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">CORS e Integracion Frontend-Backend</div>
+        <ul class="txt">
+            <li><strong>CORS (Cross-Origin Resource Sharing):</strong> Los navegadores bloquean peticiones entre origenes distintos por defecto. El backend debe instalar el middleware cors para permitir que el frontend (ej: localhost:5173) le haga peticiones.</li>
+        </ul>
+    </div>
+
+    <!-- M5 TESTING -->
+    <div class="card">
+        <div class="section-title">Modulo 5 — Testing (C20 a C21)</div>
+
+        <div class="warn-box">
+            Las diapositivas C20 y C21 todavia no estan en la carpeta. Este modulo cubre el contenido estandar de la materia para esas clases. Cuando las tengas, se puede ampliar.
+        </div>
+
+        <div class="sub-title">Tipos de Tests</div>
+        <ul class="txt">
+            <li><strong>Test Unitario:</strong> Prueba la unidad mas pequena de codigo de forma aislada (una funcion, un componente). No dependen de la red ni de la BD.</li>
+            <li><strong>Test de Integracion:</strong> Prueba como multiples unidades interactuan entre si (ej: un endpoint de Express + la base de datos).</li>
+            <li><strong>Test End-to-End (E2E):</strong> Simula el flujo completo del usuario (hacer login, navegar, agregar un producto, etc.).</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">Vitest / Jest</div>
+        <ul class="txt">
+            <li><strong>describe():</strong> Agrupa un conjunto de tests relacionados bajo un nombre descriptivo.</li>
+            <li><strong>it() / test():</strong> Define un caso de prueba individual. Son sinonimos.</li>
+            <li><strong>expect():</strong> Hace la asercion (la verificacion del resultado). Ej: <span class="tag">expect(resultado).toBe(200)</span></li>
+            <li><strong>Mocks:</strong> Reemplazos falsos de modulos o funciones para aislar la unidad bajo prueba (ej: simular que Prisma devuelve un usuario sin tocar la BD real).</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="sub-title">React Testing Library (RTL)</div>
+        <ul class="txt">
+            <li><strong>Filosofia:</strong> Probar lo que el usuario ve y puede hacer, no como esta implementado internamente.</li>
+            <li><strong>render():</strong> Renderiza un componente en un entorno de prueba.</li>
+            <li><strong>screen.getByText():</strong> Busca un elemento en la pantalla por su texto visible.</li>
+            <li><strong>userEvent / fireEvent:</strong> Simula interacciones del usuario (clics, escritura en inputs).</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="tab-quiz" style="display:none;max-width:800px;margin:0 auto;padding:32px 24px 80px;">
+
+    <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:16px;">
+        <div>
+            <div style="font-size:1.2rem;font-weight:800;">Simulacro de Examen</div>
+            <div style="font-size:0.85rem;color:var(--muted-foreground);">Basado en modelos de parcial reales 2025-2026</div>
+        </div>
+        <div style="text-align:center;">
+            <div style="font-size:2rem;font-weight:900;color:var(--primary);" id="score-display">0 / 0</div>
+            <div style="font-size:0.75rem;color:var(--muted-foreground);">correctas / respondidas</div>
+        </div>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+
+    <div id="question-card" class="card">
+        <div style="text-align:center;padding:60px 0;color:var(--muted-foreground);">Iniciando...</div>
+    </div>
+
+    <div id="explanation-box" style="display:none;"></div>
+
+    <div style="margin-top:20px;display:flex;justify-content:flex-end;">
+        <button class="primary-btn" id="next-btn" style="display:none;" onclick="nextQuestion()">Siguiente pregunta</button>
+    </div>
+</div>
+
+<script>
+// ---- TAB SWITCHING ----
+function switchTab(tab) {
+    document.getElementById('btn-theory').className = tab === 'theory' ? 'tab-btn active' : 'tab-btn';
+    document.getElementById('btn-quiz').className = tab === 'quiz' ? 'tab-btn active' : 'tab-btn';
+    document.getElementById('tab-theory').style.display = tab === 'theory' ? 'block' : 'none';
+    document.getElementById('tab-quiz').style.display = tab === 'quiz' ? 'block' : 'none';
+    if (tab === 'quiz' && !quizStarted) startQuiz();
+}
+
+// ---- QUESTION BANK ----
+var BANK = [
+    { q: "Cual es el proposito del comando git init?", o: ["Crear un nuevo repositorio en GitHub","Crear un nuevo repositorio Git en el directorio actual","Clonar un repositorio desde un servidor remoto","Guardar los cambios en el repositorio local"], a: 1, e: "git init crea un repositorio Git vacio en la carpeta local donde se ejecuta. GitHub es el servidor remoto, no se toca con este comando." },
+    { q: "Que significa el estado 'modified' en Git?", o: ["El archivo fue eliminado","El archivo fue agregado al staging","El archivo fue modificado pero NO esta en staging","El archivo esta listo para enviarse al remoto"], a: 2, e: "'modified' significa que el archivo existe y fue cambiado, pero todavia no se hizo git add para agregarlo al area de staging." },
+    { q: "Que comando muestra el historial de commits de un repositorio?", o: ["git log","git show","git commit","git status"], a: 0, e: "git log muestra todos los commits del repositorio con hash, autor, fecha y mensaje." },
+    { q: "Que hace git push?", o: ["Guarda cambios en el historial local","Envia commits locales al repositorio remoto","Trae cambios del remoto al local","Crea una nueva rama"], a: 1, e: "git push envia los commits locales al servidor remoto (GitHub) para que otros puedan verlos." },
+    { q: "Que hace git pull?", o: ["Guarda cambios localmente","Envia cambios al remoto","Descarga cambios del remoto y los fusiona en la rama local","Crea una nueva rama de trabajo"], a: 2, e: "git pull equivale a git fetch + git merge. Trae cambios del remoto y los fusiona en tu rama actual." },
+    { q: "Cual es la principal ventaja de usar TypeScript sobre JavaScript?", o: ["Tipado estatico","Mayor compatibilidad con navegadores","Mejor rendimiento en el cliente","Mayor soporte para APIs"], a: 0, e: "TypeScript agrega tipado estatico a JavaScript, permitiendo detectar errores mientras se escribe el codigo en lugar de cuando corre en produccion." },
+    { q: "Cual de los siguientes tipos NO es un tipo primitivo en TypeScript?", o: ["string","number","any","void"], a: 2, e: "'any' no es un tipo primitivo. Es un tipo especial que desactiva la verificacion de tipos. Los primitivos son string, number, boolean, etc." },
+    { q: "Que significa el tipo unknown en TypeScript?", o: ["Un tipo generico sin restricciones","Un tipo seguro para valores desconocidos","Un valor que puede ser null o undefined","Un tipo obsoleto"], a: 1, e: "unknown acepta cualquier valor pero obliga a verificar el tipo antes de usarlo, a diferencia de any que no verifica nada." },
+    { q: "Cual es la extension de archivo de TypeScript?", o: [".js",".jsx",".ts",".tsx"], a: 2, e: "Los archivos TypeScript usan .ts. Cuando incluyen JSX (React), se usa .tsx." },
+    { q: "Para que sirve useEffect con array vacio [] en React?", o: ["Para crear variables de estado","Para ejecutar codigo en cada render","Para ejecutar codigo SOLO al montar el componente","Para compartir estado entre componentes"], a: 2, e: "El array vacio [] indica que el efecto no depende de ninguna variable de estado, por lo que solo se ejecuta una vez al montar el componente." },
+    { q: "El Virtual DOM en React tiene como objetivo principal:", o: ["Almacenar contrasenas de forma segura","Crear entornos 3D","Optimizar performance actualizando solo lo que cambio en el DOM real","Permitir bases de datos en el cliente"], a: 2, e: "React usa el Virtual DOM para comparar (Diffing) y calcular los cambios minimos necesarios antes de tocar el DOM real, que es muy costoso." },
+    { q: "Que son las props en React?", o: ["La informacion que cambia dentro del componente y dispara re-renders","Argumentos que se pasan a un componente para configurar su comportamiento","La memoria interna del componente","Piezas reutilizables de la interfaz de usuario"], a: 1, e: "Las props son datos que un componente padre pasa a un hijo para configurarlo. Son de solo lectura desde el componente hijo." },
+    { q: "Que regla hay que seguir para actualizar un array en el estado de React?", o: ["Usar .push() en el array original y llamar a setState","Modificar el array directamente, React detecta cambios internos","Crear siempre un nuevo array antes de llamar a la funcion setState","Modificar directamente si el array viene de un servidor"], a: 2, e: "React compara referencias. Si mutamos el array original, React cree que nada cambio y no re-renderiza. Siempre crear un array nuevo: [...viejo, nuevoElem]" },
+    { q: "Que problema resuelve useContext en React?", o: ["Hace fetches a la API","Maneja el estado local de un componente","Evita el Prop Drilling (pasar props por muchos niveles)","Mejora el rendimiento del Virtual DOM"], a: 2, e: "Context permite que cualquier componente del arbol acceda a datos globales (como el usuario logueado) sin que los componentes intermedios tengan que pasarlos como prop." },
+    { q: "Para que sirve next() en un middleware de Express?", o: ["Para redirigir al usuario a otra pagina","Para devolver error 500","Para pasar el control al siguiente middleware o controlador","Para reiniciar el servidor"], a: 2, e: "Si un middleware no responde la peticion, debe llamar a next() para continuar la cadena. Si no lo hace, la peticion queda colgada." },
+    { q: "Segun REST, que metodo HTTP y codigo se usan al crear un recurso nuevo?", o: ["GET y 200","POST y 201","PUT y 404","PATCH y 200"], a: 1, e: "POST es para crear. El codigo 201 Created indica que el recurso fue creado exitosamente." },
+    { q: "Que es el Stateless en una API REST?", o: ["El servidor guarda la sesion de cada usuario en la BD","Las respuestas no pueden guardarse en cache","Cada peticion debe contener toda la informacion necesaria sin depender de peticiones previas","La interfaz no necesita ser uniforme"], a: 2, e: "Stateless significa que el servidor no guarda estado de sesion. Por eso necesitamos enviar el JWT en cada peticion: el token contiene toda la info necesaria." },
+    { q: "Cual es el proposito de un ORM como Prisma?", o: ["Actua como puente entre objetos de codigo y la base de datos relacional, evitando escribir SQL manual","Permite transacciones ACID en NoSQL","Traduce codigo del backend a un lenguaje que el frontend entiende","Es una base de datos con tipado estatico"], a: 0, e: "Un ORM mapea tablas de la BD a objetos de TypeScript. Prisma es el ORM que usan en la materia con PostgreSQL." },
+    { q: "Que hace npx prisma migrate dev?", o: ["Sube la app a produccion","Genera solo el Prisma Client","Aplica los cambios del schema.prisma a la BD y regenera el Prisma Client","Ejecuta el archivo seed.ts"], a: 2, e: "Este comando lee los cambios en el schema, genera el SQL de la migracion, lo ejecuta en la BD y actualiza el codigo TypeScript del cliente." },
+    { q: "Cual es la diferencia principal entre Autenticacion y Autorizacion?", o: ["La autenticacion ocurre en el frontend y la autorizacion en el backend","La autenticacion determina permisos y la autorizacion verifica identidad","La autenticacion usa JWT y la autorizacion usa roles","La autenticacion verifica identidad (401) y la autorizacion determina permisos (403)"], a: 3, e: "AuthN = quien sos (falla: 401). AuthZ = que podes hacer (falla: 403). La autorizacion siempre ocurre DESPUES de la autenticacion." },
+    { q: "Un usuario con rol Editor intenta borrar un producto y recibe 403 Forbidden. Que significa?", o: ["El usuario no existe en la BD","El producto no existe","El usuario esta autenticado pero su rol no tiene permiso para esa accion","El token expiro"], a: 2, e: "403 es un error de Autorizacion. El usuario SI tiene sesion (esta autenticado), pero su rol no tiene privilegios suficientes para esa accion." },
+    { q: "Cuales son las tres partes de un JWT?", o: ["Header, Payload, Signature","Header, Signature, Payload","Token, Claim, Payload","Header, Payload, Token"], a: 0, e: "Un JWT tiene: 1) Header (tipo y algoritmo), 2) Payload (datos del usuario como id y rol), 3) Signature (firma digital para verificar integridad)." },
+    { q: "Por que NO se deben guardar datos sensibles en el Payload de un JWT?", o: ["Porque el tamano del token superaria el limite","Porque los JWT se borran cada 5 minutos","Porque el JWT esta firmado pero NO encriptado: cualquiera puede decodificar el payload","Porque bcrypt chocaria con el JWT_SECRET"], a: 2, e: "El Payload esta codificado en Base64 (no encriptado). Cualquiera con el token puede leer su contenido. Solo meter id y rol, nunca contrasenas ni datos sensibles." },
+    { q: "Cual es la ventaja principal de JWT sobre sesiones tradicionales?", o: ["Proveer autenticacion sin estado (stateless)","Requerir menos memoria del sistema","Cifrar automaticamente todas las solicitudes","Ser mas rapido que OAuth en todos los casos"], a: 0, e: "JWT es stateless: el servidor no necesita guardar sesiones en la BD. Toda la informacion esta en el propio token que viaja con cada peticion." },
+    { q: "Cual de las siguientes opciones NO es un ejemplo de factor de autenticacion en MFA?", o: ["Contrasena","Token fisico","Numero de telefono","Direccion de correo electronico"], a: 3, e: "El correo electronico es un canal de entrega, no un factor de autenticacion. Los tres factores de MFA son: algo que sabes, algo que tienes, algo que eres." },
+    { q: "Cual es el concepto fundamental de Docker?", o: ["Ejecutar un sistema operativo completo dentro de otro mediante virtualizacion de hardware","Controlar versiones de codigo","Ejecutar codigo solo cuando se recibe una solicitud (Serverless)","Empaquetar una app y sus dependencias en contenedores aislados para que corra igual en cualquier entorno"], a: 3, e: "Docker usa contenedores (no VMs). Garantiza que la app se ejecute de forma identica en cualquier maquina, eliminando el 'en mi maquina funciona'." },
+    { q: "Cual es la principal ventaja de Docker?", o: ["Permite ejecutar apps en maquinas virtuales sin consumir recursos","Facilita crear apps en JavaScript","Asegura que la app se ejecute de manera consistente en cualquier entorno","Permite crear redes locales sin internet"], a: 2, e: "La consistencia entre entornos (dev, staging, produccion) es la principal ventaja de Docker." },
+    { q: "Que ventaja ofrece una SPA en cuanto a la experiencia del usuario?", o: ["Reduce actualizaciones en el backend","Proporciona navegacion mas rapida y sin interrupciones","Requiere menos conocimientos de frontend","Permite que el navegador se recargue con cada cambio"], a: 1, e: "Una SPA carga una sola vez y actualiza el contenido dinamicamente sin recargas completas, haciendo la experiencia mucho mas fluida." },
+    { q: "Que lenguaje se usa principalmente para ESTRUCTURAR el contenido de una pagina web?", o: ["JavaScript","CSS","HTML","PHP"], a: 2, e: "HTML define la estructura y el significado semantico. CSS lo estiliza, JavaScript le da interactividad." },
+    { q: "Que etiqueta HTML se usa para incluir un archivo JavaScript?", o: ["link","script","javascript","js"], a: 1, e: "La etiqueta script se usa para incluir codigo JavaScript en un documento HTML." },
+    { q: "Cual es una caracteristica clave de la arquitectura Cliente-Servidor?", o: ["Los clientes y servidores estan acoplados en un solo sistema","La comunicacion ocurre tipicamente a traves de una red","La logica de negocio se divide en microservicios","No hay interaccion directa entre clientes y servidores"], a: 1, e: "En Cliente-Servidor, son entidades separadas que se comunican a traves de una red usando protocolos como HTTP." },
+    { q: "Que metodo HTTP se usa para RECUPERAR informacion sin modificar datos en el servidor?", o: ["POST","PUT","GET","PATCH"], a: 2, e: "GET es de solo lectura. No debe tener efectos secundarios. Se usa para leer datos, listar recursos, etc." },
+    { q: "En Scrum, quien es responsable de priorizar el Product Backlog?", o: ["Scrum Master","Los Developers","El Product Owner","Todo el equipo de forma igualitaria"], a: 2, e: "El Product Owner es la unica persona responsable de gestionar y priorizar el Product Backlog, representando los intereses del cliente." },
+    { q: "Que es la Daily Scrum?", o: ["Una reunion para mostrar el producto al cliente","Una reunion de 15 min diaria de los Developers para sincronizarse","La planificacion del proximo Sprint","La reunion final del Sprint para reflexionar sobre el proceso"], a: 1, e: "La Daily es exclusiva de los Developers (no el PO, no el SM obligatoriamente). Max 15 minutos. Objetivo: sincronizarse y detectar bloqueos." },
+    { q: "Que es un test unitario?", o: ["Prueba toda la aplicacion de punta a punta","Prueba como interactuan multiples modulos","Prueba la unidad mas pequena de codigo de forma aislada","Solo se usa en produccion"], a: 2, e: "Un test unitario prueba una sola unidad (funcion o componente) de forma aislada, sin depender de la red, la BD ni de otros modulos." },
+    { q: "En testing, que es un Mock?", o: ["Un entorno de produccion simulado","Un test que prueba toda la app","Un reemplazo falso de un modulo para aislar la unidad bajo prueba","Un error generado intencionalmente"], a: 2, e: "Un mock simula una dependencia externa (ej: Prisma, fetch) para que el test unitario corra rapido y aislado sin necesitar la BD real." },
+    { q: "Cual es la filosofia principal de React Testing Library?", o: ["Probar la implementacion interna de cada componente","Probar lo que el usuario ve y puede hacer, no como esta implementado","Solo probar componentes con useState","Generar snapshots HTML automaticos"], a: 1, e: "RTL fomenta tests orientados al usuario. Si el usuario no puede distinguir una refactorizacion interna, el test tampoco deberia fallar." },
+    { q: "Que funcion de Jest/Vitest define un caso de prueba individual?", o: ["mock()","describe()","it() o test()","expect()"], a: 2, e: "it() y test() son sinonimos que definen un test individual. describe() agrupa tests. expect() hace la verificacion del resultado." },
+    { q: "Que es CORS y por que se configura en el backend?", o: ["Un sistema de encriptacion de datos","Un protocolo para que el navegador permita peticiones entre origenes distintos","Un tipo de autenticacion con token","Una libreria de React para manejar formularios"], a: 1, e: "Los navegadores bloquean peticiones entre origenes distintos por seguridad. El backend debe habilitar CORS para que el frontend (ej: localhost:5173) pueda comunicarse con el (ej: localhost:3000)." },
+    { q: "Cual es el objetivo principal de OAuth?", o: ["Proveer un metodo seguro para delegar autorizaciones entre apps","Cifrar datos sensibles en una red distribuida","Ofrecer autenticacion basada en biometria","Gestionar permisos en una BD relacional"], a: 0, e: "OAuth 2.0 permite que una app acceda a recursos de otra en nombre del usuario (ej: Login con Google) sin ver su contrasena." },
+    { q: "En el diseno de APIs REST, que metodo HTTP se usa para actualizar o reemplazar un recurso completo?", o: ["GET","POST","PUT","PATCH"], a: 2, e: "PUT reemplaza el recurso completo con el nuevo contenido. PATCH solo modifica parcialmente los campos enviados." },
+];
+
+var quizStarted = false;
+var shuffled = [];
+var idx = 0;
+var correct = 0;
+var total = 0;
+var ROUND = 15;
+
+function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+}
+
+function startQuiz() {
+    quizStarted = true;
+    shuffled = shuffle(BANK).slice(0, ROUND);
+    idx = 0; correct = 0; total = 0;
+    updateScore();
+    renderQ();
+}
+
+function renderQ() {
+    var q = shuffled[idx];
+    document.getElementById('explanation-box').style.display = 'none';
+    document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('progress-fill').style.width = ((idx / shuffled.length) * 100) + '%';
+
+    var opts = '';
+    var letters = ['A','B','C','D'];
+    for (var i = 0; i < q.o.length; i++) {
+        opts += '<button class="opt-btn" id="opt' + i + '" onclick="pick(' + i + ')">' +
+            '<strong style="margin-right:8px;color:var(--muted-foreground);">' + letters[i] + '.</strong>' +
+            q.o[i] + '</button>';
+    }
+
+    document.getElementById('question-card').innerHTML =
+        '<div style="font-size:0.8rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">' +
+        'Pregunta ' + (idx + 1) + ' de ' + shuffled.length + '</div>' +
+        '<div style="font-size:1.15rem;font-weight:700;margin-bottom:24px;line-height:1.5;">' + q.q + '</div>' +
+        opts;
+}
+
+function pick(sel) {
+    var q = shuffled[idx];
+    total++;
+    if (sel === q.a) correct++;
+    updateScore();
+
+    for (var i = 0; i < q.o.length; i++) {
+        var btn = document.getElementById('opt' + i);
+        if (!btn) continue;
+        btn.disabled = true;
+        if (i === q.a) { btn.className = 'opt-btn opt-correct'; }
+        else if (i === sel) { btn.className = 'opt-btn opt-wrong'; }
+        else { btn.className = 'opt-btn opt-dim'; }
+    }
+
+    var box = document.getElementById('explanation-box');
+    box.style.display = 'block';
+    var ok = sel === q.a;
+    box.className = ok ? 'exp-correct' : 'exp-wrong';
+    box.innerHTML = '<strong>' + (ok ? 'Correcto!' : 'Incorrecto') + '</strong><br>' + q.e;
+
+    var nb = document.getElementById('next-btn');
+    nb.style.display = 'block';
+    nb.textContent = idx === shuffled.length - 1 ? 'Ver resultados' : 'Siguiente pregunta';
+}
+
+function nextQuestion() {
+    if (idx === shuffled.length - 1) {
+        showResults();
+    } else {
+        idx++;
+        renderQ();
+    }
+}
+
+function showResults() {
+    var pct = Math.round((correct / total) * 100);
+    var emoji = pct >= 80 ? 'Excelente! Estas muy bien preparado.' : pct >= 60 ? 'Bien, pero repasa los temas donde fallaste.' : 'Te recomendamos releer la seccion Teoria.';
+    document.getElementById('question-card').innerHTML =
+        '<div style="text-align:center;padding:40px 20px;">' +
+        '<div style="font-size:3rem;margin-bottom:12px;">' + (pct >= 80 ? 'Joya' : pct >= 60 ? 'Bien' : 'Sigue estudiando') + '</div>' +
+        '<div style="font-size:2.5rem;font-weight:900;color:var(--primary);margin-bottom:8px;">' + pct + '%</div>' +
+        '<div style="font-size:1.1rem;font-weight:600;margin-bottom:8px;">' + correct + ' correctas de ' + total + ' preguntas</div>' +
+        '<div style="color:var(--muted-foreground);margin-bottom:32px;">' + emoji + '</div>' +
+        '<button class="primary-btn" onclick="startQuiz()">Nuevo intento con otras preguntas</button>' +
+        '</div>';
+    document.getElementById('explanation-box').style.display = 'none';
+    document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('progress-fill').style.width = '100%';
+}
+
+function updateScore() {
+    document.getElementById('score-display').textContent = correct + ' / ' + total;
+}
+</script>
+</body>
+</html>
