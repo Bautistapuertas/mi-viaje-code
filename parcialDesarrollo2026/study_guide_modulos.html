@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia por Modulos - DS 2026</title>
+    <title>Guia por Modulos - DS 2026 (Definitiva)</title>
     <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
     <style>
         body { font-family: sans-serif; background: var(--background); color: var(--foreground); margin: 0; padding: 0; }
@@ -13,13 +13,12 @@
         .sec-tab.active { background: var(--primary); color: var(--primary-foreground); }
         .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; margin-bottom: 18px; }
         .section-title { font-size: 1.3rem; font-weight: 800; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 16px; }
-        .sub-title { font-size: 1rem; font-weight: 700; margin: 16px 0 6px 0; }
         .txt { color: var(--muted-foreground); line-height: 1.8; font-size: 0.95rem; margin: 0 0 6px 0; }
         .txt li { margin-bottom: 7px; }
-        .tag { display: inline-block; background: var(--muted); font-family: monospace; font-size: 0.82rem; padding: 1px 6px; border-radius: 4px; }
-        .info-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 18px; font-size: 0.9rem; color: #1e3a5f; }
-        .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 18px; font-size: 0.9rem; color: #78350f; }
-        hr.div { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; }
+        .badge-1 { background: #dbeafe; color: #1d4ed8; }
+        .badge-2 { background: #dcfce7; color: #15803d; }
+        .badge-3 { background: #fce7f3; color: #be185d; }
         .opt-btn { display: block; width: 100%; text-align: left; padding: 13px 17px; border-radius: 10px; border: 2px solid var(--border); background: transparent; color: var(--foreground); font-size: 0.95rem; cursor: pointer; margin-bottom: 9px; transition: border-color 0.15s; }
         .opt-btn:hover:not(:disabled) { border-color: var(--primary); }
         .opt-btn:disabled { cursor: default; }
@@ -32,10 +31,6 @@
         .primary-btn:hover { opacity: 0.9; }
         .progress-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 18px; }
         .progress-fill { height: 100%; background: var(--primary); border-radius: 3px; transition: width 0.4s; }
-        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; }
-        .badge-1 { background: #dbeafe; color: #1d4ed8; }
-        .badge-2 { background: #dcfce7; color: #15803d; }
-        .badge-3 { background: #fce7f3; color: #be185d; }
         .exam-tag { display: inline-block; background: var(--muted); color: var(--muted-foreground); font-size: 0.78rem; padding: 3px 10px; border-radius: 10px; margin-bottom: 6px; }
         .pool-indicator { font-size: 0.8rem; color: var(--muted-foreground); margin-top: 12px; font-weight: 600; }
     </style>
@@ -46,9 +41,9 @@
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
         <div>
             <span style="font-size:1.4rem;font-weight:900;">Guia por Modulos — Desarrollo 2026</span>
-            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">+100 preguntas (Sin repeticion)</span>
+            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">Definitiva (+130 preguntas)</span>
         </div>
-        <a href="study_guide.html" style="font-size:0.85rem;color:var(--primary);text-decoration:none;font-weight:600;">Ver guia completa →</a>
+        <a href="study_guide.html" style="font-size:0.85rem;color:var(--primary);text-decoration:none;font-weight:600;">Ver guia V1 →</a>
     </div>
     <div style="display:flex;border-bottom:1px solid var(--border);margin-top:4px;">
         <button class="mod-tab active" id="mtab-1" onclick="switchMod(1)">Modulo 1 — Web, Git, Scrum, TS</button>
@@ -61,36 +56,26 @@
 <div id="mod-1" style="max-width:900px;margin:0 auto;padding:28px 24px 80px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
         <span class="badge badge-1">Modulo 1</span>
-        <span style="font-size:1.3rem;font-weight:800;">Fundamentos Web, Git, Scrum y TypeScript</span>
+        <span style="font-size:1.3rem;font-weight:800;">Fundamentos Web, Arquitecturas, Git y Scrum</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:24px;">
         <button class="sec-tab active" id="m1-tbtn-teoria" onclick="switchSec(1,'teoria')">Teoria</button>
         <button class="sec-tab" id="m1-tbtn-quiz" onclick="switchSec(1,'quiz')">Simulacro</button>
     </div>
     <div id="m1-sec-teoria">
-        <div class="card"><div class="section-title">Arquitectura Cliente-Servidor y Web</div><ul class="txt"><li><strong>Cliente-Servidor:</strong> El cliente hace peticiones HTTP y el servidor responde.</li><li><strong>SPA:</strong> Carga una sola vez y actualiza via JS sin recargar la pagina.</li><li><strong>HTML/CSS/JS:</strong> Estructura, estilos e interactividad respectivamente.</li></ul></div>
-        <div class="card"><div class="section-title">Git</div><ul class="txt"><li><strong>init / clone:</strong> Crea repo local / descarga remoto.</li><li><strong>add / commit:</strong> Mueve a staging / guarda en historial.</li><li><strong>push / pull:</strong> Envia al remoto / descarga y fusiona.</li><li><strong>branch:</strong> Crea rama aislada.</li></ul></div>
-        <div class="card"><div class="section-title">JS y TypeScript</div><ul class="txt"><li><strong>let/const:</strong> Scope de bloque. const no reasigna.</li><li><strong>Promesas y async/await:</strong> Manejo de asincronismo sin bloquear el navegador.</li><li><strong>TS:</strong> Tipado estatico. Detecta errores en compilacion.</li><li><strong>any vs unknown:</strong> any desactiva verificacion, unknown obliga a verificar.</li></ul></div>
-        <div class="card"><div class="section-title">Scrum</div><ul class="txt"><li><strong>Product Owner:</strong> Prioriza el Backlog. Representa al cliente.</li><li><strong>Scrum Master:</strong> Facilita y quita impedimentos.</li><li><strong>Daily:</strong> Max 15 min, solo developers para sincronizar.</li><li><strong>Review / Retrospective:</strong> Muestra producto / mejora el proceso.</li></ul></div>
+        <div class="card"><div class="section-title">SDLC y Arquitecturas</div><ul class="txt"><li><strong>Cascada vs Ágil:</strong> Cascada es lineal y rígido. Ágil es iterativo, incremental y se adapta (ej: Scrum).</li><li><strong>Escalabilidad:</strong> Vertical (mejorar hardware) vs Horizontal (agregar nodos/instancias).</li><li><strong>Microservicios:</strong> Aislamiento de fallos, escalabilidad por partes, pero orquestación compleja.</li><li><strong>Multicapa:</strong> Cada capa SOLO habla con la inmediatamente inferior (Presentación -> Negocio -> Persistencia).</li></ul></div>
+        <div class="card"><div class="section-title">Requerimientos y UX/UI</div><ul class="txt"><li><strong>Historia de Usuario (INVEST):</strong> Independiente, Negociable, Valiosa, Estimable, Small (Pequeña, clave para entrar en un sprint), Testeable.</li><li><strong>MoSCoW:</strong> Priorización (Must, Should, Could, Won't).</li><li><strong>Planning Poker:</strong> Busca consenso y <strong>tamaño relativo</strong> del esfuerzo, no horas reloj exactas.</li><li><strong>UX vs UI:</strong> UX (Experiencia completa), UI (Dispositivo/Pantalla).</li><li><strong>Prototipado:</strong> Wireframe (baja fidelidad/estructura), Mockup (estilo visual no funcional), Prototipo (interactivo/funcional).</li></ul></div>
+        <div class="card"><div class="section-title">Git y TypeScript</div><ul class="txt"><li><strong>Git pull:</strong> Equivale a <code>git fetch + git merge</code>.</li><li><strong>Ramas (Branches):</strong> Líneas de desarrollo independientes para no romper `main`.</li><li><strong>TS:</strong> Tipado estático (detecta errores al compilar). <code>any</code> apaga chequeos, <code>unknown</code> es seguro y obliga a chequear.</li></ul></div>
     </div>
     <div id="m1-sec-quiz" style="display:none;">
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-            <div>
-                <div style="font-size:1.1rem;font-weight:800;">Simulacro M1</div>
-                <div id="m1-exam-tag" class="exam-tag">Examen #1</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m1-score">0 / 0</div>
-                <div style="font-size:0.72rem;color:var(--muted-foreground);">correctas</div>
-            </div>
+            <div><div style="font-size:1.1rem;font-weight:800;">Simulacro M1</div><div id="m1-exam-tag" class="exam-tag">Examen #1</div></div>
+            <div style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m1-score">0 / 0</div><div style="font-size:0.72rem;color:var(--muted-foreground);">correctas</div></div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="m1-prog" style="width:0%"></div></div>
         <div id="m1-qcard" class="card"><div style="text-align:center;padding:50px;color:var(--muted-foreground);">Iniciando...</div></div>
         <div id="m1-exp" style="display:none;"></div>
-        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
-            <div id="m1-pool" class="pool-indicator"></div>
-            <button class="primary-btn" id="m1-next" style="display:none;" onclick="qNext(1)">Siguiente pregunta</button>
-        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;"><div id="m1-pool" class="pool-indicator"></div><button class="primary-btn" id="m1-next" style="display:none;" onclick="qNext(1)">Siguiente pregunta</button></div>
     </div>
 </div>
 
@@ -98,36 +83,25 @@
 <div id="mod-2" style="display:none;max-width:900px;margin:0 auto;padding:28px 24px 80px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
         <span class="badge badge-2">Modulo 2</span>
-        <span style="font-size:1.3rem;font-weight:800;">Frontend con React (C08 a C12)</span>
+        <span style="font-size:1.3rem;font-weight:800;">Frontend con React y Entorno</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:24px;">
         <button class="sec-tab active" id="m2-tbtn-teoria" onclick="switchSec(2,'teoria')">Teoria</button>
         <button class="sec-tab" id="m2-tbtn-quiz" onclick="switchSec(2,'quiz')">Simulacro</button>
     </div>
     <div id="m2-sec-teoria">
-        <div class="card"><div class="section-title">React y Virtual DOM</div><ul class="txt"><li><strong>Componentes:</strong> Bloques reutilizables (funciones que retornan JSX).</li><li><strong>Virtual DOM:</strong> Copia en memoria para calcular cambios minimos antes de tocar el DOM real.</li></ul></div>
-        <div class="card"><div class="section-title">Hooks: useState y useEffect</div><ul class="txt"><li><strong>useState:</strong> Variable de estado. NUNCA mutar arrays con push(), siempre crear uno nuevo.</li><li><strong>useEffect []:</strong> Corre solo al montar.</li><li><strong>useEffect [var]:</strong> Corre al montar y cuando 'var' cambia.</li></ul></div>
-        <div class="card"><div class="section-title">Props y Context</div><ul class="txt"><li><strong>Props:</strong> Datos de lectura que pasan de padre a hijo.</li><li><strong>Prop Drilling:</strong> Pasar props por muchos niveles innecesarios.</li><li><strong>useContext:</strong> Evita el drilling accediendo a datos globales directamente.</li></ul></div>
-        <div class="card"><div class="section-title">Routing y Zod</div><ul class="txt"><li><strong>react-router:</strong> Link reemplaza a, evita recargar la pagina.</li><li><strong>Zod:</strong> Esquemas de validacion estrictos para formularios controlados.</li></ul></div>
+        <div class="card"><div class="section-title">Conceptos Core de React</div><ul class="txt"><li><strong>Virtual DOM:</strong> Copia ligera en memoria para hacer "diffing" y actualizar el DOM real minimizando repintados.</li><li><strong>Estado vs Props:</strong> El estado muta (re-renderiza), las props son parámetros de lectura de padre a hijo. NUNCA mutar el estado directo, usar el set.</li><li><strong>Prop Drilling:</strong> Pasar props por componentes intermedios innecesariamente. Se soluciona con <code>useContext</code>.</li></ul></div>
+        <div class="card"><div class="section-title">CORS, Seguridad y Tokens</div><ul class="txt"><li><strong>CORS:</strong> Cross-Origin Resource Sharing. Lo aplica el <strong>Navegador</strong> (no curl/Postman) para proteger al usuario de que webs maliciosas lean respuestas.</li><li><strong>Preflight (OPTIONS):</strong> El navegador hace un request previo para métodos complejos (ej. PUT, DELETE o con headers como Authorization) para ver si el servidor lo permite.</li><li><strong>LocalStorage:</strong> Si guardás un token acá, tiene riesgo <strong>XSS</strong> (cualquier script JS inyectado puede robarlo).</li><li><strong>Validación Front vs Back:</strong> Esconder un botón de "Borrar" a un cliente es UX (Experiencia). La verdadera validación de seguridad (Autorización) siempre recae en el Backend.</li></ul></div>
     </div>
     <div id="m2-sec-quiz" style="display:none;">
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-            <div>
-                <div style="font-size:1.1rem;font-weight:800;">Simulacro M2</div>
-                <div id="m2-exam-tag" class="exam-tag">Examen #1</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m2-score">0 / 0</div>
-                <div style="font-size:0.72rem;color:var(--muted-foreground);">correctas</div>
-            </div>
+            <div><div style="font-size:1.1rem;font-weight:800;">Simulacro M2</div><div id="m2-exam-tag" class="exam-tag">Examen #1</div></div>
+            <div style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m2-score">0 / 0</div><div style="font-size:0.72rem;color:var(--muted-foreground);">correctas</div></div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="m2-prog" style="width:0%"></div></div>
         <div id="m2-qcard" class="card"><div style="text-align:center;padding:50px;color:var(--muted-foreground);">Iniciando...</div></div>
         <div id="m2-exp" style="display:none;"></div>
-        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
-            <div id="m2-pool" class="pool-indicator"></div>
-            <button class="primary-btn" id="m2-next" style="display:none;" onclick="qNext(2)">Siguiente pregunta</button>
-        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;"><div id="m2-pool" class="pool-indicator"></div><button class="primary-btn" id="m2-next" style="display:none;" onclick="qNext(2)">Siguiente pregunta</button></div>
     </div>
 </div>
 
@@ -142,29 +116,18 @@
         <button class="sec-tab" id="m3-tbtn-quiz" onclick="switchSec(3,'quiz')">Simulacro</button>
     </div>
     <div id="m3-sec-teoria">
-        <div class="card"><div class="section-title">Docker y Prisma</div><ul class="txt"><li><strong>Docker:</strong> Contenedores aislados. Garantizan consistencia ("en mi maquina funciona").</li><li><strong>Prisma:</strong> ORM. Mapea BD a objetos. `migrate dev` aplica cambios.</li></ul></div>
-        <div class="card"><div class="section-title">APIs REST y Express</div><ul class="txt"><li><strong>Stateless:</strong> Cada peticion tiene toda la info, el server no guarda sesion.</li><li><strong>Metodos:</strong> POST (Crear, 201), PUT (Reemplazar), GET (Leer), DELETE.</li><li><strong>Middlewares:</strong> Si no responden, DEBEN llamar a `next()` para continuar.</li></ul></div>
-        <div class="card"><div class="section-title">AuthN vs AuthZ</div><ul class="txt"><li><strong>AuthN (Autenticacion):</strong> Quien sos. Falla = 401.</li><li><strong>AuthZ (Autorizacion):</strong> Que podes hacer. Falla = 403.</li><li><strong>Bcrypt:</strong> Hasheo lento e irreversible de contrasenas.</li><li><strong>JWT:</strong> Token stateless firmado. Header + Payload + Signature. No guardar datos sensibles en el Payload.</li></ul></div>
-        <div class="card"><div class="section-title">Testing</div><ul class="txt"><li><strong>Unitario vs Integracion:</strong> Aislado vs multiples modulos interactuando.</li><li><strong>Mocks:</strong> Reemplazos falsos para aislar la prueba (ej: simular Prisma).</li><li><strong>RTL:</strong> Prueba la UI como la veria el usuario, no el codigo interno.</li></ul></div>
+        <div class="card"><div class="section-title">Seguridad (CIA) y Errores</div><ul class="txt"><li><strong>401 vs 403:</strong> 401 Unauthorized = No Autenticado (no sé quién sos). 403 Forbidden = Autenticado, pero SIN permiso (sé quién sos, pero rol insuficiente).</li><li><strong>Hash vs Cifrado:</strong> El hash (bcrypt) es IRREVERSIBLE. El cifrado es reversible si tenés la clave.</li><li><strong>SQL Injection:</strong> Se previene parametrizando consultas (Prisma ya lo hace por vos).</li><li><strong>ORM (Prisma):</strong> Te mapea las tablas, pero NO diseña tu base de datos y te suma una dependencia. <code>onDelete: Cascade</code> borra todos los hijos automáticamente.</li></ul></div>
+        <div class="card"><div class="section-title">Testing Avanzado</div><ul class="txt"><li><strong>Pirámide:</strong> Unitarios en la base (rápidos, aislados). Integración en el medio. E2E (End-to-End) en la punta (lentos, flujo completo).</li><li><strong>TDD (Test-Driven Development):</strong> Ciclo: Rojo (escribir test que falla) -> Verde (escribir código justo para que pase) -> Refactor.</li><li><strong>Testing Library:</strong> <code>getBy</code> lanza error si no encuentra el texto. <code>queryBy</code> devuelve NULL (ideal para verificar que algo fue borrado).</li><li><strong>vi.fn():</strong> Mock function de Vitest. Registra si fue llamada y con qué argumentos, sin ejecutar lógica real.</li></ul></div>
     </div>
     <div id="m3-sec-quiz" style="display:none;">
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-            <div>
-                <div style="font-size:1.1rem;font-weight:800;">Simulacro M3</div>
-                <div id="m3-exam-tag" class="exam-tag">Examen #1</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m3-score">0 / 0</div>
-                <div style="font-size:0.72rem;color:var(--muted-foreground);">correctas</div>
-            </div>
+            <div><div style="font-size:1.1rem;font-weight:800;">Simulacro M3</div><div id="m3-exam-tag" class="exam-tag">Examen #1</div></div>
+            <div style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m3-score">0 / 0</div><div style="font-size:0.72rem;color:var(--muted-foreground);">correctas</div></div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="m3-prog" style="width:0%"></div></div>
         <div id="m3-qcard" class="card"><div style="text-align:center;padding:50px;color:var(--muted-foreground);">Iniciando...</div></div>
         <div id="m3-exp" style="display:none;"></div>
-        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
-            <div id="m3-pool" class="pool-indicator"></div>
-            <button class="primary-btn" id="m3-next" style="display:none;" onclick="qNext(3)">Siguiente pregunta</button>
-        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;"><div id="m3-pool" class="pool-indicator"></div><button class="primary-btn" id="m3-next" style="display:none;" onclick="qNext(3)">Siguiente pregunta</button></div>
     </div>
 </div>
 
@@ -191,13 +154,13 @@ function switchSec(mod, sec) {
     }
 }
 
-// === BANKS (35 questions each = >100 total) ===
+// === BANKS COMPLETOS (Basados 100% en Resumen PDF Corti/Garcia 2026) ===
 var B1 = [
     {q:"Proposito de git init?",o:["Crear repo en GitHub","Repo local","Clonar remoto","Guardar cambios"],a:1,e:"Crea repo vacio local."},
     {q:"Estado 'modified'?",o:["Eliminado","En staging","Cambiado pero no en staging","En remoto"],a:2,e:"Falta hacer git add."},
     {q:"Ver historial?",o:["git log","git show","git commit","git status"],a:0,e:"git log lista los commits."},
     {q:"git push hace:",o:["Guarda local","Envia commits al remoto","Trae del remoto","Crea rama"],a:1,e:"Empuja tus commits a GitHub."},
-    {q:"git pull es igual a:",o:["git add + commit","git fetch + merge","git push + commit","git clone"],a:1,e:"Trae cambios y los fusiona en tu rama local."},
+    {q:"git pull equivale a:",o:["git add + commit","git fetch + merge","git push + commit","git clone"],a:1,e:"Trae cambios y los fusiona en tu rama local. Es trampa de parcial."},
     {q:"git clone hace:",o:["Repo vacio","Copia remota con todo su historial","Fotografia","Fusiona ramas"],a:1,e:"Descarga todo el repo remoto."},
     {q:"Para que es git branch?",o:["Ver historial","Enviar al remoto","Crear rama aislada","Descargar"],a:2,e:"Permite trabajar sin romper main."},
     {q:"git add . vs git add archivo?",o:["Borrador","Agrega todo vs uno especifico","Envia al remoto","Sin diferencia"],a:1,e:"El punto (.) agrega todos los archivos modificados de una vez."},
@@ -210,96 +173,75 @@ var B1 = [
     {q:"Para que sirve async/await?",o:["Correr paralelo","Escribir asincrono legible sin bloquear el hilo","Generadores","Server-side JS"],a:1,e:"Azucar sintactica para manejar Promesas de forma limpia."},
     {q:"Unico responsable del Product Backlog?",o:["Scrum Master","Developers","Product Owner","Stakeholders"],a:2,e:"El PO define y prioriza el trabajo que aporta valor."},
     {q:"Objetivo de la Daily?",o:["Mostrar al cliente","Planificar Sprint","Sincronizar developers y ver bloqueos (15min max)","Retrospectiva"],a:2,e:"Reunion exclusiva del equipo de desarrollo."},
-    {q:"En la Sprint Review:",o:["Reflexion de proceso","Planificacion","Demostracion del incremento al cliente","Daily"],a:2,e:"Se revisa el producto construido en el sprint."},
+    {q:"Sprint Review vs Sprint Retrospective:",o:["Review (equipo mejora), Retro (producto a cliente)","Review (producto a cliente), Retro (equipo mejora proceso)","Son la misma reunion","Ambas son para clientes"],a:1,e:"Trampa tipica: Review = Producto, Retro = Proceso/Equipo."},
     {q:"Etiqueta para incluir JS?",o:["link","script","javascript","js"],a:1,e:"La etiqueta SCRIPT con src='...' incluye JS."},
     {q:"Arquitectura Cliente-Servidor:",o:["Mismo proceso","Comunicacion por red (HTTP)","Sin comunicacion","Siempre misma maquina"],a:1,e:"Estan separados y hablan por red."},
     {q:"Operador spread (...) en React:",o:["Hacer loops cortos","Desparramar array/objeto sin mutar el original","Convertir promesas","Variables fijas"],a:1,e:"Clave para copiar arrays en el estado: [...arr, nuevo]."},
-    {q:"Sprint Retrospective es:",o:["Demo","Planificacion","Reflexion del equipo sobre su proceso de trabajo","Daily"],a:2,e:"Mejora continua del COMO trabaja el equipo."},
-    {q:"Reasignar una variable const:",o:["Funciona normal","TS lo rechaza pero JS no","Produce TypeError en ejecucion","Crea nueva variable"],a:2,e:"const prohíbe reasignacion. Explota si lo intentás."},
+    {q:"Diferencia entre Escalabilidad Vertical y Horizontal?",o:["Vertical es hardware, horizontal mas instancias/nodos","Son lo mismo","Vertical es frontend, horizontal backend","Vertical usa la nube"],a:0,e:"Vertical (mas RAM/CPU). Horizontal (mas compus/servidores)."},
+    {q:"Reasignar una variable const:",o:["Funciona normal","TS lo rechaza pero JS no","Produce TypeError en ejecucion","Crea nueva variable"],a:2,e:"const prohibe reasignacion. Explota en runtime en JS puro."},
     {q:"Diferencia let vs var:",o:["Sin diferencia","let tiene scope de bloque, var scope de funcion","var es mas moderno","let permite reasignar, var no"],a:1,e:"let muere fuera de las llaves {}. var tiene hoisting y trae bugs."},
-    {q:"fetch() hace:",o:["Lee disco local","Peticion HTTP que devuelve una Promesa","Ejecuta server","Convierte a JSON"],a:1,e:"API nativa para hacer request."},
+    {q:"fetch() hace:",o:["Lee disco local","Peticion HTTP que devuelve una Promesa","Ejecuta server","Convierte a JSON"],a:1,e:"API nativa para hacer request. fetch NO lanza excepcion con 404 o 500."},
     {q:"git merge sirve para:",o:["Borrar ramas","Combinar el historial de dos ramas","Clonar repos","Hacer commits"],a:1,e:"Integra los cambios de una rama secundaria a la principal."},
     {q:"Para que se usa una 'Interface' en TypeScript?",o:["Para crear clases visuales","Para definir la forma/estructura estricta de un objeto","Para hacer fetches","Para exportar variables"],a:1,e:"Permite decirle a TS exactamente que propiedades tiene que tener un objeto."},
-    {q:"Cual es la duracion recomendada de un Sprint?",o:["1 a 4 dias","1 a 4 semanas","1 a 4 meses","Todo el proyecto"],a:1,e:"En Scrum los sprints son cortos, maximo 1 mes para tener feedback rapido."},
+    {q:"Cual es la duracion recomendada de un Sprint?",o:["1 a 4 dias","1 a 4 semanas","1 a 4 meses","Todo el proyecto"],a:1,e:"En Scrum los sprints son fijos de 1 a 4 semanas."},
+    {q:"Que significa la 'S' en INVEST para Historias de Usuario?",o:["Secure","Scalable","Small (Pequeña)","Sprint"],a:2,e:"Debe ser pequeña para que se pueda terminar dentro de un solo sprint."},
+    {q:"Que busca el Planning Poker al estimar?",o:["Horas exactas","Tamaño relativo del esfuerzo","Quien lo hace mas rapido","Eliminar bugs"],a:1,e:"Usa Fibonacci. Evalua complejidad/esfuerzo relativo, no tiempo de reloj."},
+    {q:"Cual es la diferencia entre Wireframe y Mockup?",o:["Wireframe tiene estilos","Wireframe es estructura de baja fidelidad; Mockup suma colores/tipografias pero no es funcional","Son sinonimos","Mockup es interactivo"],a:1,e:"Wireframe = esqueleto. Mockup = Piel. Prototipo = Movimiento."},
+    {q:"En Microservicios, cada servicio...",o:["Debe compartir la misma base de datos","Tiene su propia logica y base de datos (aislamiento de fallos)","No puede hablar con otros","Es un hilo de Node"],a:1,e:"Ventaja: un fallo en servicio A no tumba al servicio B."},
+    {q:"En una arquitectura Multicapa, la comunicacion...",o:["Es todos contra todos","Cada capa se comunica solo con la inmediatamente inferior","Usa GraphQL","Es bidireccional global"],a:1,e:"Ej: Presentacion habla con Negocio. Negocio con Persistencia."},
     {q:"El CSS sirve para:",o:["Crear la base de datos","Dar logica","Estilizar el HTML (colores, tamanos, flexbox)","Manejar las rutas"],a:2,e:"Cascading Style Sheets maneja todo el diseno visual de la web."},
-    {q:"Un array en JavaScript...",o:["Es de tamano fijo y no puede crecer","Puede contener diferentes tipos de datos mezclados","Solo guarda strings","No existe en JS"],a:1,e:"A diferencia de C o Java, los arrays en JS son dinamicos y heterogeneos."},
-    {q:"Para recorrer un array y devolver uno NUEVO modificado, se usa:",o:["forEach","map","reduce","while"],a:1,e:"map ejecuta una funcion por cada elemento y devuelve un array nuevo. forEach no devuelve nada."},
-    {q:"git restore --staged hace:",o:["Borra el archivo","Saca un archivo del area de staging (deshace el git add)","Sube el commit","Restaura una rama borrada"],a:1,e:"Es el comando moderno para 'desagregar' un archivo antes del commit."},
-    {q:"Cual es el rol del Scrum Master?",o:["Es el jefe de proyecto que da las ordenes","Elige que funcionalidades se hacen primero","Facilitador del proceso Scrum, remueve obstaculos y ayuda al equipo","Escribe el codigo principal"],a:2,e:"El SM es un lider servicial, no un jefe autoritario. Remueve impedimentos."},
-    {q:"En HTML, el tag <nav> se utiliza para:",o:["Barra de navegacion con links","Formularios","Videos","El titulo de la pestaña"],a:0,e:"Es un tag semantico especifico para la zona de navegacion principal de la pagina."},
-    {q:"Que es el DOM?",o:["Un lenguaje de BD","La representacion en arbol del documento HTML que el navegador y JS pueden leer/modificar","Un framework de CSS","Una metodologia agil"],a:1,e:"Document Object Model. Es la interfaz que permite a JS interactuar con el HTML."}
+    {q:"Para recorrer un array y devolver uno NUEVO modificado, se usa:",o:["forEach","map","reduce","while"],a:1,e:"map devuelve array. forEach no devuelve nada (retorna undefined)."},
+    {q:"git restore --staged hace:",o:["Borra el archivo","Saca un archivo del area de staging (deshace el git add)","Sube el commit","Restaura una rama borrada"],a:1,e:"Comando util si agregaste por accidente un archivo al index."},
+    {q:"Cual es el rol del Scrum Master?",o:["Es el jefe de proyecto","Prioriza el Backlog","Facilitador, elimina impedimentos y asegura que se siga Scrum","Codifica el 80%"],a:2,e:"El SM es un lider servicial. El PO prioriza el backlog."},
+    {q:"Un sistema de control de versiones Centralizado (CVS/SVN) tiene como problema...",o:["Es muy moderno","Punto unico de fallo","No tiene ramas","Ocupa mucha RAM local"],a:1,e:"Si el server se cae, nadie puede commitear. Git (Distribuido) soluciona esto porque cada cliente tiene copia completa."}
 ];
 
 var B2 = [
-    {q:"useEffect con [] corre:",o:["En cada render","SOLO al montar el componente","Compartir estado","Nunca"],a:1,e:"El array vacio significa 'sin dependencias'. Solo corre una vez."},
-    {q:"Las props son:",o:["Estado interno","Datos que el padre pasa al hijo (solo lectura)","Memoria interna","Bloques UI"],a:1,e:"Fluyen de arriba hacia abajo y no se mutan."},
-    {q:"Por que no usar .push() en el estado?",o:["Lento","React compara referencias, si mutas el original no detecta el cambio","Solo en arrays vacios","Es inmutable en JS"],a:1,e:"Si la referencia de memoria es la misma, React asume que no hay que re-renderizar."},
-    {q:"useContext soluciona:",o:["Fetches automaticos","Estado local","Prop Drilling (pasar datos globales directo sin intermediarios)","Virtual DOM"],a:2,e:"Permite consumir datos globales desde cualquier nivel de profundidad."},
-    {q:"Eliminar elemento del estado genera:",o:["Render manual","Re-render automatico del componente reflejando la lista nueva","Borrado del DOM sin render","Nada"],a:1,e:"Los setters de useState siempre disparan un re-render."},
-    {q:"Que es Virtual DOM?",o:["Copia en la nube","Copia ligera del DOM en memoria para calcular (Diffing) cambios minimos al DOM real","DOM sin JS","Plugin"],a:1,e:"Hace que las actualizaciones de React sean rapidas y eficientes."},
+    {q:"useEffect con [] corre:",o:["En cada render","SOLO al montar el componente (una sola vez)","Compartir estado","Nunca"],a:1,e:"Trampa tipica: sin array corre SIEMPRE (despues de cada render). Con [] solo al montar."},
+    {q:"Las props son:",o:["Estado interno","Datos que el padre pasa al hijo (solo lectura) para configurarlo","Memoria interna","Bloques UI"],a:1,e:"Fluyen de arriba hacia abajo y el componente hijo NO las modifica."},
+    {q:"Por que no usar .push() en el estado?",o:["Lento","React compara referencias; si mutas el original no detecta el cambio y no re-renderiza","Solo en arrays vacios","Es inmutable en JS"],a:1,e:"Siempre hay que crear un nuevo array: [...libros, nuevo]."},
+    {q:"useContext soluciona:",o:["Fetches automaticos","Estado local","Prop Drilling (pasar datos globales directo sin intermediarios)","Virtual DOM"],a:2,e:"Permite consumir datos de la 'nube' desde cualquier nivel de profundidad."},
+    {q:"¿Qué es el estado de un componente?",o:["Funciones externas","Informacion interna que puede cambiar y hace que se actualice (re-renderice)","Las props","El HTML final"],a:1,e:"Estado = Memoria que muta la vista."},
+    {q:"Que es Virtual DOM?",o:["Copia en la nube","Copia ligera del DOM en memoria para calcular cambios minimos al DOM real","DOM sin JS","Plugin"],a:1,e:"Mejora el rendimiento evitando repintar toda la pagina entera."},
     {q:"useEffect [userId] corre:",o:["Solo al montar","Al montar y cada vez que userId cambia","Cada render","Nunca"],a:1,e:"Las dependencias dictan cuando el efecto se vuelve a ejecutar."},
-    {q:"Que es JSX?",o:["Base de datos","Extension navegador","Sintaxis que mezcla HTML en JS, luego se transpila","Sistema de routing"],a:2,e:"Babel o Vite lo transforman en React.createElement()."},
-    {q:"react-router usa este tag para navegar sin recargar:",o:["BrowserRouter","Routes","Link","Route"],a:2,e:"Link reemplaza a <a> y mantiene la app en modo SPA sin f5."},
-    {q:"Zod se usa para:",o:["Peticiones HTTP","Esquemas estrictos de validacion de datos (ej: formatos, max, min)","Estado global","Renderizar listas"],a:1,e:"Ideal para validar formularios y respuestas de APIs."},
-    {q:"useEffect SIN array corre:",o:["Nunca","Al desmontar","Despues de CADA render (riesgo de loop)","Solo al montar"],a:2,e:"Si omites el array, corre siempre. Cuidado si actualizas estado adentro."},
-    {q:"Regla para actualizar array de estado:",o:["Usar .push()","Modificar directo","Crear uno nuevo siempre: [...viejo, nuevo]","Usar var"],a:2,e:"Spread operator es la clave para la inmutabilidad de React."},
-    {q:"Los componentes en React son:",o:["Bases de datos","Peticiones","Funciones que retornan JSX (Bloques reutilizables de UI)","Servidores"],a:2,e:"Un componente = una parte de la interfaz."},
-    {q:"El flujo de datos (props) en React es:",o:["Bidireccional","Unidireccional (de padre a hijo)","Circular","Aleatorio"],a:1,e:"El hijo no puede modificar sus propias props, solo leerlas."},
-    {q:"Que es Prop Drilling?",o:["Optimizar render","Pasar props por multiples niveles de componentes que no las usan directamente","Bug de Virtual DOM","Conexion DB"],a:1,e:"El useContext es la cura para el Prop Drilling severo."},
-    {q:"En un formulario controlado:",o:["JS no interviene","React tiene control total del input via 'value' atado al estado y 'onChange'","Se usa solo HTML puro","No hay validacion"],a:1,e:"El state de React dicta que es lo que muestra el input en pantalla en tiempo real."},
-    {q:"Que retorna la funcion useState?",o:["Un string","Un booleano","Un array con dos elementos: el valor actual y la funcion para actualizarlo","Un objeto con props"],a:2,e:"Por eso lo desestructuramos: const [valor, setValor] = useState(0)."},
-    {q:"Para que sirve un Fragmento en React (<></>)?",o:["Para inyectar CSS","Para agrupar multiples elementos sin agregar un nodo extra (como un div) al DOM real","Para hacer comentarios en JSX","Para borrar el Virtual DOM"],a:1,e:"Permite cumplir la regla de React de 'devolver un solo padre' sin romper el diseño flex/grid del DOM."},
-    {q:"En JSX, como se renderiza algo condicionalmente de forma corta?",o:["Con if/else puros adentro del JSX","Con el operador logico && (ej: isLoading && <Spinner />)","Con un try/catch","Con switch"],a:1,e:"Si la condicion es true, renderiza lo de la derecha. Si es false, no renderiza nada."},
-    {q:"Cual es la forma correcta de renderizar una lista de productos en JSX?",o:["Usar un bucle for() tradicional","Usar productos.map(prod => <Item key={prod.id} />)","Pasar el array completo dentro de un <div>","Usar un while()"],a:1,e:"Se usa .map() porque devuelve un array nuevo de elementos JSX y requiere una prop 'key' unica."},
-    {q:"Por que es importante la prop 'key' al renderizar listas?",o:["Para aplicar estilos CSS unicos","Para que React pueda identificar que items cambiaron, se agregaron o se eliminaron y actualizar el DOM eficientemente","Para que Zod lo valide","No es importante"],a:1,e:"Sin keys unicas, React se confunde si el orden de la lista cambia y puede renderizar mal los datos."},
-    {q:"Para que sirve el hook useRef?",o:["Para guardar datos globales","Para crear una referencia mutable que NO dispara un re-render al cambiar (ej: para acceder a un nodo DOM directamente)","Para manejar rutas","Para validar props"],a:1,e:"Se usa comunmente para enfocar inputs automaticamente (inputRef.current.focus())."},
-    {q:"Que es la funcion de 'cleanup' en un useEffect?",o:["Borra la base de datos","Es la funcion que se retorna dentro del efecto. Se ejecuta antes de desmontar el componente o antes de re-ejecutar el efecto.","Un script de Vite","Borra el localStorage"],a:1,e:"Se usa para cancelar timers, suscripciones o eventos y evitar fugas de memoria (memory leaks)."},
-    {q:"En React, donde se deben colocar las llamadas a Hooks (como useState o useEffect)?",o:["Adentro de un if()","Dentro de bucles for()","Solo en el nivel superior de un componente de React (Top Level)","En cualquier funcion de JavaScript comun"],a:2,e:"No se pueden usar condicionalmente. React depende del orden en el que se llaman los hooks en cada render."},
-    {q:"Que pasa si modificas directamente el estado (ej: user.name = 'Juan') sin usar el setter?",o:["React lanza un Error fatal 500","React no se entera del cambio y la interfaz grafica NO se actualiza","El Virtual DOM se optimiza solo","Funciona igual que con el setter"],a:1,e:"La inmutabilidad es clave. Si no llamas al setX(), React nunca gatilla el re-render."},
-    {q:"Como se captura el valor de un input en un form controlado?",o:["Con document.getElementById('input').value","Con el evento onChange: e => setValor(e.target.value)","Usando una Promesa","Con window.alert()"],a:1,e:"Cada vez que el usuario teclea, onChange actualiza el state, y el state actualiza el 'value' del input."},
-    {q:"Que es un Custom Hook?",o:["Un hook oficial que esta deprecado","Una funcion JS normal que empieza con 'use' y llama a otros hooks (ej: useState) por dentro para reutilizar logica","Un componente visual","Una libreria externa"],a:1,e:"Extrae logica compleja (ej: useFetch) para que los componentes queden limpios y faciles de leer."},
-    {q:"Como evitamos la recarga total de la pagina al hacer un Submit en un form de React?",o:["Usando return false;","Llamando a e.preventDefault() en el evento onSubmit","No usando botones submit","Desactivando el HTML"],a:1,e:"e.preventDefault() detiene el comportamiento por defecto del navegador de mandar la peticion y recargar la web."},
-    {q:"En React Router, que hace el hook useNavigate?",o:["Descarga informacion de una API","Devuelve una funcion que permite cambiar de ruta programaticamente (ej: despues de un login exitoso)","Genera el menu de navegacion automaticamente","Bloquea rutas"],a:1,e:"Es muy util para redirecciones despues de que ocurre un evento de negocio (guardar form, logout)."},
-    {q:"Que hace el React.StrictMode en modo desarrollo?",o:["Acelera la velocidad de la app","Hace que los componentes se rendericen dos veces intencionalmente para detectar bugs de efectos secundarios o mutaciones impuras","Sube la app a produccion","Minifica el codigo JS"],a:1,e:"Es normal ver dos console.logs en dev si tenes el StrictMode activado. En produccion solo renderiza una vez."},
-    {q:"Por que se usa Tailwind CSS en proyectos modernos de React?",o:["Porque requiere instalar jQuery","Porque permite estilizar componentes usando clases de utilidad directamente en el JSX sin salir del archivo JS","Porque es una base de datos de colores","Porque reemplaza a HTML"],a:1,e:"Evita crear decenas de archivos .css separados. Escribis las clases (flex, p-4, bg-blue-500) en el mismo componente."},
-    {q:"Si un componente recibe una funcion como prop (ej: onEliminar), para que sirve?",o:["Para romper la inmutabilidad","Para que el componente hijo pueda 'avisarle' al componente padre que ocurrio un evento, y el padre actualice su propio estado","Para que el hijo cambie su propia prop","Para evitar el uso de useCallback"],a:1,e:"Es la forma clasica de comunicacion Hijo -> Padre. El hijo ejecuta onEliminar(id) y el padre maneja la logica fuerte."},
-    {q:"Un componente se re-renderiza cuando:",o:["Cambia el CSS global","Cambia su estado interno o cambian las props que recibe de su padre","El mouse se mueve sobre el","Nunca"],a:1,e:"Estado (useState) y Props son los motores principales que disparan las actualizaciones de UI en React."}
+    {q:"Que es JSX?",o:["Base de datos","Extension navegador","Sintaxis que parece HTML pero es JS (expresiones entre llaves)","Sistema de routing"],a:2,e:"Babel o Vite lo transforman en React.createElement()."},
+    {q:"<a> vs <Link> en React Router:",o:["Son lo mismo","<a> recarga la pagina completa; <Link> cambia de vista sin recargar (SPA real)","<Link> usa POST","<a> es mas seguro"],a:1,e:"Trampa tipica: usar <a> rompe la Single Page Application."},
+    {q:"Zod se usa para:",o:["Peticiones HTTP","Esquemas estrictos de validacion de datos (ej: formatos, max, min)","Estado global","Renderizar listas"],a:1,e:"Ideal para validar formularios. En C17 se acordo que safeParse se usa tanto en front como en back."},
+    {q:"Regla de oro: ¿Qué NO va en un Context?",o:["Datos del usuario logueado","Tema claro/oscuro","Datos del dominio que pide una sola vista (van al backend / useFetch)","Filtros globales"],a:2,e:"Context es para UI transversal. Si es info de Base de Datos para una vista, usa fetch."},
+    {q:"Componente Controlado es...",o:["Aquel sin JS","Un input cuyo valor lo guarda el estado de React (value + onChange)","Componente con permisos de admin","Un div con estilos"],a:1,e:"React se vuelve la 'unica fuente de verdad' del formulario."},
+    {q:"El flujo de datos en React es:",o:["Bidireccional","Unidireccional (de padre a hijo)","Circular","Aleatorio"],a:1,e:"El hijo no puede modificar sus propias props, solo llamar a un setState que el padre le pase."},
+    {q:"Para que sirve un Fragmento en React (<></>)?",o:["Inyectar CSS","Agrupar multiples elementos sin agregar un nodo extra (como un div) al DOM real","Comentarios en JSX","Borrar Virtual DOM"],a:1,e:"Cumple la regla de 'retornar un solo elemento padre'."},
+    {q:"Por que ves el fetch dos veces en desarrollo?",o:["Es un bug grave de useEffect","StrictMode monta dos veces a proposito para buscar errores. En produccion no pasa.","CORS","El servidor esta rebotando"],a:1,e:"Es intencional de React StrictMode."},
+    {q:"¿Dónde se puede llamar un Hook?",o:["Dentro de un if","En un bucle for","En el nivel superior de un componente o custom hook (nunca condicional)","En cualquier clase JS"],a:2,e:"React los identifica por el ORDEN en que se llaman."},
+    {q:"¿Quién aplica las politicas de CORS?",o:["El backend Node","El navegador (protege al usuario, no al servidor)","El router","La base de datos"],a:1,e:"Por eso Postman o curl nunca dan error de CORS. Bloquea el navegador del usuario."},
+    {q:"¿Qué es un request Preflight (OPTIONS)?",o:["Error 500","Request previo que manda el navegador para confirmar permisos antes de mandar metodos complejos (PUT, POST json, auth)","Un ataque","Validacion de token"],a:1,e:"Si el backend responde bien el OPTIONS, el navegador manda el request real."},
+    {q:"Riesgo principal de guardar el JWT en localStorage:",o:["Se pierde facil","El backend no lo lee","Ataque XSS (cualquier script inyectado puede leer el token)","Ocupa RAM"],a:2,e:"El curso toma la decision de aceptarlo como riesgo mitigado (token corto de 2h, escapado HTML)."},
+    {q:"Diferencia conceptual entre UX e UI:",o:["Son iguales","UX es backend","UX es la experiencia completa del usuario; UI es lo visual en el dispositivo","UI incluye emociones"],a:2,e:"Ocultar un boton a un usuario que no tiene permisos mejora la UX, pero NO da seguridad real (el backend debe proteger igual con 403)."},
+    {q:"Al recargar la pagina (F5), ¿como sabe la app quien sos?",o:["Lo calcula Zod","Le pregunta al back (ej: GET /auth/yo) usando el token guardado para rehidratar el AuthContext","No se puede saber","Viene en la URL"],a:1,e:"F5 borra todo el estado de React. El token en localStorage permite volver a preguntar al server."},
+    {q:"En React Router, que hace useNavigate?",o:["Descarga informacion","Devuelve una funcion para cambiar de ruta programaticamente (ej: despues de un submit)","Arma el menu","Maneja Zod"],a:1,e:"Es muy util en funciones, cuando no se puede usar el componente <Link> directamente."}
 ];
 
 var B3 = [
-    {q:"Concepto de Docker:",o:["VM via hardware","Control de versiones","Serverless","Empaquetar app y dependencias en contenedores aislados (identicos en cualquier entorno)"],a:3,e:"Evita el 'en mi compu anda'."},
-    {q:"Ventaja de Docker:",o:["VMs livianas","Crear apps JS","Consistencia absoluta entre desarrollo, testing y produccion","Redes locales"],a:2,e:"El contenedor tiene exactamente el mismo SO y dependencias siempre."},
-    {q:"En REST, el metodo PUT hace:",o:["GET","POST","Reemplazo de un recurso COMPLETO","Modificacion parcial (PATCH)"],a:2,e:"PUT pisa todo el registro. PATCH solo pisa lo enviado."},
-    {q:"API Stateless (sin estado) significa:",o:["Guarda sesion en BD","No hay cache","Cada peticion tiene toda la informacion (token). El servidor no guarda contexto.","Interfaces aleatorias"],a:2,e:"El JWT permite que la API sea stateless."},
-    {q:"201 Created indica:",o:["Exito general","POST exitoso que creo un nuevo recurso","Sin contenido","Movido"],a:1,e:"Se genero algo nuevo en la Base de Datos."},
-    {q:"El next() en un middleware:",o:["Redirige","Error 500","Si el middleware no responde, pasa el control al siguiente en la cadena","Reinicia"],a:2,e:"Vital. Sin next(), el cliente se queda esperando por siempre."},
-    {q:"Prisma ORM sirve para:",o:["Mapear BD a objetos TypeScript evitando SQL manual","Transacciones ACID en NoSQL","Traducir front y back","Tipado BD"],a:0,e:"Acelera el desarrollo Backend, previene inyeccion SQL y da IntelliSense."},
-    {q:"Autenticacion vs Autorizacion:",o:["Front vs Back","AuthN verifica Identidad (401), AuthZ verifica Permisos/Rol (403)","Lo mismo","AuthN usa JWT, AuthZ roles"],a:1,e:"401: no estas logueado. 403: logueado, pero no sos admin."},
-    {q:"Error 403 al borrar indica:",o:["No existe el usuario","No existe producto","Usuario logueado pero sin permiso de borrado","Token vencido"],a:2,e:"Falla de Autorizacion."},
-    {q:"Tres partes de un JWT:",o:["Header, Payload, Signature","Header, Signature, Payload","Token, Claim, Payload","Header, Payload, Token"],a:0,e:"Algoritmo + Datos usuario + Firma digital."},
-    {q:"Por que NO guardar contrasenas en el Payload del JWT?",o:["Limite de tamano","Borrado en 5 min","Esta en Base64, NO encriptado. Cualquiera puede leerlo","Bcrypt falla"],a:2,e:"La firma previene modificacion, pero no oculta la lectura."},
-    {q:"Cual NO es un factor MFA?",o:["Clave (sabes)","Token (tenes)","Biometria (sos)","Correo electronico"],a:3,e:"El correo es un canal, no un factor."},
-    {q:"Test Unitario:",o:["Toda la app","Varios modulos","Una funcion o componente aislado sin red ni BD","Solo pre-deploy"],a:2,e:"Rapido y enfocado."},
-    {q:"Que es un Mock en Testing?",o:["Entorno produccion","Test completo","Reemplazo falso de dependencia externa (ej: Prisma o Fetch) para aislar la prueba","Error intencional"],a:2,e:"Evita ensuciar la BD real durante los tests."},
-    {q:"Filosofia de React Testing Library:",o:["Probar la logica interna","Probar la UI como la ve el usuario, sin importar como esta programada adentro","Componentes con estado","Snapshots"],a:1,e:"Si haces un refactor pero la UI sigue igual, el test no debe romperse."},
-    {q:"Comando prisma migrate dev:",o:["Sube a prod","Solo Prisma Client","Aplica el schema a la BD (SQL) y regenera el Prisma Client","Seed"],a:2,e:"Sincroniza tu codigo con tu base de datos local."},
-    {q:"Que soluciona el middleware CORS?",o:["Encriptacion","Navegador bloquea peticiones cross-origin (Front en un puerto, Back en otro). CORS las permite.","Validacion JWT","Comprime JSON"],a:1,e:"Cabeceras de seguridad para dominios cruzados."},
-    {q:"Falta token o expiro. Error HTTP:",o:["400","401 Unauthorized","403 Forbidden","404"],a:1,e:"Falla directa de Autenticacion."},
-    {q:"OAuth 2.0 es:",o:["Hasheo","Delegar autorizacion de recursos de forma segura (Login Google) sin ver claves","Libreria React","BD NoSQL"],a:1,e:"Tu app puede leer el email del usuario desde Google sin que el usuario te de su clave de Gmail."},
-    {q:"Por que Bcrypt es lento intencionalmente?",o:["Bug","Ahorrar RAM","Evita ataques de fuerza bruta masivos (hace q tarden anos)","Ley europea"],a:2,e:"Tiene un parametro de 'costo' para ralentizar el calculo matematico."},
-    {q:"Que son los Seeders?",o:["Migraciones","Script de datos iniciales en la BD (ej: Rol Admin por defecto)","Config Docker","Tests"],a:1,e:"Pre-carga informacion base necesaria para operar."},
-    {q:"El metodo HTTP GET:",o:["Crear","Reemplazar","Solo leer, sin efectos secundarios en el servidor","Eliminar"],a:2,e:"No debe modificar ninguna base de datos."},
-    {q:"PUT vs PATCH:",o:["PUT crea, PATCH elimina","PUT reemplaza TODO el objeto, PATCH solo actualiza campos enviados","Son iguales","PUT es mas rapido"],a:1,e:"En PATCH podes mandar un solo campo (ej: {precio: 100}). En PUT deberias mandar todo."},
-    {q:"Funcion describe() en Jest/Vitest:",o:["Resultado de test","Tiempo","Agrupa multiples casos de test (it) bajo un bloque comun","Mock"],a:2,e:"Organiza los tests en la consola."},
-    {q:"Donde viaja el JSON enviado desde un formulario al Backend Express (via POST)?",o:["req.query","req.params","req.body","req.headers"],a:2,e:"Los datos sensibles o voluminosos van en el cuerpo de la peticion."},
-    {q:"Para que sirve el archivo docker-compose.yml?",o:["Para compilar CSS","Para definir y orquestar multiples contenedores de Docker a la vez (ej: Backend + Postgres)","Para testear E2E","Para hashear contrasenas"],a:1,e:"Levantas toda la infraestructura del proyecto con un solo comando: docker-compose up -d."},
-    {q:"Que significa el codigo 500 Internal Server Error?",o:["Datos del cliente invalidos","El token esta vencido","El servidor choco con un error inesperado al procesar la peticion (ej: se cayo la BD)","La ruta no existe"],a:2,e:"Es un error no controlado por el desarrollador (o una excepcion general en el backend)."},
-    {q:"En una API Express, como obtenemos el ID si la ruta es /api/usuarios/:id?",o:["Desde req.body.id","Desde req.query.id","Desde req.params.id","Desde req.headers.id"],a:2,e:"Todo lo que esta definido con dos puntos (:) en la ruta, viaja en el objeto params."},
-    {q:"Cual es la funcion del 'salt' en bcrypt?",o:["Acelerar el hasheo","Texto aleatorio agregado a la contrasena antes de hashear para que dos claves iguales generen hashes distintos","Desencriptar la clave","Generar el JWT"],a:1,e:"Evita los ataques de tablas rainbow precalculadas."},
-    {q:"En testing (Vitest/Jest), que funcion se usa para verificar si el resultado de una operacion es igual al esperado?",o:["describe()","it()","test()","expect(resultado).toBe(esperado)"],a:3,e:"Las 'aserciones' se hacen con el bloque expect y sus matchers (toBe, toEqual)."},
-    {q:"Cual de estas contrasenas es la MAS segura segun los estandares de seguridad (Zod)?",o:["admin123 (porque es facil de recordar para soporte)","12345678 (porque tiene 8 caracteres)","Una frase larga de +12 caracteres combinando m4yUsCuL4s, nUm3r0s y $imb0l0s","La fecha de nacimiento al reves"],a:2,e:"La longitud y entropia son claves para evitar ataques de diccionario o fuerza bruta."},
-    {q:"Si un usuario intenta entrar a la ruta '/api/pagos' enviando un token correcto de un usuario 'CLIENTE', pero esa ruta exige rol 'ADMIN', el Backend deberia retornar:",o:["401 Unauthorized","403 Forbidden","404 Not Found","200 OK"],a:1,e:"El usuario SI esta autenticado (tiene token), pero falla la Autorizacion por su rol. Devuelve 403."},
-    {q:"Cual es el proposito de la directiva onDelete: Cascade en un esquema de base de datos Prisma?",o:["Cifrar los datos en cascada","Si borro un registro padre (ej: Usuario), se borran automaticamente todos los registros hijos asociados (ej: sus Turnos)","Restringir el borrado","Hacer un backup de la informacion"],a:1,e:"Mantiene la integridad referencial. Si no se usa cascade (o Restrict), quedarian registros huerfanos en la BD."}
+    {q:"Concepto de Docker:",o:["VM via hardware","Control de versiones","Empaquetar app y dependencias en contenedores aislados (identicos en cualquier entorno)","Servidor AWS"],a:2,e:"Resuelve el famoso 'en mi compu anda'."},
+    {q:"Contenedor vs Maquina Virtual (VM):",o:["Son lo mismo","VM virtualiza el Hardware (GBs, SO completo). Contenedor virtualiza el SO (comparte kernel, MBs).","Contenedor es mas lento","VM usa Docker"],a:1,e:"Contenedores son muchisimo mas ligeros y rapidos de prender (segundos vs minutos)."},
+    {q:"Imagen vs Contenedor:",o:["No hay diferencia","Imagen es la foto, Contenedor es el backend","Imagen = molde inmutable (clase); Contenedor = instancia en ejecucion.","Imagen se baja de git"],a:2,e:"De una imagen salen infinitos contenedores iguales."},
+    {q:"En REST, el metodo PUT hace:",o:["GET","POST","Reemplazo de un recurso COMPLETO (es idempotente)","Modificacion parcial"],a:2,e:"PATCH hace modificacion parcial. PUT reemplaza todo. Ambos devuelven lo mismo si los tiras 10 veces (idempotentes). POST NO es idempotente (crea 10 recursos)."},
+    {q:"API Stateless (sin estado) significa:",o:["Guarda sesion en BD","Cada request trae toda la informacion necesaria; el servidor no recuerda requests anteriores.","No hay base de datos","Retorna 404"],a:1,e:"El JWT hace esto posible: mandas tu identidad entera en cada peticion."},
+    {q:"El next() en un middleware:",o:["Redirige","Error 500","Si no responde, pasa el control al siguiente eslabon de la cadena","Reinicia"],a:2,e:"next(error) saltea todo y va directo al manejador de errores final."},
+    {q:"Prisma ORM sirve para:",o:["Mapear BD relacional a objetos TypeScript evitando escribir SQL manual","Transacciones en MongoDB","Traducir front y back","Armar wireframes"],a:0,e:"¿Que NO hace un ORM? NO optimiza consultas, NO diseña tu BD, y no te salva de entender SQL base."},
+    {q:"Autenticacion vs Autorizacion:",o:["Front vs Back","Autenticacion = Quien sos (401). Autorizacion = Que podes hacer (403).","Lo mismo","Auth usa JWT, el otro no"],a:1,e:"Trampa del parcial (401 vs 403)."},
+    {q:"Tres partes de un JWT:",o:["Header, Payload, Signature","Header, Signature, Payload","Token, Claim, Payload","Ninguna"],a:0,e:"El JWT ESTA FIRMADO, NO ENCRIPTADO. Cualquiera puede leer el payload (Base64). No pongas contraseñas ahi."},
+    {q:"Cual es la funcion del 'salt' en bcrypt?",o:["Acelerar el hasheo","Valor aleatorio que se mezcla antes de hashear para que dos passwords iguales den hashes distintos","Desencriptar la clave","Generar JWT"],a:1,e:"Inutiliza los ataques de Rainbow Tables. Bcrypt es lento A PROPOSITO para frenar ataques de fuerza bruta."},
+    {q:"Hash vs Cifrado:",o:["Sinonimos","Hash es irreversible (ej: pass). Cifrado es reversible con clave.","Hash es rapido","Cifrado es MD5"],a:1,e:"Nunca se debe poder desencriptar una contraseña (regla de seguridad estandar)."},
+    {q:"Como se previenen los ataques de SQL Injection?",o:["Borrando datos","Parametrizando consultas (Prisma separa la logica de los datos ingresados)","Usando md5","Con JWT"],a:1,e:"Nunca concatenar strings directamente en la consulta SQL ('SELECT * FROM users WHERE id = ' + userId)."},
+    {q:"Piramide de Testing:",o:["E2E abajo, Unitario arriba","Unitarios en la base (muchos, rapidos), Integracion en medio, E2E (UI) en la punta (pocos, caros, lentos).","Unitarios simulan front","E2E usa Jest"],a:1,e:"Unitario prueba funciones aisladas usando mocks."},
+    {q:"Que es un Mock (ej: vi.fn()) en Testing?",o:["Entorno produccion","Test completo","Version falsa/reemplazo de dependencia para aislar la prueba y registrar si fue llamada","Error intencional"],a:2,e:"Permite testear el Controller sin necesidad de levantar realmente la Base de Datos Prisma."},
+    {q:"Ciclo de TDD (Test-Driven Development):",o:["Verde -> Refactor","Planear -> Codear","Rojo (falla el test) -> Verde (escribir codigo justo para pasar) -> Refactor","E2E -> Unitario"],a:2,e:"Primero el test falla. Garantiza que probas que tus requerimientos fallan cuando no estan implementados."},
+    {q:"Testing Library: getBy vs queryBy",o:["Son iguales","getBy falla y corta el test si no lo encuentra. queryBy devuelve null (sirve para probar ausencia)","queryBy falla","Ambos devuelven Promesa"],a:1,e:"Si queres asegurar que el boton de Admin NO se muestra al Cliente, usas expect(queryByText('Borrar')).toBeNull()."},
+    {q:"¿Qué hace onDelete: Cascade en Prisma?",o:["Protege la DB","Si borro al padre, se borran automaticamente todos los registros hijos asociados","Evita el borrado (es el Restrict)","Cifra en cascada"],a:1,e:"Es muy destructivo. El default de Prisma para relaciones obligatorias es Restrict (no te deja borrar)."},
+    {q:"En una arquitectura en capas del Backend, ¿quién decide el Status Code (ej: 404, 200)?",o:["El Repository","El Service","El Controller (traduce dominio a HTTP)","Las Routes"],a:2,e:"El Service tiene la logica pura, NO debe saber nada de peticiones HTTP, req, res, ni status codes."},
+    {q:"Status 201 y 204:",o:["201 Error, 204 Exito","201 Created (POST exitoso). 204 No Content (DELETE exitoso sin body de respuesta).","201 OK, 204 Error","Son de Front"],a:1,e:"200 es OK generico. 201 es especifico para creacion. 409 es Conflicto (choca con DB, ej: duplicado)."},
+    {q:"Unitario vs Integración (Test):",o:["Miden lo mismo","Unitario prueba si 1 pieza funciona aislada. Integración prueba que varias piezas engranen bien juntas (API + DB).","Unitario es frontend","Unitario es lento"],a:1,e:"Unitario no te salva si las piezas no encajan (el clasico chiste de las dos puertas que no cierran)."}
 ];
 
 // === POOL STATE ===
@@ -319,12 +261,10 @@ function shuffle(arr) {
 
 function qNew(mod) {
     var bank = mod === 1 ? B1 : mod === 2 ? B2 : B3;
-    
     if (qPool[mod].length < EXAM_SIZE) {
         qPool[mod] = shuffle(bank);
         examNum[mod] = 0; 
     }
-    
     examNum[mod]++;
     var picked = qPool[mod].splice(0, EXAM_SIZE);
     
@@ -341,8 +281,7 @@ function qRender(mod) {
     document.getElementById('m' + mod + '-exp').style.display = 'none';
     document.getElementById('m' + mod + '-next').style.display = 'none';
     document.getElementById('m' + mod + '-prog').style.width = ((s.idx / s.questions.length) * 100) + '%';
-    
-    document.getElementById('m' + mod + '-pool').textContent = 'Quedan ' + qPool[mod].length + ' preguntas nuevas en el pozo';
+    document.getElementById('m' + mod + '-pool').textContent = 'Quedan ' + qPool[mod].length + ' preguntas en el pozo';
 
     var letters = ['A','B','C','D'];
     var opts = '';
@@ -386,12 +325,7 @@ function qPick(mod, sel) {
 
 function qNext(mod) {
     var s = qState[mod];
-    if (s.idx === s.questions.length - 1) {
-        qResults(mod);
-    } else {
-        s.idx++;
-        qRender(mod);
-    }
+    if (s.idx === s.questions.length - 1) { qResults(mod); } else { s.idx++; qRender(mod); }
 }
 
 function qResults(mod) {
@@ -399,16 +333,14 @@ function qResults(mod) {
     var pct = Math.round((s.correct / s.total) * 100);
     var color = pct >= 80 ? '#10b981' : pct >= 60 ? '#f59e0b' : '#ef4444';
     var msg = pct >= 80 ? 'Excelente dominio.' : pct >= 60 ? 'Bien, pero falta repaso.' : 'Relee la teoria del modulo.';
-    
-    var nbtn = qPool[mod].length < EXAM_SIZE ? 'Rellenar Pozo y Nuevo Examen' : 'Nuevo Examen (Preguntas 100% Nuevas)';
+    var nbtn = qPool[mod].length < EXAM_SIZE ? 'Rellenar Pozo y Nuevo Examen' : 'Nuevo Examen (100% Nuevo)';
     
     document.getElementById('m' + mod + '-qcard').innerHTML =
         '<div style="text-align:center;padding:40px 20px;">' +
         '<div style="font-size:3rem;font-weight:900;color:' + color + ';margin-bottom:8px;">' + pct + '%</div>' +
         '<div style="font-size:1.1rem;font-weight:600;margin-bottom:8px;">' + s.correct + ' correctas de ' + s.total + '</div>' +
         '<div style="color:var(--muted-foreground);margin-bottom:28px;">' + msg + '</div>' +
-        '<button class="primary-btn" onclick="qNew(' + mod + ')">' + nbtn + '</button>' +
-        '</div>';
+        '<button class="primary-btn" onclick="qNew(' + mod + ')">' + nbtn + '</button></div>';
     document.getElementById('m' + mod + '-exp').style.display = 'none';
     document.getElementById('m' + mod + '-next').style.display = 'none';
     document.getElementById('m' + mod + '-prog').style.width = '100%';
