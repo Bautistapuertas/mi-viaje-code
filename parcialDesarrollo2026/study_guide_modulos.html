@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia por Modulos - DS 2026 (Definitiva)</title>
+    <title>Guia por Modulos - DS 2026</title>
     <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
     <style>
         body { font-family: sans-serif; background: var(--background); color: var(--foreground); margin: 0; padding: 0; }
@@ -13,12 +13,13 @@
         .sec-tab.active { background: var(--primary); color: var(--primary-foreground); }
         .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; margin-bottom: 18px; }
         .section-title { font-size: 1.3rem; font-weight: 800; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 16px; }
+        .sub-title { font-size: 1rem; font-weight: 700; margin: 16px 0 6px 0; }
         .txt { color: var(--muted-foreground); line-height: 1.8; font-size: 0.95rem; margin: 0 0 6px 0; }
         .txt li { margin-bottom: 7px; }
-        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; }
-        .badge-1 { background: #dbeafe; color: #1d4ed8; }
-        .badge-2 { background: #dcfce7; color: #15803d; }
-        .badge-3 { background: #fce7f3; color: #be185d; }
+        .tag { display: inline-block; background: var(--muted); font-family: monospace; font-size: 0.82rem; padding: 1px 6px; border-radius: 4px; }
+        .info-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 18px; font-size: 0.9rem; color: #1e3a5f; }
+        .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 18px; font-size: 0.9rem; color: #78350f; }
+        hr.div { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
         .opt-btn { display: block; width: 100%; text-align: left; padding: 13px 17px; border-radius: 10px; border: 2px solid var(--border); background: transparent; color: var(--foreground); font-size: 0.95rem; cursor: pointer; margin-bottom: 9px; transition: border-color 0.15s; }
         .opt-btn:hover:not(:disabled) { border-color: var(--primary); }
         .opt-btn:disabled { cursor: default; }
@@ -31,24 +32,29 @@
         .primary-btn:hover { opacity: 0.9; }
         .progress-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 18px; }
         .progress-fill { height: 100%; background: var(--primary); border-radius: 3px; transition: width 0.4s; }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; }
+        .badge-1 { background: #dbeafe; color: #1d4ed8; }
+        .badge-2 { background: #dcfce7; color: #15803d; }
+        .badge-3 { background: #fce7f3; color: #be185d; }
+        .result-badge { font-size: 3rem; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
         .exam-tag { display: inline-block; background: var(--muted); color: var(--muted-foreground); font-size: 0.78rem; padding: 3px 10px; border-radius: 10px; margin-bottom: 6px; }
-        .pool-indicator { font-size: 0.8rem; color: var(--muted-foreground); margin-top: 12px; font-weight: 600; }
     </style>
 </head>
 <body>
 
+<!-- STICKY HEADER -->
 <div style="position:sticky;top:0;z-index:50;background:var(--card);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;flex-direction:column;gap:8px;">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
         <div>
             <span style="font-size:1.4rem;font-weight:900;">Guia por Modulos — Desarrollo 2026</span>
-            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">Definitiva (+130 preguntas)</span>
+            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">Teoria + Simulacro por modulo</span>
         </div>
-        <a href="study_guide.html" style="font-size:0.85rem;color:var(--primary);text-decoration:none;font-weight:600;">Ver guia V1 →</a>
+        <a href="study_guide.html" style="font-size:0.85rem;color:var(--primary);text-decoration:none;font-weight:600;">Ver guia completa →</a>
     </div>
     <div style="display:flex;border-bottom:1px solid var(--border);margin-top:4px;">
-        <button class="mod-tab active" id="mtab-1" onclick="switchMod(1)">Modulo 1 — Web, Git, Scrum, TS</button>
+        <button class="mod-tab active" id="mtab-1" onclick="switchMod(1)">Modulo 1 — Web, Git, Scrum y TypeScript</button>
         <button class="mod-tab" id="mtab-2" onclick="switchMod(2)">Modulo 2 — React Frontend</button>
-        <button class="mod-tab" id="mtab-3" onclick="switchMod(3)">Modulo 3 — Backend, Auth, Testing</button>
+        <button class="mod-tab" id="mtab-3" onclick="switchMod(3)">Modulo 3 — Backend, Seguridad y Testing</button>
     </div>
 </div>
 
@@ -56,26 +62,96 @@
 <div id="mod-1" style="max-width:900px;margin:0 auto;padding:28px 24px 80px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
         <span class="badge badge-1">Modulo 1</span>
-        <span style="font-size:1.3rem;font-weight:800;">Fundamentos Web, Arquitecturas, Git y Scrum</span>
+        <span style="font-size:1.3rem;font-weight:800;">Fundamentos Web, Git, Scrum y TypeScript</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:24px;">
         <button class="sec-tab active" id="m1-tbtn-teoria" onclick="switchSec(1,'teoria')">Teoria</button>
         <button class="sec-tab" id="m1-tbtn-quiz" onclick="switchSec(1,'quiz')">Simulacro</button>
     </div>
+
     <div id="m1-sec-teoria">
-        <div class="card"><div class="section-title">SDLC y Arquitecturas</div><ul class="txt"><li><strong>Cascada vs Ágil:</strong> Cascada es lineal y rígido. Ágil es iterativo, incremental y se adapta (ej: Scrum).</li><li><strong>Escalabilidad:</strong> Vertical (mejorar hardware) vs Horizontal (agregar nodos/instancias).</li><li><strong>Microservicios:</strong> Aislamiento de fallos, escalabilidad por partes, pero orquestación compleja.</li><li><strong>Multicapa:</strong> Cada capa SOLO habla con la inmediatamente inferior (Presentación -> Negocio -> Persistencia).</li></ul></div>
-        <div class="card"><div class="section-title">Requerimientos y UX/UI</div><ul class="txt"><li><strong>Historia de Usuario (INVEST):</strong> Independiente, Negociable, Valiosa, Estimable, Small (Pequeña, clave para entrar en un sprint), Testeable.</li><li><strong>MoSCoW:</strong> Priorización (Must, Should, Could, Won't).</li><li><strong>Planning Poker:</strong> Busca consenso y <strong>tamaño relativo</strong> del esfuerzo, no horas reloj exactas.</li><li><strong>UX vs UI:</strong> UX (Experiencia completa), UI (Dispositivo/Pantalla).</li><li><strong>Prototipado:</strong> Wireframe (baja fidelidad/estructura), Mockup (estilo visual no funcional), Prototipo (interactivo/funcional).</li></ul></div>
-        <div class="card"><div class="section-title">Git y TypeScript</div><ul class="txt"><li><strong>Git pull:</strong> Equivale a <code>git fetch + git merge</code>.</li><li><strong>Ramas (Branches):</strong> Líneas de desarrollo independientes para no romper `main`.</li><li><strong>TS:</strong> Tipado estático (detecta errores al compilar). <code>any</code> apaga chequeos, <code>unknown</code> es seguro y obliga a chequear.</li></ul></div>
+        <div class="card">
+            <div class="section-title">Arquitectura Cliente-Servidor y la Web</div>
+            <ul class="txt">
+                <li><strong>Cliente-Servidor:</strong> El cliente (el navegador) hace peticiones HTTP y el servidor las responde a traves de una red.</li>
+                <li><strong>HTTP:</strong> Protocolo de comunicacion entre cliente y servidor mediante peticiones y respuestas.</li>
+                <li><strong>SPA (Single Page Application):</strong> Carga una sola vez y actualiza el contenido dinamicamente sin recargar la pagina entera. La ventaja principal es una navegacion mas rapida y sin interrupciones.</li>
+                <li><strong>AJAX:</strong> Tecnica para hacer peticiones al servidor en segundo plano y actualizar partes de la UI sin recargar todo.</li>
+                <li><strong>HTML:</strong> Estructura el contenido de una pagina web.</li>
+                <li><strong>CSS:</strong> Estiliza el HTML (colores, fuentes, layouts).</li>
+                <li><strong>JavaScript:</strong> El unico lenguaje que el navegador ejecuta. Se incluye con la etiqueta <span class="tag">script</span>.</li>
+                <li><strong>Servidor web:</strong> Almacena y sirve contenido a los clientes cuando estos lo solicitan.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">Git — Control de Versiones</div>
+            <ul class="txt">
+                <li><strong>git init:</strong> Crea un repositorio Git nuevo en la carpeta actual (local, no en GitHub).</li>
+                <li><strong>git clone [url]:</strong> Descarga una copia completa de un repositorio remoto con todo su historial.</li>
+                <li><strong>git add:</strong> Mueve archivos al area de staging, preparandolos para el commit.</li>
+                <li><strong>git commit -m:</strong> Guarda una foto permanente del staging en el historial local.</li>
+                <li><strong>git push:</strong> Sube los commits locales al servidor remoto (GitHub).</li>
+                <li><strong>git pull:</strong> Descarga los cambios del remoto y los fusiona en la rama local.</li>
+                <li><strong>git branch:</strong> Crea una rama para trabajar aislado sin romper el codigo principal.</li>
+                <li><strong>git log:</strong> Muestra el historial completo de commits.</li>
+                <li><strong>git status:</strong> Muestra que archivos estan modificados pero no en staging.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">JavaScript Moderno y Asincronismo</div>
+            <ul class="txt">
+                <li><strong>let / const:</strong> Reemplazan a var. const no se puede reasignar. Scope de bloque.</li>
+                <li><strong>Arrow functions:</strong> Sintaxis corta: <span class="tag">const suma = (a, b) => a + b</span></li>
+                <li><strong>Desestructuracion:</strong> <span class="tag">const { nombre } = persona</span> extrae propiedades directamente.</li>
+                <li><strong>Spread (...):</strong> Desparrama un array u objeto. Clave para no mutar el estado en React.</li>
+                <li><strong>Promesas (Promise):</strong> Objeto que representa el resultado futuro de una operacion asincrona. Estados: pending, fulfilled o rejected.</li>
+                <li><strong>async / await:</strong> Sintaxis mas legible para Promesas. await pausa la funcion hasta que la Promesa resuelva sin bloquear el navegador.</li>
+                <li><strong>fetch():</strong> Funcion nativa que hace peticiones HTTP. Devuelve una Promesa.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">TypeScript</div>
+            <ul class="txt">
+                <li><strong>Que es:</strong> Superconjunto de JavaScript con tipado estatico. Se transpila a JS puro. Detecta errores en tiempo de compilacion, no en ejecucion.</li>
+                <li><strong>Extensiones:</strong> <span class="tag">.ts</span> (TypeScript puro) y <span class="tag">.tsx</span> (TypeScript con JSX para React).</li>
+                <li><strong>Primitivos:</strong> <span class="tag">string</span>, <span class="tag">number</span>, <span class="tag">boolean</span>. Tambien <span class="tag">void</span> para funciones que no retornan.</li>
+                <li><strong>any:</strong> Desactiva toda verificacion de tipos. Es un escape, no un primitivo.</li>
+                <li><strong>unknown:</strong> Version segura de any. Obliga a verificar el tipo antes de usar el valor.</li>
+                <li><strong>Interfaces / Types:</strong> Definen la forma de un objeto. Ej: <span class="tag">interface Usuario</span> con id y nombre.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">Metodologia Scrum</div>
+            <ul class="txt">
+                <li><strong>Sprint:</strong> Iteracion de 1 a 4 semanas. Al final se produce un incremento del producto.</li>
+                <li><strong>Product Owner:</strong> Representa al cliente. Unico responsable de priorizar el Product Backlog.</li>
+                <li><strong>Scrum Master:</strong> Facilita el proceso y elimina obstaculos. No es el jefe del equipo.</li>
+                <li><strong>Developers:</strong> Hacen el trabajo. Se auto-organizan.</li>
+                <li><strong>Sprint Planning:</strong> Al inicio del Sprint. El equipo elige que items pasan al Sprint Backlog.</li>
+                <li><strong>Daily Scrum:</strong> Reunion de max 15 min diaria, solo Developers. Objetivo: sincronizarse y detectar bloqueos.</li>
+                <li><strong>Sprint Review:</strong> Al final. Se muestra el trabajo terminado al cliente.</li>
+                <li><strong>Sprint Retrospective:</strong> Al final. El equipo reflexiona sobre como mejorar su proceso.</li>
+            </ul>
+        </div>
     </div>
+
     <div id="m1-sec-quiz" style="display:none;">
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-            <div><div style="font-size:1.1rem;font-weight:800;">Simulacro M1</div><div id="m1-exam-tag" class="exam-tag">Examen #1</div></div>
-            <div style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m1-score">0 / 0</div><div style="font-size:0.72rem;color:var(--muted-foreground);">correctas</div></div>
+            <div>
+                <div style="font-size:1.1rem;font-weight:800;">Simulacro — Modulo 1</div>
+                <div id="m1-exam-tag" class="exam-tag">Examen #1</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m1-score">0 / 0</div>
+                <div style="font-size:0.72rem;color:var(--muted-foreground);">correctas / respondidas</div>
+            </div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="m1-prog" style="width:0%"></div></div>
         <div id="m1-qcard" class="card"><div style="text-align:center;padding:50px;color:var(--muted-foreground);">Iniciando...</div></div>
         <div id="m1-exp" style="display:none;"></div>
-        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;"><div id="m1-pool" class="pool-indicator"></div><button class="primary-btn" id="m1-next" style="display:none;" onclick="qNext(1)">Siguiente pregunta</button></div>
+        <div style="margin-top:16px;display:flex;justify-content:flex-end;">
+            <button class="primary-btn" id="m1-next" style="display:none;" onclick="qNext(1)">Siguiente pregunta</button>
+        </div>
     </div>
 </div>
 
@@ -83,25 +159,74 @@
 <div id="mod-2" style="display:none;max-width:900px;margin:0 auto;padding:28px 24px 80px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
         <span class="badge badge-2">Modulo 2</span>
-        <span style="font-size:1.3rem;font-weight:800;">Frontend con React y Entorno</span>
+        <span style="font-size:1.3rem;font-weight:800;">Frontend con React (C08 a C12)</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:24px;">
         <button class="sec-tab active" id="m2-tbtn-teoria" onclick="switchSec(2,'teoria')">Teoria</button>
         <button class="sec-tab" id="m2-tbtn-quiz" onclick="switchSec(2,'quiz')">Simulacro</button>
     </div>
+
     <div id="m2-sec-teoria">
-        <div class="card"><div class="section-title">Conceptos Core de React</div><ul class="txt"><li><strong>Virtual DOM:</strong> Copia ligera en memoria para hacer "diffing" y actualizar el DOM real minimizando repintados.</li><li><strong>Estado vs Props:</strong> El estado muta (re-renderiza), las props son parámetros de lectura de padre a hijo. NUNCA mutar el estado directo, usar el set.</li><li><strong>Prop Drilling:</strong> Pasar props por componentes intermedios innecesariamente. Se soluciona con <code>useContext</code>.</li></ul></div>
-        <div class="card"><div class="section-title">CORS, Seguridad y Tokens</div><ul class="txt"><li><strong>CORS:</strong> Cross-Origin Resource Sharing. Lo aplica el <strong>Navegador</strong> (no curl/Postman) para proteger al usuario de que webs maliciosas lean respuestas.</li><li><strong>Preflight (OPTIONS):</strong> El navegador hace un request previo para métodos complejos (ej. PUT, DELETE o con headers como Authorization) para ver si el servidor lo permite.</li><li><strong>LocalStorage:</strong> Si guardás un token acá, tiene riesgo <strong>XSS</strong> (cualquier script JS inyectado puede robarlo).</li><li><strong>Validación Front vs Back:</strong> Esconder un botón de "Borrar" a un cliente es UX (Experiencia). La verdadera validación de seguridad (Autorización) siempre recae en el Backend.</li></ul></div>
+        <div class="card">
+            <div class="section-title">Componentes, JSX y Virtual DOM</div>
+            <ul class="txt">
+                <li><strong>Componentes:</strong> Funciones de JavaScript que retornan JSX. Son los bloques de construccion de la UI.</li>
+                <li><strong>JSX:</strong> Sintaxis que mezcla HTML dentro de JavaScript. El compilador lo transforma a llamadas JS puras.</li>
+                <li><strong>Props:</strong> Argumentos que el componente padre pasa al hijo para configurar su comportamiento. Son de solo lectura dentro del hijo.</li>
+                <li><strong>Virtual DOM:</strong> Copia ligera del DOM real en memoria. React la usa para hacer Diffing y aplicar solo los cambios minimos al DOM real.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">useState — Estado Local</div>
+            <ul class="txt">
+                <li>Declara una variable de estado. Cuando se actualiza con su setter, React re-renderiza el componente.</li>
+                <li><strong>Por que no usar let:</strong> Una variable let comun no dispara el re-render aunque cambie.</li>
+                <li><strong>Regla para arrays:</strong> Nunca usar .push() en el array original. React compara referencias, si mutamos el original cree que nada cambio. Siempre crear uno nuevo: <span class="tag">[...viejo, nuevoElem]</span></li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">useEffect — Efectos Secundarios</div>
+            <ul class="txt">
+                <li><strong>Con [] (array vacio):</strong> Se ejecuta SOLO al montar el componente. Ideal para llamadas API iniciales.</li>
+                <li><strong>Con [variable]:</strong> Se ejecuta al montar Y cada vez que esa variable cambia.</li>
+                <li><strong>Sin array:</strong> Se ejecuta despues de CADA render. Cuidado con loops infinitos.</li>
+                <li>Sirve para efectos secundarios: fetches, timers, suscripciones, manipulacion del titulo de la pagina.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">useContext — Estado Global y Prop Drilling</div>
+            <ul class="txt">
+                <li><strong>Prop Drilling:</strong> Pasar props por multiples niveles de componentes que no los necesitan directamente. Es codigo dificil de mantener.</li>
+                <li><strong>useContext:</strong> Permite que cualquier componente del arbol acceda a datos globales (usuario logueado, tema) directamente, sin pasar por intermediarios.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">Routing y Formularios</div>
+            <ul class="txt">
+                <li><strong>react-router-dom:</strong> Navegacion entre "paginas" sin recargar. Usa BrowserRouter, Routes, Route y Link (reemplaza la etiqueta a).</li>
+                <li><strong>Formularios controlados:</strong> Los inputs estan atados al estado con value y onChange. React tiene control total.</li>
+                <li><strong>Zod:</strong> Libreria para validar datos con esquemas estrictos (email, longitud minima, etc.).</li>
+            </ul>
+        </div>
     </div>
+
     <div id="m2-sec-quiz" style="display:none;">
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-            <div><div style="font-size:1.1rem;font-weight:800;">Simulacro M2</div><div id="m2-exam-tag" class="exam-tag">Examen #1</div></div>
-            <div style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m2-score">0 / 0</div><div style="font-size:0.72rem;color:var(--muted-foreground);">correctas</div></div>
+            <div>
+                <div style="font-size:1.1rem;font-weight:800;">Simulacro — Modulo 2</div>
+                <div id="m2-exam-tag" class="exam-tag">Examen #1</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m2-score">0 / 0</div>
+                <div style="font-size:0.72rem;color:var(--muted-foreground);">correctas / respondidas</div>
+            </div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="m2-prog" style="width:0%"></div></div>
         <div id="m2-qcard" class="card"><div style="text-align:center;padding:50px;color:var(--muted-foreground);">Iniciando...</div></div>
         <div id="m2-exp" style="display:none;"></div>
-        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;"><div id="m2-pool" class="pool-indicator"></div><button class="primary-btn" id="m2-next" style="display:none;" onclick="qNext(2)">Siguiente pregunta</button></div>
+        <div style="margin-top:16px;display:flex;justify-content:flex-end;">
+            <button class="primary-btn" id="m2-next" style="display:none;" onclick="qNext(2)">Siguiente pregunta</button>
+        </div>
     </div>
 </div>
 
@@ -109,29 +234,103 @@
 <div id="mod-3" style="display:none;max-width:900px;margin:0 auto;padding:28px 24px 80px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
         <span class="badge badge-3">Modulo 3</span>
-        <span style="font-size:1.3rem;font-weight:800;">Backend, Seguridad y Testing</span>
+        <span style="font-size:1.3rem;font-weight:800;">Backend, Seguridad y Testing (C13 a C21)</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:24px;">
         <button class="sec-tab active" id="m3-tbtn-teoria" onclick="switchSec(3,'teoria')">Teoria</button>
         <button class="sec-tab" id="m3-tbtn-quiz" onclick="switchSec(3,'quiz')">Simulacro</button>
     </div>
+
     <div id="m3-sec-teoria">
-        <div class="card"><div class="section-title">Seguridad (CIA) y Errores</div><ul class="txt"><li><strong>401 vs 403:</strong> 401 Unauthorized = No Autenticado (no sé quién sos). 403 Forbidden = Autenticado, pero SIN permiso (sé quién sos, pero rol insuficiente).</li><li><strong>Hash vs Cifrado:</strong> El hash (bcrypt) es IRREVERSIBLE. El cifrado es reversible si tenés la clave.</li><li><strong>SQL Injection:</strong> Se previene parametrizando consultas (Prisma ya lo hace por vos).</li><li><strong>ORM (Prisma):</strong> Te mapea las tablas, pero NO diseña tu base de datos y te suma una dependencia. <code>onDelete: Cascade</code> borra todos los hijos automáticamente.</li></ul></div>
-        <div class="card"><div class="section-title">Testing Avanzado</div><ul class="txt"><li><strong>Pirámide:</strong> Unitarios en la base (rápidos, aislados). Integración en el medio. E2E (End-to-End) en la punta (lentos, flujo completo).</li><li><strong>TDD (Test-Driven Development):</strong> Ciclo: Rojo (escribir test que falla) -> Verde (escribir código justo para que pase) -> Refactor.</li><li><strong>Testing Library:</strong> <code>getBy</code> lanza error si no encuentra el texto. <code>queryBy</code> devuelve NULL (ideal para verificar que algo fue borrado).</li><li><strong>vi.fn():</strong> Mock function de Vitest. Registra si fue llamada y con qué argumentos, sin ejecutar lógica real.</li></ul></div>
+        <div class="card">
+            <div class="section-title">Docker</div>
+            <ul class="txt">
+                <li><strong>Que es:</strong> Plataforma para empaquetar aplicaciones en contenedores aislados. Mas liviano que una VM porque comparte el kernel del SO.</li>
+                <li><strong>Beneficio clave:</strong> La app corre identica en cualquier entorno. Elimina el "en mi maquina funciona".</li>
+                <li><strong>docker-compose:</strong> Define y corre multiples contenedores a la vez (app Node + Postgres, por ejemplo).</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">APIs REST — Verbos y Codigos HTTP</div>
+            <ul class="txt">
+                <li><strong>Stateless:</strong> Cada peticion debe contener toda la informacion necesaria. El servidor no guarda contexto entre peticiones.</li>
+                <li><strong>GET:</strong> Leer datos. Sin efectos secundarios.</li>
+                <li><strong>POST:</strong> Crear recurso. Respuesta: 201 Created.</li>
+                <li><strong>PUT:</strong> Reemplazar recurso completo.</li>
+                <li><strong>PATCH:</strong> Modificar parcialmente un recurso.</li>
+                <li><strong>DELETE:</strong> Eliminar recurso.</li>
+                <li><strong>200:</strong> Exito. <strong>201:</strong> Creado. <strong>400:</strong> Datos invalidos. <strong>401:</strong> Sin sesion (AuthN). <strong>403:</strong> Sin permiso (AuthZ). <strong>404:</strong> No existe. <strong>500:</strong> Error servidor.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">Express y Middlewares</div>
+            <ul class="txt">
+                <li><strong>Express.js:</strong> Framework minimalista sobre Node.js para construir APIs.</li>
+                <li><strong>Middlewares:</strong> Funciones que interceptan request-response. Tienen req, res y next.</li>
+                <li>Si el middleware responde (res.json etc.) el ciclo termina. NO llamar next().</li>
+                <li>Si NO responde (solo valida), DEBE llamar next() o la peticion queda colgada.</li>
+                <li><strong>req.body:</strong> Datos del cuerpo. <strong>req.params:</strong> Variables de la URL. <strong>req.query:</strong> Parametros despues del ?</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">Prisma ORM y Base de Datos</div>
+            <ul class="txt">
+                <li><strong>ORM:</strong> Puente entre objetos de codigo y la base de datos relacional. Evita escribir SQL manual y previene inyeccion SQL.</li>
+                <li><strong>schema.prisma:</strong> Define modelos (tablas), campos y relaciones.</li>
+                <li><strong>npx prisma migrate dev:</strong> Lee cambios en el schema, genera SQL, lo ejecuta en la BD y regenera el Prisma Client.</li>
+                <li><strong>Seeders:</strong> Script para poblar la BD con datos iniciales.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">Seguridad — AuthN, AuthZ, Bcrypt y JWT</div>
+            <div class="info-box">La diferencia entre 401 y 403 es uno de los temas mas repetidos en los parciales.</div>
+            <ul class="txt">
+                <li><strong>Autenticacion (AuthN) — 401:</strong> Verifica la identidad. Si no hay token o es invalido: 401 Unauthorized.</li>
+                <li><strong>Autorizacion (AuthZ) — 403:</strong> Verifica los permisos del rol. Ocurre DESPUES de autenticar. Sin permiso: 403 Forbidden.</li>
+                <li><strong>Bcrypt:</strong> Hashea contrasenas de forma irreversible. Nunca guardar en texto plano. Es intencionalmente lento para resistir ataques de fuerza bruta.</li>
+                <li><strong>JWT:</strong> Token con Header + Payload + Signature. Firmado pero NO encriptado. Nunca guardar datos sensibles en el Payload.</li>
+                <li><strong>Ventaja JWT:</strong> Stateless. El servidor no guarda sesiones en la BD.</li>
+                <li><strong>OAuth:</strong> Protocolo para delegar autorizacion entre apps (ej: Login con Google).</li>
+                <li><strong>MFA:</strong> Autenticacion multi-factor. Los tres factores: algo que sabes, algo que tenes, algo que eres. El email no es un factor MFA.</li>
+                <li><strong>CORS:</strong> El navegador bloquea peticiones entre origenes distintos. El backend configura cors para permitirlas.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="section-title">Testing (C20 y C21)</div>
+            <div class="warn-box">Las diapositivas C20 y C21 no estan en la carpeta todavia. Contenido basado en el temario estandar de la materia.</div>
+            <ul class="txt">
+                <li><strong>Test Unitario:</strong> Prueba la unidad mas pequena de forma aislada. Sin red ni BD real.</li>
+                <li><strong>Test de Integracion:</strong> Prueba como interactuan multiples modulos entre si.</li>
+                <li><strong>Test E2E:</strong> Simula el flujo completo del usuario.</li>
+                <li><strong>describe() / it() / expect():</strong> Agrupar tests, definir un caso, hacer la asercion.</li>
+                <li><strong>Mocks:</strong> Reemplazos falsos de dependencias para aislar la unidad bajo prueba.</li>
+                <li><strong>React Testing Library:</strong> Probar componentes desde la perspectiva del usuario, no de la implementacion interna.</li>
+            </ul>
+        </div>
     </div>
+
     <div id="m3-sec-quiz" style="display:none;">
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-            <div><div style="font-size:1.1rem;font-weight:800;">Simulacro M3</div><div id="m3-exam-tag" class="exam-tag">Examen #1</div></div>
-            <div style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m3-score">0 / 0</div><div style="font-size:0.72rem;color:var(--muted-foreground);">correctas</div></div>
+            <div>
+                <div style="font-size:1.1rem;font-weight:800;">Simulacro — Modulo 3</div>
+                <div id="m3-exam-tag" class="exam-tag">Examen #1</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m3-score">0 / 0</div>
+                <div style="font-size:0.72rem;color:var(--muted-foreground);">correctas / respondidas</div>
+            </div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="m3-prog" style="width:0%"></div></div>
         <div id="m3-qcard" class="card"><div style="text-align:center;padding:50px;color:var(--muted-foreground);">Iniciando...</div></div>
         <div id="m3-exp" style="display:none;"></div>
-        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;"><div id="m3-pool" class="pool-indicator"></div><button class="primary-btn" id="m3-next" style="display:none;" onclick="qNext(3)">Siguiente pregunta</button></div>
+        <div style="margin-top:16px;display:flex;justify-content:flex-end;">
+            <button class="primary-btn" id="m3-next" style="display:none;" onclick="qNext(3)">Siguiente pregunta</button>
+        </div>
     </div>
 </div>
 
 <script>
+
 var quizInit = { 1: false, 2: false, 3: false };
 function switchMod(n) {
     for (var i = 1; i <= 3; i++) {
