@@ -13,13 +13,13 @@
         .sec-tab.active { background: var(--primary); color: var(--primary-foreground); }
         .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; margin-bottom: 18px; }
         .section-title { font-size: 1.3rem; font-weight: 800; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 16px; }
-        .sub-title { font-size: 1rem; font-weight: 700; margin: 16px 0 6px 0; }
         .txt { color: var(--muted-foreground); line-height: 1.8; font-size: 0.95rem; margin: 0 0 6px 0; }
-        .txt li { margin-bottom: 7px; }
+        .txt li { margin-bottom: 10px; }
         .tag { display: inline-block; background: var(--muted); font-family: monospace; font-size: 0.82rem; padding: 1px 6px; border-radius: 4px; }
-        .info-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 18px; font-size: 0.9rem; color: #1e3a5f; }
-        .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 18px; font-size: 0.9rem; color: #78350f; }
-        hr.div { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; }
+        .badge-1 { background: #dbeafe; color: #1d4ed8; }
+        .badge-2 { background: #dcfce7; color: #15803d; }
+        .badge-3 { background: #fce7f3; color: #be185d; }
         .opt-btn { display: block; width: 100%; text-align: left; padding: 13px 17px; border-radius: 10px; border: 2px solid var(--border); background: transparent; color: var(--foreground); font-size: 0.95rem; cursor: pointer; margin-bottom: 9px; transition: border-color 0.15s; }
         .opt-btn:hover:not(:disabled) { border-color: var(--primary); }
         .opt-btn:disabled { cursor: default; }
@@ -32,29 +32,23 @@
         .primary-btn:hover { opacity: 0.9; }
         .progress-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 18px; }
         .progress-fill { height: 100%; background: var(--primary); border-radius: 3px; transition: width 0.4s; }
-        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; }
-        .badge-1 { background: #dbeafe; color: #1d4ed8; }
-        .badge-2 { background: #dcfce7; color: #15803d; }
-        .badge-3 { background: #fce7f3; color: #be185d; }
-        .result-badge { font-size: 3rem; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
         .exam-tag { display: inline-block; background: var(--muted); color: var(--muted-foreground); font-size: 0.78rem; padding: 3px 10px; border-radius: 10px; margin-bottom: 6px; }
+        .pool-indicator { font-size: 0.8rem; color: var(--muted-foreground); margin-top: 12px; font-weight: 600; }
     </style>
 </head>
 <body>
 
-<!-- STICKY HEADER -->
 <div style="position:sticky;top:0;z-index:50;background:var(--card);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;flex-direction:column;gap:8px;">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
         <div>
             <span style="font-size:1.4rem;font-weight:900;">Guia por Modulos — Desarrollo 2026</span>
-            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">Teoria + Simulacro por modulo (V2 Definitiva)</span>
+            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">Teoria Explicada + Simulacro (Version Final Absoluta)</span>
         </div>
-        <a href="study_guide.html" style="font-size:0.85rem;color:var(--primary);text-decoration:none;font-weight:600;">Ver guia completa →</a>
     </div>
     <div style="display:flex;border-bottom:1px solid var(--border);margin-top:4px;">
-        <button class="mod-tab active" id="mtab-1" onclick="switchMod(1)">Modulo 1 — Web, Git, Scrum y TypeScript</button>
+        <button class="mod-tab active" id="mtab-1" onclick="switchMod(1)">Modulo 1 — Web, Git, Scrum, TS</button>
         <button class="mod-tab" id="mtab-2" onclick="switchMod(2)">Modulo 2 — React Frontend</button>
-        <button class="mod-tab" id="mtab-3" onclick="switchMod(3)">Modulo 3 — Backend, Seguridad y Testing</button>
+        <button class="mod-tab" id="mtab-3" onclick="switchMod(3)">Modulo 3 — Backend, Auth, Testing</button>
     </div>
 </div>
 
@@ -62,109 +56,59 @@
 <div id="mod-1" style="max-width:900px;margin:0 auto;padding:28px 24px 80px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
         <span class="badge badge-1">Modulo 1</span>
-        <span style="font-size:1.3rem;font-weight:800;">Fundamentos Web, Git, Scrum y TypeScript</span>
+        <span style="font-size:1.3rem;font-weight:800;">Fundamentos Web, Arquitecturas, Git y Scrum</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:24px;">
         <button class="sec-tab active" id="m1-tbtn-teoria" onclick="switchSec(1,'teoria')">Teoria</button>
         <button class="sec-tab" id="m1-tbtn-quiz" onclick="switchSec(1,'quiz')">Simulacro</button>
     </div>
-
     <div id="m1-sec-teoria">
-        <div class="card">
-            <div class="section-title">Arquitectura Cliente-Servidor y la Web</div>
-            <ul class="txt">
-                <li><strong>Cliente-Servidor:</strong> El cliente (el navegador) hace peticiones HTTP y el servidor las responde a traves de una red.</li>
-                <li><strong>HTTP:</strong> Protocolo de comunicacion entre cliente y servidor mediante peticiones y respuestas.</li>
-                <li><strong>SPA (Single Page Application):</strong> Carga una sola vez y actualiza el contenido dinamicamente sin recargar la pagina entera. La ventaja principal es una navegacion mas rapida y sin interrupciones.</li>
-                <li><strong>AJAX:</strong> Tecnica para hacer peticiones al servidor en segundo plano y actualizar partes de la UI sin recargar todo.</li>
-                <li><strong>HTML:</strong> Estructura el contenido de una pagina web.</li>
-                <li><strong>CSS:</strong> Estiliza el HTML (colores, fuentes, layouts).</li>
-                <li><strong>JavaScript:</strong> El unico lenguaje que el navegador ejecuta. Se incluye con la etiqueta <span class="tag">script</span>.</li>
-                <li><strong>Servidor web:</strong> Almacena y sirve contenido a los clientes cuando estos lo solicitan.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">Git — Control de Versiones</div>
-            <ul class="txt">
-                <li><strong>git init:</strong> Crea un repositorio Git nuevo en la carpeta actual (local, no en GitHub).</li>
-                <li><strong>git clone [url]:</strong> Descarga una copia completa de un repositorio remoto con todo su historial.</li>
-                <li><strong>git add:</strong> Mueve archivos al area de staging, preparandolos para el commit.</li>
-                <li><strong>git commit -m:</strong> Guarda una foto permanente del staging en el historial local.</li>
-                <li><strong>git push:</strong> Sube los commits locales al servidor remoto (GitHub).</li>
-                <li><strong>git pull:</strong> Descarga los cambios del remoto y los fusiona en la rama local.</li>
-                <li><strong>git branch:</strong> Crea una rama para trabajar aislado sin romper el codigo principal.</li>
-                <li><strong>git log:</strong> Muestra el historial completo de commits.</li>
-                <li><strong>git status:</strong> Muestra que archivos estan modificados pero no en staging.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">JavaScript Moderno y Asincronismo</div>
-            <ul class="txt">
-                <li><strong>let / const:</strong> Reemplazan a var. const no se puede reasignar. Scope de bloque.</li>
-                <li><strong>Arrow functions:</strong> Sintaxis corta: <span class="tag">const suma = (a, b) => a + b</span></li>
-                <li><strong>Desestructuracion:</strong> <span class="tag">const { nombre } = persona</span> extrae propiedades directamente.</li>
-                <li><strong>Spread (...):</strong> Desparrama un array u objeto. Clave para no mutar el estado en React.</li>
-                <li><strong>Promesas (Promise):</strong> Objeto que representa el resultado futuro de una operacion asincrona. Estados: pending, fulfilled o rejected.</li>
-                <li><strong>async / await:</strong> Sintaxis mas legible para Promesas. await pausa la funcion hasta que la Promesa resuelva sin bloquear el navegador.</li>
-                <li><strong>fetch():</strong> Funcion nativa que hace peticiones HTTP. Devuelve una Promesa.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">TypeScript</div>
-            <ul class="txt">
-                <li><strong>Que es:</strong> Superconjunto de JavaScript con tipado estatico. Se transpila a JS puro. Detecta errores en tiempo de compilacion, no en ejecucion.</li>
-                <li><strong>Extensiones:</strong> <span class="tag">.ts</span> (TypeScript puro) y <span class="tag">.tsx</span> (TypeScript con JSX para React).</li>
-                <li><strong>Primitivos:</strong> <span class="tag">string</span>, <span class="tag">number</span>, <span class="tag">boolean</span>. Tambien <span class="tag">void</span> para funciones que no retornan.</li>
-                <li><strong>any:</strong> Desactiva toda verificacion de tipos. Es un escape, no un primitivo.</li>
-                <li><strong>unknown:</strong> Version segura de any. Obliga a verificar el tipo antes de usar el valor.</li>
-                <li><strong>Interfaces / Types:</strong> Definen la forma de un objeto. Ej: <span class="tag">interface Usuario</span> con id y nombre.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">Metodologia Scrum</div>
-            <ul class="txt">
-                <li><strong>Sprint:</strong> Iteracion de 1 a 4 semanas. Al final se produce un incremento del producto.</li>
-                <li><strong>Product Owner:</strong> Representa al cliente. Unico responsable de priorizar el Product Backlog.</li>
-                <li><strong>Scrum Master:</strong> Facilita el proceso y elimina obstaculos. No es el jefe del equipo.</li>
-                <li><strong>Developers:</strong> Hacen el trabajo. Se auto-organizan.</li>
-                <li><strong>Sprint Planning:</strong> Al inicio del Sprint. El equipo elige que items pasan al Sprint Backlog.</li>
-                <li><strong>Daily Scrum:</strong> Reunion de max 15 min diaria, solo Developers. Objetivo: sincronizarse y detectar bloqueos.</li>
-                <li><strong>Sprint Review:</strong> Al final. Se muestra el trabajo terminado al cliente.</li>
-                <li><strong>Sprint Retrospective:</strong> Al final. El equipo reflexiona sobre como mejorar su proceso.</li>
-            </ul>
-        </div>
-    
-        <div class="card">
-            <div class="section-title">SDLC, Requerimientos y UX/UI</div>
-            <ul class="txt">
-                <li><strong>Cascada vs Agil:</strong> Cascada es lineal y estricto. Agil es iterativo e incremental (ej: Scrum).</li>
-                <li><strong>Historias de Usuario:</strong> Explicar una funcion desde la vista del humano: <em>"Como [Rol] quiero [Accion] para [Beneficio]"</em>. La regla <strong>INVEST</strong> dice que deben ser Independientes, Valiosas, y sobre todo <span class="tag">Small</span> (chicas para entrar en un sprint) y Testeables.</li>
-                <li><strong>MoSCoW:</strong> Tecnica para priorizar tareas cuando no hay tiempo para todo. <strong>M</strong>ust (Vital, sin esto el sistema no sirve), <strong>S</strong>hould (Importante, pero puede esperar), <strong>C</strong>ould (Un lujo si sobra tiempo), <strong>W</strong>on't (Descartado para esta entrega).</li>
-                <li><strong>Planning Poker:</strong> Busca consenso estimando el <strong>tamaño relativo</strong>, no horas reloj.</li>
-                <li><strong>Wireframe vs Mockup:</strong> Wireframe es baja fidelidad (estructura). Mockup suma diseno visual (no funcional). Prototipo es interactivo.</li>
-                <li><strong>Escalabilidad:</strong> Vertical (mejorar hardware) vs Horizontal (agregar nodos/instancias).</li>
-                <li><strong>Microservicios:</strong> Independientes, aislamiento de fallos, pero infraestructura compleja.</li>
-            </ul>
-        </div>
-    </div>
+        <div class="card"><div class="section-title">1. Ciclo de Vida y Arquitectura</div>
+        <ul class="txt">
+            <li><strong>Cascada:</strong> Lineal y secuencial. No se puede volver atras facilmente. Asume que los requerimientos no cambian.</li>
+            <li><strong>Agil (Scrum):</strong> Iterativo e incremental. Entrega valor constante y se adapta al cambio.</li>
+            <li><strong>Escalabilidad:</strong> <strong>Vertical</strong> (mejorar hardware, CPU, RAM) vs <strong>Horizontal</strong> (agregar mas computadoras/nodos).</li>
+            <li><strong>Monolitico:</strong> Todo en un solo proceso. Si falla un componente, se cae todo el sistema.</li>
+            <li><strong>Microservicios:</strong> Servicios chicos e independientes. Cada uno tiene su propia logica y base de datos (aislamiento de fallos).</li>
+            <li><strong>Multicapa:</strong> Cada capa (Presentacion → Negocio → Persistencia) se comunica <strong>solo con la inmediatamente inferior</strong>.</li>
+        </ul></div>
+        
+        <div class="card"><div class="section-title">2. Requerimientos y UX/UI</div>
+        <ul class="txt">
+            <li><strong>Historias de Usuario:</strong> Requerimientos escritos desde la vista del humano. Formato: <em>"Como [Rol], quiero [Accion], para [Beneficio]"</em>.</li>
+            <li><strong>INVEST:</strong> Reglas para una buena historia: Independiente, Negociable, Valiosa, Estimable, <span class="tag">Small</span> (chica, clave para entrar en un sprint), Testeable.</li>
+            <li><strong>MoSCoW:</strong> Tecnica para priorizar tareas cuando no hay tiempo para todo. <strong>M</strong>ust (Vital, sin esto el sistema no sirve), <strong>S</strong>hould (Importante, pero puede esperar), <strong>C</strong>ould (Un lujo si sobra tiempo), <strong>W</strong>on't (Descartado para esta entrega).</li>
+            <li><strong>Planning Poker:</strong> Busca estimar el <strong>tamaño/complejidad relativo</strong> usando cartas Fibonacci, no busca horas reloj exactas.</li>
+            <li><strong>UX vs UI:</strong> <strong>UX</strong> es la experiencia completa del usuario (emociones, frustraciones, flujos). <strong>UI</strong> es lo visual en la pantalla (botones, colores).</li>
+            <li><strong>Diseño:</strong> <strong>Wireframe</strong> (Baja fidelidad, puro esqueleto sin colores). <strong>Mockup</strong> (Estilo visual, tipografia, pero NO funcional). <strong>Prototipo</strong> (Alta fidelidad, ya podes hacer click e interactuar).</li>
+        </ul></div>
 
+        <div class="card"><div class="section-title">3. Scrum</div>
+        <ul class="txt">
+            <li><strong>Product Owner (PO):</strong> Representa al cliente y al negocio. Es el <strong>unico</strong> responsable de priorizar el Product Backlog.</li>
+            <li><strong>Scrum Master:</strong> Facilita el proceso, elimina bloqueos o impedimentos, asegura que se cumplan las reglas de Scrum.</li>
+            <li><strong>Daily:</strong> Sincronizacion del equipo de desarrollo (maximo 15 min). Es para coordinar el trabajo del dia, NO es un reporte de estado para el jefe.</li>
+            <li><strong>Review vs Retrospective:</strong> Review = Se muestra el <strong>producto</strong> (el incremento) terminado al cliente para recibir feedback. Retrospective = El equipo mira hacia adentro y mejora su <strong>proceso</strong> de trabajo.</li>
+        </ul></div>
+
+        <div class="card"><div class="section-title">4. Git y JS/TS</div>
+        <ul class="txt">
+            <li><strong>Git pull:</strong> Equivale exactamente a hacer <code>git fetch + git merge</code>.</li>
+            <li><strong>Git clone:</strong> Descarga una copia <strong>completa</strong> del repositorio, con absolutamente todo su historial de commits.</li>
+            <li><strong>let / const:</strong> Reemplazan a var. Tienen scope de bloque (mueren fuera de las llaves {}). <code>const</code> prohibe reasignar el valor.</li>
+            <li><strong>Promesas (Promise):</strong> Objeto que representa un valor futuro. Estados: <code>pending</code> (pendiente), <code>fulfilled</code> (resuelta), <code>rejected</code> (fallo). <code>async/await</code> pausa la ejecucion del codigo hasta que la promesa se resuelva, sin bloquear el navegador.</li>
+            <li><strong>TypeScript:</strong> Aporta tipado estatico (detecta errores de tipo en tiempo de compilacion, antes de correr la app). <code>any</code> apaga los chequeos (muy mala practica), <code>unknown</code> es seguro porque te obliga a verificar el tipo antes de usar la variable.</li>
+        </ul></div>
+    </div>
     <div id="m1-sec-quiz" style="display:none;">
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-            <div>
-                <div style="font-size:1.1rem;font-weight:800;">Simulacro — Modulo 1</div>
-                <div id="m1-exam-tag" class="exam-tag">Examen #1</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m1-score">0 / 0</div>
-                <div style="font-size:0.72rem;color:var(--muted-foreground);">correctas / respondidas</div>
-            </div>
+            <div><div style="font-size:1.1rem;font-weight:800;">Simulacro M1</div><div id="m1-exam-tag" class="exam-tag">Examen #1</div></div>
+            <div style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m1-score">0 / 0</div></div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="m1-prog" style="width:0%"></div></div>
         <div id="m1-qcard" class="card"><div style="text-align:center;padding:50px;color:var(--muted-foreground);">Iniciando...</div></div>
         <div id="m1-exp" style="display:none;"></div>
-        <div style="margin-top:16px;display:flex;justify-content:flex-end;">
-            <button class="primary-btn" id="m1-next" style="display:none;" onclick="qNext(1)">Siguiente pregunta</button>
-        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;"><div id="m1-pool" class="pool-indicator"></div><button class="primary-btn" id="m1-next" style="display:none;" onclick="qNext(1)">Siguiente pregunta</button></div>
     </div>
 </div>
 
@@ -172,84 +116,56 @@
 <div id="mod-2" style="display:none;max-width:900px;margin:0 auto;padding:28px 24px 80px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
         <span class="badge badge-2">Modulo 2</span>
-        <span style="font-size:1.3rem;font-weight:800;">Frontend con React (C08 a C12)</span>
+        <span style="font-size:1.3rem;font-weight:800;">Frontend con React y Entorno</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:24px;">
         <button class="sec-tab active" id="m2-tbtn-teoria" onclick="switchSec(2,'teoria')">Teoria</button>
         <button class="sec-tab" id="m2-tbtn-quiz" onclick="switchSec(2,'quiz')">Simulacro</button>
     </div>
-
     <div id="m2-sec-teoria">
-        <div class="card">
-            <div class="section-title">Componentes, JSX y Virtual DOM</div>
-            <ul class="txt">
-                <li><strong>Componentes:</strong> Funciones de JavaScript que retornan JSX. Son los bloques de construccion de la UI.</li>
-                <li><strong>JSX:</strong> Sintaxis que mezcla HTML dentro de JavaScript. El compilador lo transforma a llamadas JS puras.</li>
-                <li><strong>Props:</strong> Argumentos que el componente padre pasa al hijo para configurar su comportamiento. Son de solo lectura dentro del hijo.</li>
-                <li><strong>Virtual DOM:</strong> Es un "borrador" ligero del HTML en la memoria. En vez de borrar y repintar toda la pagina (lento), React compara borradores (Diffing), encuentra la unica etiqueta que cambio, y va al DOM real a modificar SOLO esa porcion (super rapido).</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">useState — Estado Local</div>
-            <ul class="txt">
-                <li>Declara una variable de estado. Cuando se actualiza con su setter, React re-renderiza el componente.</li>
-                <li><strong>Por que no usar let:</strong> Una variable let comun no dispara el re-render aunque cambie.</li>
-                <li><strong>Regla para arrays:</strong> Nunca usar .push() en el array original. React compara referencias, si mutamos el original cree que nada cambio. Siempre crear uno nuevo: <span class="tag">[...viejo, nuevoElem]</span></li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">useEffect — Efectos Secundarios</div>
-            <ul class="txt">
-                <li><strong>Con [] (array vacio):</strong> Se ejecuta SOLO al montar el componente. Ideal para llamadas API iniciales.</li>
-                <li><strong>Con [variable]:</strong> Se ejecuta al montar Y cada vez que esa variable cambia.</li>
-                <li><strong>Sin array:</strong> Se ejecuta despues de CADA render. Cuidado con loops infinitos.</li>
-                <li>Sirve para efectos secundarios: fetches, timers, suscripciones, manipulacion del titulo de la pagina.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">useContext — Estado Global y Prop Drilling</div>
-            <ul class="txt">
-                <li><strong>Prop Drilling:</strong> Pasar props por multiples niveles de componentes que no los necesitan directamente. Es codigo dificil de mantener.</li>
-                <li><strong>useContext:</strong> Actua como una "nube global" para evitar el <em>Prop Drilling</em> (pasar props de mano en mano por componentes que ni las usan). El Nieto puede descargar el dato directamente sin molestar a todos los componentes intermedios.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">Routing y Formularios</div>
-            <ul class="txt">
-                <li><strong>react-router-dom:</strong> Navegacion entre "paginas" sin recargar. Usa BrowserRouter, Routes, Route y Link (reemplaza la etiqueta a).</li>
-                <li><strong>Formularios controlados:</strong> Los inputs estan atados al estado con value y onChange. React tiene control total.</li>
-                <li><strong>Zod:</strong> Libreria para validar datos con esquemas estrictos (email, longitud minima, etc.).</li>
-            </ul>
-        </div>
-    
-        <div class="card">
-            <div class="section-title">CORS, Seguridad y Tokens</div>
-            <ul class="txt">
-                <li><strong>CORS:</strong> Es el "patovica" del <strong>Navegador</strong> (Chrome, Edge). Si tu Front pide datos a otro puerto, Chrome te esconde la respuesta por seguridad. El Backend debe habilitar CORS para decirle a Chrome "deja pasar a este Front, es amigo". ¡El backend NUNCA bloquea por CORS! Por eso Postman o curl nunca dan este error.</li>
-                <li><strong>Preflight (OPTIONS):</strong> Request previo que manda el navegador para metodos complejos (PUT, DELETE) para consultar permisos.</li>
-                <li><strong>LocalStorage vs XSS:</strong> Guardar el token en localStorage tiene el riesgo de ser robado por un script malicioso inyectado en el HTML.</li>
-                <li><strong>Validacion Front vs Back:</strong> Esconder un boton en el front es solo UX. La <strong>seguridad real</strong> y la regla viven en el Backend.</li>
-            </ul>
-        </div>
-    </div>
+        <div class="card"><div class="section-title">1. Conceptos Core</div>
+        <ul class="txt">
+            <li><strong>Virtual DOM:</strong> Es un "borrador" ligero del HTML en la memoria. En vez de borrar y repintar toda la pagina (lo cual es carisimo y lento), React compara borradores nuevos contra viejos (proceso de <em>Diffing</em>), encuentra la unica etiqueta que cambio, y va al DOM real a modificar SOLO esa porcion (super rapido).</li>
+            <li><strong>Estado (State):</strong> Memoria interna del componente. Si el estado muta o se actualiza, el componente se re-renderiza para mostrar el cambio.</li>
+            <li><strong>Props:</strong> Parametros de configuracion que un componente padre le pasa a un hijo. Son de <strong>solo lectura</strong> (el hijo no las puede modificar).</li>
+            <li><strong>Inmutabilidad:</strong> En React esta terminantemente prohibido mutar el estado original (ej: <code>libros.push(nuevo)</code> no sirve porque React no detecta el cambio de referencia). Siempre hay que crear un array/objeto nuevo: <code>[...libros, nuevoLibro]</code>.</li>
+        </ul></div>
 
+        <div class="card"><div class="section-title">2. Hooks de React</div>
+        <ul class="txt">
+            <li><strong>Regla de oro:</strong> Los hooks van siempre en el nivel superior del componente. Nunca se llaman dentro de loops, funciones anidadas o un <code>if</code>. React necesita saber el <strong>orden exacto</strong> en que se ejecutan en cada render.</li>
+            <li><strong>useEffect:</strong> Sirve para "enganchar" efectos secundarios (cosas por fuera de dibujar la pantalla: llamados a APIs, timers, modificar el document.title). 
+                <br>- Sin array: corre en CADA render (peligro de loop infinito).
+                <br>- <code>[]</code> (array vacio): corre <strong>una sola vez</strong> al montarse. Aca va el <code>fetch</code> de carga inicial.
+                <br>- <code>[variable]</code>: corre al montar y cada vez que <code>variable</code> cambia.</li>
+            <li><strong>useContext:</strong> Actua como una "nube global" para evitar el <em>Prop Drilling</em> (pasar props de mano en mano por 10 componentes intermedios que ni las usan). Un componente muy profundo puede descargar el dato directamente desde esta "nube" sin molestar a los padres.</li>
+            <li><strong>StrictMode:</strong> En entorno de desarrollo (vite), monta el componente dos veces a proposito para ayudarte a detectar efectos mal escritos. (Por eso ves el fetch doble en la consola). En produccion no pasa.</li>
+        </ul></div>
+
+        <div class="card"><div class="section-title">3. Routing y Formularios</div>
+        <ul class="txt">
+            <li><strong>&lt;Link&gt; vs &lt;a&gt;:</strong> La etiqueta <code>&lt;a&gt;</code> nativa hace un request HTTP nuevo y recarga toda la pagina (perdes el estado de React). El <code>&lt;Link&gt;</code> de React Router intercepta el click y cambia el componente a mostrar en pantalla sin recargar, logrando una verdadera <strong>SPA</strong> (Single Page Application).</li>
+            <li><strong>Componente Controlado:</strong> Es un input (como una caja de texto) cuyo valor no vive suelto en el HTML, sino que esta atado 100% al estado de React usando <code>value={estado}</code> y <code>onChange={setEstado}</code>. React pasa a ser la "unica fuente de la verdad".</li>
+            <li><strong>Zod:</strong> Libreria que permite definir "esquemas" o moldes estrictos para los datos (ej: tiene que ser un mail, minimo 5 caracteres). Sirve para validar formularios.</li>
+        </ul></div>
+
+        <div class="card"><div class="section-title">4. CORS y Seguridad en el Front</div>
+        <ul class="txt">
+            <li><strong>CORS (Cross-Origin Resource Sharing):</strong> Es el "patovica" de seguridad del <strong>Navegador</strong> (Chrome, Edge). Por defecto, si tu Front (puerto 5173) pide datos a otro puerto distinto, Chrome te esconde la respuesta por precaucion. El Backend debe habilitar CORS para decirle a Chrome "deja pasar a este Front, es amigo". ¡El backend NUNCA bloquea por CORS! Por eso Postman o curl nunca dan este error.</li>
+            <li><strong>Preflight (OPTIONS):</strong> Cuando queres hacer un request complejo (como un PUT, o mandar un header de <code>Authorization</code>), el navegador frena y manda primero un request vacio tipo OPTIONS al backend para preguntar: "¿Tengo permiso de mandar esto?". Si el back dice que si, ahi recien sale el request real.</li>
+            <li><strong>LocalStorage vs XSS:</strong> Guardar el JWT (token) en localStorage es conveniente, pero tiene el riesgo de sufrir ataques <strong>XSS</strong> (cualquier script malicioso inyectado en el HTML por un hacker puede acceder al localStorage y robar tu token).</li>
+            <li><strong>Validacion UI (Front):</strong> Esconder un boton de "Borrar Usuario" si no sos admin es pura <strong>UX</strong> (Experiencia de Usuario), para que no clickeen en vano. <strong>No es seguridad real</strong>. La seguridad y la regla inquebrantable siempre viven en el Backend.</li>
+        </ul></div>
+    </div>
     <div id="m2-sec-quiz" style="display:none;">
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-            <div>
-                <div style="font-size:1.1rem;font-weight:800;">Simulacro — Modulo 2</div>
-                <div id="m2-exam-tag" class="exam-tag">Examen #1</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m2-score">0 / 0</div>
-                <div style="font-size:0.72rem;color:var(--muted-foreground);">correctas / respondidas</div>
-            </div>
+            <div><div style="font-size:1.1rem;font-weight:800;">Simulacro M2</div><div id="m2-exam-tag" class="exam-tag">Examen #1</div></div>
+            <div style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m2-score">0 / 0</div></div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="m2-prog" style="width:0%"></div></div>
         <div id="m2-qcard" class="card"><div style="text-align:center;padding:50px;color:var(--muted-foreground);">Iniciando...</div></div>
         <div id="m2-exp" style="display:none;"></div>
-        <div style="margin-top:16px;display:flex;justify-content:flex-end;">
-            <button class="primary-btn" id="m2-next" style="display:none;" onclick="qNext(2)">Siguiente pregunta</button>
-        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;"><div id="m2-pool" class="pool-indicator"></div><button class="primary-btn" id="m2-next" style="display:none;" onclick="qNext(2)">Siguiente pregunta</button></div>
     </div>
 </div>
 
@@ -257,316 +173,417 @@
 <div id="mod-3" style="display:none;max-width:900px;margin:0 auto;padding:28px 24px 80px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
         <span class="badge badge-3">Modulo 3</span>
-        <span style="font-size:1.3rem;font-weight:800;">Backend, Seguridad y Testing (C13 a C21)</span>
+        <span style="font-size:1.3rem;font-weight:800;">Backend, Seguridad y Testing</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:24px;">
         <button class="sec-tab active" id="m3-tbtn-teoria" onclick="switchSec(3,'teoria')">Teoria</button>
         <button class="sec-tab" id="m3-tbtn-quiz" onclick="switchSec(3,'quiz')">Simulacro</button>
     </div>
-
     <div id="m3-sec-teoria">
-        <div class="card">
-            <div class="section-title">Docker</div>
-            <ul class="txt">
-                <li><strong>Que es:</strong> Plataforma para empaquetar aplicaciones en contenedores aislados. Mas liviano que una VM porque comparte el kernel del SO.</li>
-                <li><strong>Beneficio clave:</strong> La app corre identica en cualquier entorno. Elimina el "en mi maquina funciona".</li>
-                <li><strong>docker-compose:</strong> Define y corre multiples contenedores a la vez (app Node + Postgres, por ejemplo).</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">APIs REST — Verbos y Codigos HTTP</div>
-            <ul class="txt">
-                <li><strong>Stateless:</strong> Cada peticion debe contener toda la informacion necesaria. El servidor no guarda contexto entre peticiones.</li>
-                <li><strong>GET:</strong> Leer datos. Sin efectos secundarios.</li>
-                <li><strong>POST:</strong> Crear recurso. Respuesta: 201 Created.</li>
-                <li><strong>PUT:</strong> Reemplazar recurso completo.</li>
-                <li><strong>PATCH:</strong> Modificar parcialmente un recurso.</li>
-                <li><strong>DELETE:</strong> Eliminar recurso.</li>
-                <li><strong>200:</strong> Exito. <strong>201:</strong> Creado. <strong>400:</strong> Datos invalidos. <strong>401:</strong> Sin sesion (AuthN). <strong>403:</strong> Sin permiso (AuthZ). <strong>404:</strong> No existe. <strong>500:</strong> Error servidor.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">Express y Middlewares</div>
-            <ul class="txt">
-                <li><strong>Express.js:</strong> Framework minimalista sobre Node.js para construir APIs.</li>
-                <li><strong>Middlewares:</strong> Funciones que interceptan request-response. Tienen req, res y next.</li>
-                <li>Si el middleware responde (res.json etc.) el ciclo termina. NO llamar next().</li>
-                <li>Si NO responde (solo valida), DEBE llamar next() o la peticion queda colgada.</li>
-                <li><strong>req.body:</strong> Datos del cuerpo. <strong>req.params:</strong> Variables de la URL. <strong>req.query:</strong> Parametros despues del ?</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">Prisma ORM y Base de Datos</div>
-            <ul class="txt">
-                <li><strong>ORM:</strong> Puente entre objetos de codigo y la base de datos relacional. Evita escribir SQL manual y previene inyeccion SQL.</li>
-                <li><strong>schema.prisma:</strong> Define modelos (tablas), campos y relaciones.</li>
-                <li><strong>npx prisma migrate dev:</strong> Lee cambios en el schema, genera SQL, lo ejecuta en la BD y regenera el Prisma Client.</li>
-                <li><strong>Seeders:</strong> Script para poblar la BD con datos iniciales.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">Seguridad — AuthN, AuthZ, Bcrypt y JWT</div>
-            <div class="info-box">La diferencia entre 401 y 403 es uno de los temas mas repetidos en los parciales.</div>
-            <ul class="txt">
-                <li><strong>Autenticacion (AuthN) — 401:</strong> Verifica la identidad. Si no hay token o es invalido: 401 Unauthorized.</li>
-                <li><strong>Autorizacion (AuthZ) — 403:</strong> Verifica los permisos del rol. Ocurre DESPUES de autenticar. Sin permiso: 403 Forbidden.</li>
-                <li><strong>Bcrypt:</strong> Hashea contrasenas de forma irreversible. Nunca guardar en texto plano. Es intencionalmente lento para resistir ataques de fuerza bruta.</li>
-                <li><strong>JWT:</strong> Token con Header + Payload + Signature. Firmado pero NO encriptado. Nunca guardar datos sensibles en el Payload.</li>
-                <li><strong>Ventaja JWT:</strong> Stateless. El servidor no guarda sesiones en la BD.</li>
-                <li><strong>OAuth:</strong> Protocolo para delegar autorizacion entre apps (ej: Login con Google).</li>
-                <li><strong>MFA:</strong> Autenticacion multi-factor. Los tres factores: algo que sabes, algo que tenes, algo que eres. El email no es un factor MFA.</li>
-                <li><strong>CORS:</strong> El navegador bloquea peticiones entre origenes distintos. El backend configura cors para permitirlas.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <div class="section-title">Testing (C20 y C21)</div>
-            <div class="warn-box">Las diapositivas C20 y C21 no estan en la carpeta todavia. Contenido basado en el temario estandar de la materia.</div>
-            <ul class="txt">
-                <li><strong>Test Unitario:</strong> Prueba la unidad mas pequena de forma aislada. Sin red ni BD real.</li>
-                <li><strong>Test de Integracion:</strong> Prueba como interactuan multiples modulos entre si.</li>
-                <li><strong>Test E2E:</strong> Simula el flujo completo del usuario.</li>
-                <li><strong>describe() / it() / expect():</strong> Agrupar tests, definir un caso, hacer la asercion.</li>
-                <li><strong>Mocks:</strong> Reemplazos falsos de dependencias para aislar la unidad bajo prueba.</li>
-                <li><strong>React Testing Library:</strong> Probar componentes desde la perspectiva del usuario, no de la implementacion interna.</li>
-            </ul>
-        </div>
-    </div>
+        <div class="card"><div class="section-title">1. Backend y Capas</div>
+        <ul class="txt">
+            <li><strong>Arquitectura Multicapa del Backend:</strong>
+                <br>- <strong>Routes:</strong> Actuan como el derivador. Solo ven la URL y el Metodo (POST, GET) y mandan el pedido al controller adecuado. No tienen if ni logica.
+                <br>- <strong>Controllers:</strong> Son los traductores. Toman el pedido (HTTP, params, body), se lo pasan al Service, y cuando el Service responde, eligen con que <code>Status Code</code> (ej: 201) y en que formato (JSON) devolverlo al front.
+                <br>- <strong>Services:</strong> Tienen la logica PURA de negocio (reglas, base de datos). <strong>No saben que existe HTTP</strong> (nunca tocan <code>req</code> o <code>res</code> ni devuelven status codes).
+            </li>
+            <li><strong>REST (REpresentational State Transfer):</strong> Es un estilo arquitectonico, una convencion. Las URLs deben usar sustantivos en plural (<code>/api/libros</code>), NO verbos (<code>/api/borrarLibro</code> esta pesimo).</li>
+            <li><strong>Idempotencia:</strong> Una accion es idempotente si correrla 10 veces seguidas deja el sistema exactamente igual que si la corrieras 1 vez. <code>PUT</code> (reemplazo completo) y <code>DELETE</code> son idempotentes. <code>POST</code> (crear) NO es idempotente, porque si lo mandas 10 veces, creas 10 registros.</li>
+            <li><strong>Status Codes:</strong> 201 (Creado), 204 (Exito pero sin contenido de respuesta, tipico de DELETE), 400 (Bad Request, error de validacion Zod), 409 (Conflicto, ej: intento de duplicar un dato o borrar un padre con hijos).</li>
+        </ul></div>
 
+        <div class="card"><div class="section-title">2. Base de Datos, Docker y ORM</div>
+        <ul class="txt">
+            <li><strong>Docker:</strong> Empaqueta tu app y todas sus dependencias en un contenedor aislado. Funciona igual en cualquier computadora o servidor. Diferencia clave: Una Máquina Virtual virtualiza todo el Hardware (es giganta y tarda minutos en prender), un <strong>Contenedor</strong> virtualiza solo el SO y comparte el kernel (pesa megabytes y levanta en segundos).</li>
+            <li><strong>ORM (Prisma):</strong> Herramienta que mapea tus tablas de base de datos a objetos de TypeScript. Te da autocompletado y tipado. <strong>Que NO hace:</strong> El ORM no piensa por vos. No diseña tu modelo relacional, no te salva de tener que entender como funciona SQL por debajo, y no optimiza consultas complejas por arte de magia.</li>
+            <li><strong>onDelete: Cascade:</strong> Regla de integridad referencial super agresiva. Si borras un registro "padre" (ej: un Autor), la base de datos se encarga de fulminar automaticamente a todos sus registros "hijos" (ej: todos sus Libros). Ideal para evitar registros huerfanos.</li>
+        </ul></div>
+
+        <div class="card"><div class="section-title">3. Autenticacion, JWT y Seguridad</div>
+        <ul class="txt">
+            <li><strong>401 vs 403 (Trampa tipica):</strong> 
+                <br>- <strong>401 Unauthorized:</strong> Significa "No se quien sos". Falta el token o esta vencido.
+                <br>- <strong>403 Forbidden:</strong> Significa "Se perfectamente quien sos, pero NO tenes el nivel de acceso (rol) necesario para entrar a esta ruta".
+            </li>
+            <li><strong>Hash vs Cifrado:</strong> El Hash (ej: bcrypt) es un proceso <strong>irreversible</strong> (entra contraseña, sale texto raro, y no existe algoritmo matematico para devolverlo a contraseña original). El Cifrado (ej: AES) es reversible si conoces la clave secreta. Las contraseñas SIEMPRE se hashean.</li>
+            <li><strong>JWT (JSON Web Token):</strong> Es un formato de token que transmite informacion. <strong>Esta FIRMADO, pero NO encriptado.</strong> Cualquiera que agarre tu JWT puede decodificar el Payload leyendo la base64. Por ende, <strong>NUNCA</strong> hay que poner contraseñas o datos sensibles adentro del token. La "firma" del token existe solo para que el servidor garantice que nadie modifico el payload en el viaje.</li>
+            <li><strong>SQL Injection:</strong> Ocurre cuando un hacker manda comandos SQL maliciosos a traves de tus inputs. Se previene siempre <strong>parametrizando</strong> las consultas (separando tajantemente el comando SQL del valor del usuario). Prisma te protege de esto automaticamente si usas sus metodos.</li>
+        </ul></div>
+
+        <div class="card"><div class="section-title">4. Testing Avanzado</div>
+        <ul class="txt">
+            <li><strong>Piramide de Testing:</strong>
+                <br>- <strong>Base (Unitarios):</strong> Prueban 1 funcion o componente completamente aislado. Son muy rapidos, baratos y haces muchisimos.
+                <br>- <strong>Medio (Integracion):</strong> Prueban varias piezas conectadas (ej: API + Base de Datos).
+                <br>- <strong>Punta (E2E):</strong> Simulan al usuario usando el navegador real (ej: Cypress). Haces pocos porque son lentisimos y caros de mantener.
+            </li>
+            <li><strong>TDD (Test-Driven Development):</strong> Es la tecnica de escribir los tests ANTES de programar. El ciclo es inquebrantable: <strong>Rojo</strong> (el test falla porque el codigo no existe) → <strong>Verde</strong> (escribis codigo super rapido y feo solo para que pase el test) → <strong>Refactor</strong> (limpias y optimizas tu codigo).</li>
+            <li><strong>Mocks (ej: vi.fn()):</strong> Es crear una funcion falsa o de mentira. Te sirve para probar un componente sin necesidad de ejecutar la logica pesada real. Por ejemplo, en un test, podes crear un "mock" de la base de datos que siempre devuelva "Exito", asi probas tu Controller de forma aislada.</li>
+            <li><strong>Testing Library (getBy vs queryBy):</strong>
+                <br>- <code>getByText</code>: Si no encuentra el texto en el DOM, entra en panico y <strong>corta/falla</strong> el test inmediatamente.
+                <br>- <code>queryByText</code>: Si no encuentra el texto, no lanza error, simplemente devuelve <code>null</code>. Es perfecto para hacer expects como <code>expect(queryByText('Error')).toBeNull()</code> (verificar ausencia).
+            </li>
+        </ul></div>
+    </div>
     <div id="m3-sec-quiz" style="display:none;">
         <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
-            <div>
-                <div style="font-size:1.1rem;font-weight:800;">Simulacro — Modulo 3</div>
-                <div id="m3-exam-tag" class="exam-tag">Examen #1</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m3-score">0 / 0</div>
-                <div style="font-size:0.72rem;color:var(--muted-foreground);">correctas / respondidas</div>
-            </div>
+            <div><div style="font-size:1.1rem;font-weight:800;">Simulacro M3</div><div id="m3-exam-tag" class="exam-tag">Examen #1</div></div>
+            <div style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:var(--primary);" id="m3-score">0 / 0</div></div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="m3-prog" style="width:0%"></div></div>
         <div id="m3-qcard" class="card"><div style="text-align:center;padding:50px;color:var(--muted-foreground);">Iniciando...</div></div>
         <div id="m3-exp" style="display:none;"></div>
-        <div style="margin-top:16px;display:flex;justify-content:flex-end;">
-            <button class="primary-btn" id="m3-next" style="display:none;" onclick="qNext(3)">Siguiente pregunta</button>
-        </div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;"><div id="m3-pool" class="pool-indicator"></div><button class="primary-btn" id="m3-next" style="display:none;" onclick="qNext(3)">Siguiente pregunta</button></div>
     </div>
 </div>
 
-<script>
-
-var quizInit = { 1: false, 2: false, 3: false };
-function switchMod(n) {
-    for (var i = 1; i <= 3; i++) {
-        document.getElementById('mod-'+i).style.display = i===n ? 'block' : 'none';
-        document.getElementById('mtab-'+i).className = i===n ? 'mod-tab active' : 'mod-tab';
-    }
-}
-function switchSec(mod, sec) {
-    var t = document.getElementById('m'+mod+'-sec-teoria');
-    var q = document.getElementById('m'+mod+'-sec-quiz');
-    var bt = document.getElementById('m'+mod+'-tbtn-teoria');
-    var bq = document.getElementById('m'+mod+'-tbtn-quiz');
-    if (sec === 'teoria') {
-        t.style.display = 'block'; q.style.display = 'none';
-        bt.className = 'sec-tab active'; bq.className = 'sec-tab';
-    } else {
-        t.style.display = 'none'; q.style.display = 'block';
-        bt.className = 'sec-tab'; bq.className = 'sec-tab active';
-        if (!quizInit[mod]) { quizInit[mod] = true; qNew(mod); }
-    }
-}
-
-// === BANKS COMPLETOS (Basados 100% en Resumen PDF Corti/Garcia 2026) ===
-var B1 = [
-    {q:"Proposito de git init?",o:["Crear repo en GitHub","Repo local","Clonar remoto","Guardar cambios"],a:1,e:"Crea repo vacio local."},
-    {q:"Estado 'modified'?",o:["Eliminado","En staging","Cambiado pero no en staging","En remoto"],a:2,e:"Falta hacer git add."},
-    {q:"Ver historial?",o:["git log","git show","git commit","git status"],a:0,e:"git log lista los commits."},
-    {q:"git push hace:",o:["Guarda local","Envia commits al remoto","Trae del remoto","Crea rama"],a:1,e:"Empuja tus commits a GitHub."},
-    {q:"git pull equivale a:",o:["git add + commit","git fetch + merge","git push + commit","git clone"],a:1,e:"Trae cambios y los fusiona en tu rama local. Es trampa de parcial."},
-    {q:"git clone hace:",o:["Repo vacio","Copia remota con todo su historial","Fotografia","Fusiona ramas"],a:1,e:"Descarga todo el repo remoto."},
-    {q:"Para que es git branch?",o:["Ver historial","Enviar al remoto","Crear rama aislada","Descargar"],a:2,e:"Permite trabajar sin romper main."},
-    {q:"git add . vs git add archivo?",o:["Borrador","Agrega todo vs uno especifico","Envia al remoto","Sin diferencia"],a:1,e:"El punto (.) agrega todos los archivos modificados de una vez."},
-    {q:"Ventaja de TypeScript?",o:["Compatibilidad","Tipado estatico (errores en compilacion)","Rendimiento","Soporte API"],a:1,e:"Detecta bugs al escribir."},
-    {q:"Cual NO es primitivo en TS?",o:["string","number","any","boolean"],a:2,e:"any desactiva la verificacion de tipos, no es primitivo."},
-    {q:"Que es unknown en TS?",o:["Como any pero sin restricciones","Version segura de any, obliga a verificar el tipo","Un null","Obsoleto"],a:1,e:"Es seguro: obliga a hacer un typeof antes de usarlo."},
-    {q:"Extension para TS con React?",o:[".js",".jsx",".ts",".tsx"],a:3,e:".tsx es requerido cuando hay etiquetas JSX dentro de TypeScript."},
-    {q:"SPA es:",o:["Recarga HTML en cada click","Carga una vez y actualiza dinamicamente con JS","Conexion constante","Sin JS"],a:1,e:"Single Page Application: navegacion sin recargas de pagina."},
-    {q:"Que es una Promesa?",o:["Variable con varios valores","Objeto de resultado futuro de operacion asincrona","Funcion paralela","Loop lento"],a:1,e:"Puede estar en pending, fulfilled o rejected."},
-    {q:"Para que sirve async/await?",o:["Correr paralelo","Escribir asincrono legible sin bloquear el hilo","Generadores","Server-side JS"],a:1,e:"Azucar sintactica para manejar Promesas de forma limpia."},
-    {q:"Unico responsable del Product Backlog?",o:["Scrum Master","Developers","Product Owner","Stakeholders"],a:2,e:"El PO define y prioriza el trabajo que aporta valor."},
-    {q:"Objetivo de la Daily?",o:["Mostrar al cliente","Planificar Sprint","Sincronizar developers y ver bloqueos (15min max)","Retrospectiva"],a:2,e:"Reunion exclusiva del equipo de desarrollo."},
-    {q:"Sprint Review vs Sprint Retrospective:",o:["Review (equipo mejora), Retro (producto a cliente)","Review (producto a cliente), Retro (equipo mejora proceso)","Son la misma reunion","Ambas son para clientes"],a:1,e:"Trampa tipica: Review = Producto, Retro = Proceso/Equipo."},
-    {q:"Etiqueta para incluir JS?",o:["link","script","javascript","js"],a:1,e:"La etiqueta SCRIPT con src='...' incluye JS."},
-    {q:"Arquitectura Cliente-Servidor:",o:["Mismo proceso","Comunicacion por red (HTTP)","Sin comunicacion","Siempre misma maquina"],a:1,e:"Estan separados y hablan por red."},
-    {q:"Operador spread (...) en React:",o:["Hacer loops cortos","Desparramar array/objeto sin mutar el original","Convertir promesas","Variables fijas"],a:1,e:"Clave para copiar arrays en el estado: [...arr, nuevo]."},
-    {q:"Diferencia entre Escalabilidad Vertical y Horizontal?",o:["Vertical es hardware, horizontal mas instancias/nodos","Son lo mismo","Vertical es frontend, horizontal backend","Vertical usa la nube"],a:0,e:"Vertical (mas RAM/CPU). Horizontal (mas compus/servidores)."},
-    {q:"Reasignar una variable const:",o:["Funciona normal","TS lo rechaza pero JS no","Produce TypeError en ejecucion","Crea nueva variable"],a:2,e:"const prohibe reasignacion. Explota en runtime en JS puro."},
-    {q:"Diferencia let vs var:",o:["Sin diferencia","let tiene scope de bloque, var scope de funcion","var es mas moderno","let permite reasignar, var no"],a:1,e:"let muere fuera de las llaves {}. var tiene hoisting y trae bugs."},
-    {q:"fetch() hace:",o:["Lee disco local","Peticion HTTP que devuelve una Promesa","Ejecuta server","Convierte a JSON"],a:1,e:"API nativa para hacer request. fetch NO lanza excepcion con 404 o 500."},
-    {q:"git merge sirve para:",o:["Borrar ramas","Combinar el historial de dos ramas","Clonar repos","Hacer commits"],a:1,e:"Integra los cambios de una rama secundaria a la principal."},
-    {q:"Para que se usa una 'Interface' en TypeScript?",o:["Para crear clases visuales","Para definir la forma/estructura estricta de un objeto","Para hacer fetches","Para exportar variables"],a:1,e:"Permite decirle a TS exactamente que propiedades tiene que tener un objeto."},
-    {q:"Cual es la duracion recomendada de un Sprint?",o:["1 a 4 dias","1 a 4 semanas","1 a 4 meses","Todo el proyecto"],a:1,e:"En Scrum los sprints son fijos de 1 a 4 semanas."},
-    {q:"Que significa la 'S' en INVEST para Historias de Usuario?",o:["Secure","Scalable","Small (Pequeña)","Sprint"],a:2,e:"Debe ser pequeña para que se pueda terminar dentro de un solo sprint."},
-    {q:"Que busca el Planning Poker al estimar?",o:["Horas exactas","Tamaño relativo del esfuerzo","Quien lo hace mas rapido","Eliminar bugs"],a:1,e:"Usa Fibonacci. Evalua complejidad/esfuerzo relativo, no tiempo de reloj."},
-    {q:"Cual es la diferencia entre Wireframe y Mockup?",o:["Wireframe tiene estilos","Wireframe es estructura de baja fidelidad; Mockup suma colores/tipografias pero no es funcional","Son sinonimos","Mockup es interactivo"],a:1,e:"Wireframe = esqueleto. Mockup = Piel. Prototipo = Movimiento."},
-    {q:"En Microservicios, cada servicio...",o:["Debe compartir la misma base de datos","Tiene su propia logica y base de datos (aislamiento de fallos)","No puede hablar con otros","Es un hilo de Node"],a:1,e:"Ventaja: un fallo en servicio A no tumba al servicio B."},
-    {q:"En una arquitectura Multicapa, la comunicacion...",o:["Es todos contra todos","Cada capa se comunica solo con la inmediatamente inferior","Usa GraphQL","Es bidireccional global"],a:1,e:"Ej: Presentacion habla con Negocio. Negocio con Persistencia."},
-    {q:"El CSS sirve para:",o:["Crear la base de datos","Dar logica","Estilizar el HTML (colores, tamanos, flexbox)","Manejar las rutas"],a:2,e:"Cascading Style Sheets maneja todo el diseno visual de la web."},
-    {q:"Para recorrer un array y devolver uno NUEVO modificado, se usa:",o:["forEach","map","reduce","while"],a:1,e:"map devuelve array. forEach no devuelve nada (retorna undefined)."},
-    {q:"git restore --staged hace:",o:["Borra el archivo","Saca un archivo del area de staging (deshace el git add)","Sube el commit","Restaura una rama borrada"],a:1,e:"Comando util si agregaste por accidente un archivo al index."},
-    {q:"Cual es el rol del Scrum Master?",o:["Es el jefe de proyecto","Prioriza el Backlog","Facilitador, elimina impedimentos y asegura que se siga Scrum","Codifica el 80%"],a:2,e:"El SM es un lider servicial. El PO prioriza el backlog."},
-    {q:"Un sistema de control de versiones Centralizado (CVS/SVN) tiene como problema...",o:["Es muy moderno","Punto unico de fallo","No tiene ramas","Ocupa mucha RAM local"],a:1,e:"Si el server se cae, nadie puede commitear. Git (Distribuido) soluciona esto porque cada cliente tiene copia completa."}
-];
-
-var B2 = [
-    {q:"useEffect con [] corre:",o:["En cada render","SOLO al montar el componente (una sola vez)","Compartir estado","Nunca"],a:1,e:"Trampa tipica: sin array corre SIEMPRE (despues de cada render). Con [] solo al montar."},
-    {q:"Las props son:",o:["Estado interno","Datos que el padre pasa al hijo (solo lectura) para configurarlo","Memoria interna","Bloques UI"],a:1,e:"Fluyen de arriba hacia abajo y el componente hijo NO las modifica."},
-    {q:"Por que no usar .push() en el estado?",o:["Lento","React compara referencias; si mutas el original no detecta el cambio y no re-renderiza","Solo en arrays vacios","Es inmutable en JS"],a:1,e:"Siempre hay que crear un nuevo array: [...libros, nuevo]."},
-    {q:"useContext soluciona:",o:["Fetches automaticos","Estado local","Prop Drilling (pasar datos globales directo sin intermediarios)","Virtual DOM"],a:2,e:"Permite consumir datos de la 'nube' desde cualquier nivel de profundidad."},
-    {q:"¿Qué es el estado de un componente?",o:["Funciones externas","Informacion interna que puede cambiar y hace que se actualice (re-renderice)","Las props","El HTML final"],a:1,e:"Estado = Memoria que muta la vista."},
-    {q:"Que es Virtual DOM?",o:["Copia en la nube","Copia ligera del DOM en memoria para calcular cambios minimos al DOM real","DOM sin JS","Plugin"],a:1,e:"Mejora el rendimiento evitando repintar toda la pagina entera."},
-    {q:"useEffect [userId] corre:",o:["Solo al montar","Al montar y cada vez que userId cambia","Cada render","Nunca"],a:1,e:"Las dependencias dictan cuando el efecto se vuelve a ejecutar."},
-    {q:"Que es JSX?",o:["Base de datos","Extension navegador","Sintaxis que parece HTML pero es JS (expresiones entre llaves)","Sistema de routing"],a:2,e:"Babel o Vite lo transforman en React.createElement()."},
-    {q:"<a> vs <Link> en React Router:",o:["Son lo mismo","<a> recarga la pagina completa; <Link> cambia de vista sin recargar (SPA real)","<Link> usa POST","<a> es mas seguro"],a:1,e:"Trampa tipica: usar <a> rompe la Single Page Application."},
-    {q:"Zod se usa para:",o:["Peticiones HTTP","Esquemas estrictos de validacion de datos (ej: formatos, max, min)","Estado global","Renderizar listas"],a:1,e:"Ideal para validar formularios. En C17 se acordo que safeParse se usa tanto en front como en back."},
-    {q:"Regla de oro: ¿Qué NO va en un Context?",o:["Datos del usuario logueado","Tema claro/oscuro","Datos del dominio que pide una sola vista (van al backend / useFetch)","Filtros globales"],a:2,e:"Context es para UI transversal. Si es info de Base de Datos para una vista, usa fetch."},
-    {q:"Componente Controlado es...",o:["Aquel sin JS","Un input cuyo valor lo guarda el estado de React (value + onChange)","Componente con permisos de admin","Un div con estilos"],a:1,e:"React se vuelve la 'unica fuente de verdad' del formulario."},
-    {q:"El flujo de datos en React es:",o:["Bidireccional","Unidireccional (de padre a hijo)","Circular","Aleatorio"],a:1,e:"El hijo no puede modificar sus propias props, solo llamar a un setState que el padre le pase."},
-    {q:"Para que sirve un Fragmento en React (<></>)?",o:["Inyectar CSS","Agrupar multiples elementos sin agregar un nodo extra (como un div) al DOM real","Comentarios en JSX","Borrar Virtual DOM"],a:1,e:"Cumple la regla de 'retornar un solo elemento padre'."},
-    {q:"Por que ves el fetch dos veces en desarrollo?",o:["Es un bug grave de useEffect","StrictMode monta dos veces a proposito para buscar errores. En produccion no pasa.","CORS","El servidor esta rebotando"],a:1,e:"Es intencional de React StrictMode."},
-    {q:"¿Dónde se puede llamar un Hook?",o:["Dentro de un if","En un bucle for","En el nivel superior de un componente o custom hook (nunca condicional)","En cualquier clase JS"],a:2,e:"React los identifica por el ORDEN en que se llaman."},
-    {q:"¿Quién aplica las politicas de CORS?",o:["El backend Node","El navegador (protege al usuario, no al servidor)","El router","La base de datos"],a:1,e:"Por eso Postman o curl nunca dan error de CORS. Bloquea el navegador del usuario."},
-    {q:"¿Qué es un request Preflight (OPTIONS)?",o:["Error 500","Request previo que manda el navegador para confirmar permisos antes de mandar metodos complejos (PUT, POST json, auth)","Un ataque","Validacion de token"],a:1,e:"Si el backend responde bien el OPTIONS, el navegador manda el request real."},
-    {q:"Riesgo principal de guardar el JWT en localStorage:",o:["Se pierde facil","El backend no lo lee","Ataque XSS (cualquier script inyectado puede leer el token)","Ocupa RAM"],a:2,e:"El curso toma la decision de aceptarlo como riesgo mitigado (token corto de 2h, escapado HTML)."},
-    {q:"Diferencia conceptual entre UX e UI:",o:["Son iguales","UX es backend","UX es la experiencia completa del usuario; UI es lo visual en el dispositivo","UI incluye emociones"],a:2,e:"Ocultar un boton a un usuario que no tiene permisos mejora la UX, pero NO da seguridad real (el backend debe proteger igual con 403)."},
-    {q:"Al recargar la pagina (F5), ¿como sabe la app quien sos?",o:["Lo calcula Zod","Le pregunta al back (ej: GET /auth/yo) usando el token guardado para rehidratar el AuthContext","No se puede saber","Viene en la URL"],a:1,e:"F5 borra todo el estado de React. El token en localStorage permite volver a preguntar al server."},
-    {q:"En React Router, que hace useNavigate?",o:["Descarga informacion","Devuelve una funcion para cambiar de ruta programaticamente (ej: despues de un submit)","Arma el menu","Maneja Zod"],a:1,e:"Es muy util en funciones, cuando no se puede usar el componente <Link> directamente."}
-];
-
-var B3 = [
-    {q:"Concepto de Docker:",o:["VM via hardware","Control de versiones","Empaquetar app y dependencias en contenedores aislados (identicos en cualquier entorno)","Servidor AWS"],a:2,e:"Resuelve el famoso 'en mi compu anda'."},
-    {q:"Contenedor vs Maquina Virtual (VM):",o:["Son lo mismo","VM virtualiza el Hardware (GBs, SO completo). Contenedor virtualiza el SO (comparte kernel, MBs).","Contenedor es mas lento","VM usa Docker"],a:1,e:"Contenedores son muchisimo mas ligeros y rapidos de prender (segundos vs minutos)."},
-    {q:"Imagen vs Contenedor:",o:["No hay diferencia","Imagen es la foto, Contenedor es el backend","Imagen = molde inmutable (clase); Contenedor = instancia en ejecucion.","Imagen se baja de git"],a:2,e:"De una imagen salen infinitos contenedores iguales."},
-    {q:"En REST, el metodo PUT hace:",o:["GET","POST","Reemplazo de un recurso COMPLETO (es idempotente)","Modificacion parcial"],a:2,e:"PATCH hace modificacion parcial. PUT reemplaza todo. Ambos devuelven lo mismo si los tiras 10 veces (idempotentes). POST NO es idempotente (crea 10 recursos)."},
-    {q:"API Stateless (sin estado) significa:",o:["Guarda sesion en BD","Cada request trae toda la informacion necesaria; el servidor no recuerda requests anteriores.","No hay base de datos","Retorna 404"],a:1,e:"El JWT hace esto posible: mandas tu identidad entera en cada peticion."},
-    {q:"El next() en un middleware:",o:["Redirige","Error 500","Si no responde, pasa el control al siguiente eslabon de la cadena","Reinicia"],a:2,e:"next(error) saltea todo y va directo al manejador de errores final."},
-    {q:"Prisma ORM sirve para:",o:["Mapear BD relacional a objetos TypeScript evitando escribir SQL manual","Transacciones en MongoDB","Traducir front y back","Armar wireframes"],a:0,e:"¿Que NO hace un ORM? NO optimiza consultas, NO diseña tu BD, y no te salva de entender SQL base."},
-    {q:"Autenticacion vs Autorizacion:",o:["Front vs Back","Autenticacion = Quien sos (401). Autorizacion = Que podes hacer (403).","Lo mismo","Auth usa JWT, el otro no"],a:1,e:"Trampa del parcial (401 vs 403)."},
-    {q:"Tres partes de un JWT:",o:["Header, Payload, Signature","Header, Signature, Payload","Token, Claim, Payload","Ninguna"],a:0,e:"El JWT ESTA FIRMADO, NO ENCRIPTADO. Cualquiera puede leer el payload (Base64). No pongas contraseñas ahi."},
-    {q:"Cual es la funcion del 'salt' en bcrypt?",o:["Acelerar el hasheo","Valor aleatorio que se mezcla antes de hashear para que dos passwords iguales den hashes distintos","Desencriptar la clave","Generar JWT"],a:1,e:"Inutiliza los ataques de Rainbow Tables. Bcrypt es lento A PROPOSITO para frenar ataques de fuerza bruta."},
-    {q:"Hash vs Cifrado:",o:["Sinonimos","Hash es irreversible (ej: pass). Cifrado es reversible con clave.","Hash es rapido","Cifrado es MD5"],a:1,e:"Nunca se debe poder desencriptar una contraseña (regla de seguridad estandar)."},
-    {q:"Como se previenen los ataques de SQL Injection?",o:["Borrando datos","Parametrizando consultas (Prisma separa la logica de los datos ingresados)","Usando md5","Con JWT"],a:1,e:"Nunca concatenar strings directamente en la consulta SQL ('SELECT * FROM users WHERE id = ' + userId)."},
-    {q:"Piramide de Testing:",o:["E2E abajo, Unitario arriba","Unitarios en la base (muchos, rapidos), Integracion en medio, E2E (UI) en la punta (pocos, caros, lentos).","Unitarios simulan front","E2E usa Jest"],a:1,e:"Unitario prueba funciones aisladas usando mocks."},
-    {q:"Que es un Mock (ej: vi.fn()) en Testing?",o:["Entorno produccion","Test completo","Version falsa/reemplazo de dependencia para aislar la prueba y registrar si fue llamada","Error intencional"],a:2,e:"Permite testear el Controller sin necesidad de levantar realmente la Base de Datos Prisma."},
-    {q:"Ciclo de TDD (Test-Driven Development):",o:["Verde -> Refactor","Planear -> Codear","Rojo (falla el test) -> Verde (escribir codigo justo para pasar) -> Refactor","E2E -> Unitario"],a:2,e:"Primero el test falla. Garantiza que probas que tus requerimientos fallan cuando no estan implementados."},
-    {q:"Testing Library: getBy vs queryBy",o:["Son iguales","getBy falla y corta el test si no lo encuentra. queryBy devuelve null (sirve para probar ausencia)","queryBy falla","Ambos devuelven Promesa"],a:1,e:"Si queres asegurar que el boton de Admin NO se muestra al Cliente, usas expect(queryByText('Borrar')).toBeNull()."},
-    {q:"¿Qué hace onDelete: Cascade en Prisma?",o:["Protege la DB","Si borro al padre, se borran automaticamente todos los registros hijos asociados","Evita el borrado (es el Restrict)","Cifra en cascada"],a:1,e:"Es muy destructivo. El default de Prisma para relaciones obligatorias es Restrict (no te deja borrar)."},
-    {q:"En una arquitectura en capas del Backend, ¿quién decide el Status Code (ej: 404, 200)?",o:["El Repository","El Service","El Controller (traduce dominio a HTTP)","Las Routes"],a:2,e:"El Service tiene la logica pura, NO debe saber nada de peticiones HTTP, req, res, ni status codes."},
-    {q:"Status 201 y 204:",o:["201 Error, 204 Exito","201 Created (POST exitoso). 204 No Content (DELETE exitoso sin body de respuesta).","201 OK, 204 Error","Son de Front"],a:1,e:"200 es OK generico. 201 es especifico para creacion. 409 es Conflicto (choca con DB, ej: duplicado)."},
-    {q:"Unitario vs Integración (Test):",o:["Miden lo mismo","Unitario prueba si 1 pieza funciona aislada. Integración prueba que varias piezas engranen bien juntas (API + DB).","Unitario es frontend","Unitario es lento"],a:1,e:"Unitario no te salva si las piezas no encajan (el clasico chiste de las dos puertas que no cierran)."}
-];
-
-// === POOL STATE ===
-var qPool = { 1: [], 2: [], 3: [] };
-var examNum = { 1: 0, 2: 0, 3: 0 };
-var qState = {};
-var EXAM_SIZE = 10; 
-
-function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var t = a[i]; a[i] = a[j]; a[j] = t;
-    }
-    return a;
-}
-
-function qNew(mod) {
-    var bank = mod === 1 ? B1 : mod === 2 ? B2 : B3;
-    if (qPool[mod].length < EXAM_SIZE) {
-        qPool[mod] = shuffle(bank);
-        examNum[mod] = 0; 
-    }
-    examNum[mod]++;
-    var picked = qPool[mod].splice(0, EXAM_SIZE);
-    
-    qState[mod] = { questions: picked, idx: 0, correct: 0, total: 0 };
-    document.getElementById('m' + mod + '-score').textContent = '0 / 0';
-    document.getElementById('m' + mod + '-exam-tag').textContent = 'Examen #' + examNum[mod];
-    
-    qRender(mod);
-}
-
-function qRender(mod) {
-    var s = qState[mod];
-    var q = s.questions[s.idx];
-    document.getElementById('m' + mod + '-exp').style.display = 'none';
-    document.getElementById('m' + mod + '-next').style.display = 'none';
-    document.getElementById('m' + mod + '-prog').style.width = ((s.idx / s.questions.length) * 100) + '%';
-    document.getElementById('m' + mod + '-pool').textContent = 'Quedan ' + qPool[mod].length + ' preguntas en el pozo';
-
-    var letters = ['A','B','C','D'];
-    var opts = '';
-    for (var i = 0; i < q.o.length; i++) {
-        opts += '<button class="opt-btn" id="m' + mod + 'opt' + i + '" onclick="qPick(' + mod + ',' + i + ')">' +
-            '<strong style="margin-right:8px;color:var(--muted-foreground);">' + letters[i] + '.</strong>' + q.o[i] + '</button>';
-    }
-
-    document.getElementById('m' + mod + '-qcard').innerHTML =
-        '<div style="font-size:0.78rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">' +
-        'Pregunta ' + (s.idx + 1) + ' de ' + s.questions.length + '</div>' +
-        '<div style="font-size:1.1rem;font-weight:700;margin-bottom:22px;line-height:1.5;">' + q.q + '</div>' + opts;
-}
-
-function qPick(mod, sel) {
-    var s = qState[mod];
-    var q = s.questions[s.idx];
-    s.total++;
-    if (sel === q.a) s.correct++;
-    document.getElementById('m' + mod + '-score').textContent = s.correct + ' / ' + s.total;
-
-    for (var i = 0; i < q.o.length; i++) {
-        var btn = document.getElementById('m' + mod + 'opt' + i);
-        if (!btn) continue;
-        btn.disabled = true;
-        if (i === q.a) { btn.className = 'opt-btn opt-correct'; }
-        else if (i === sel) { btn.className = 'opt-btn opt-wrong'; }
-        else { btn.className = 'opt-btn opt-dim'; }
-    }
-
-    var box = document.getElementById('m' + mod + '-exp');
-    var ok = sel === q.a;
-    box.style.display = 'block';
-    box.className = ok ? 'exp-ok' : 'exp-bad';
-    box.innerHTML = '<strong>' + (ok ? 'Correcto!' : 'Incorrecto') + '</strong><br>' + q.e;
-
-    var nb = document.getElementById('m' + mod + '-next');
-    nb.style.display = 'block';
-    nb.textContent = s.idx === s.questions.length - 1 ? 'Ver resultados' : 'Siguiente pregunta';
-}
-
-function qNext(mod) {
-    var s = qState[mod];
-    if (s.idx === s.questions.length - 1) { qResults(mod); } else { s.idx++; qRender(mod); }
-}
-
-function qResults(mod) {
-    var s = qState[mod];
-    var pct = Math.round((s.correct / s.total) * 100);
-    var color = pct >= 80 ? '#10b981' : pct >= 60 ? '#f59e0b' : '#ef4444';
-    var msg = pct >= 80 ? 'Excelente dominio.' : pct >= 60 ? 'Bien, pero falta repaso.' : 'Relee la teoria del modulo.';
-    var nbtn = qPool[mod].length < EXAM_SIZE ? 'Rellenar Pozo y Nuevo Examen' : 'Nuevo Examen (100% Nuevo)';
-    
-    document.getElementById('m' + mod + '-qcard').innerHTML =
-        '<div style="text-align:center;padding:40px 20px;">' +
-        '<div style="font-size:3rem;font-weight:900;color:' + color + ';margin-bottom:8px;">' + pct + '%</div>' +
-        '<div style="font-size:1.1rem;font-weight:600;margin-bottom:8px;">' + s.correct + ' correctas de ' + s.total + '</div>' +
-        '<div style="color:var(--muted-foreground);margin-bottom:28px;">' + msg + '</div>' +
-        '<button class="primary-btn" onclick="qNew(' + mod + ')">' + nbtn + '</button></div>';
-    document.getElementById('m' + mod + '-exp').style.display = 'none';
-    document.getElementById('m' + mod + '-next').style.display = 'none';
-    document.getElementById('m' + mod + '-prog').style.width = '100%';
-}
-</script>
+�� 
+ >   < s c r i p t >  
+      
+     v a r   q u i z I n i t   =   {   1 :   f a l s e ,   2 :   f a l s e ,   3 :   f a l s e   } ;  
+     f u n c t i o n   s w i t c h M o d ( n )   {  
+             f o r   ( v a r   i   =   1 ;   i   < =   3 ;   i + + )   {  
+                     d o c u m e n t . g e t E l e m e n t B y I d ( ' m o d - ' + i ) . s t y l e . d i s p l a y   =   i = = = n   ?   ' b l o c k '   :   ' n o n e ' ;  
+                     d o c u m e n t . g e t E l e m e n t B y I d ( ' m t a b - ' + i ) . c l a s s N a m e   =   i = = = n   ?   ' m o d - t a b   a c t i v e '   :   ' m o d - t a b ' ;  
+             }  
+     }  
+     f u n c t i o n   s w i t c h S e c ( m o d ,   s e c )   {  
+             v a r   t   =   d o c u m e n t . g e t E l e m e n t B y I d ( ' m ' + m o d + ' - s e c - t e o r i a ' ) ;  
+             v a r   q   =   d o c u m e n t . g e t E l e m e n t B y I d ( ' m ' + m o d + ' - s e c - q u i z ' ) ;  
+             v a r   b t   =   d o c u m e n t . g e t E l e m e n t B y I d ( ' m ' + m o d + ' - t b t n - t e o r i a ' ) ;  
+             v a r   b q   =   d o c u m e n t . g e t E l e m e n t B y I d ( ' m ' + m o d + ' - t b t n - q u i z ' ) ;  
+             i f   ( s e c   = = =   ' t e o r i a ' )   {  
+                     t . s t y l e . d i s p l a y   =   ' b l o c k ' ;   q . s t y l e . d i s p l a y   =   ' n o n e ' ;  
+                     b t . c l a s s N a m e   =   ' s e c - t a b   a c t i v e ' ;   b q . c l a s s N a m e   =   ' s e c - t a b ' ;  
+             }   e l s e   {  
+                     t . s t y l e . d i s p l a y   =   ' n o n e ' ;   q . s t y l e . d i s p l a y   =   ' b l o c k ' ;  
+                     b t . c l a s s N a m e   =   ' s e c - t a b ' ;   b q . c l a s s N a m e   =   ' s e c - t a b   a c t i v e ' ;  
+                     i f   ( ! q u i z I n i t [ m o d ] )   {   q u i z I n i t [ m o d ]   =   t r u e ;   q N e w ( m o d ) ;   }  
+             }  
+     }  
+      
+     / /   = = =   B A N K S   C O M P L E T O S   ( B a s a d o s   1 0 0 %   e n   R e s u m e n   P D F   C o r t i / G a r c i a   2 0 2 6 )   = = =  
+     v a r   B 1   =   [  
+             { q : " P r o p o s i t o   d e   g i t   i n i t ? " , o : [ " C r e a r   r e p o   e n   G i t H u b " , " R e p o   l o c a l " , " C l o n a r   r e m o t o " , " G u a r d a r    
+ c a m b i o s " ] , a : 1 , e : " C r e a   r e p o   v a c i o   l o c a l . " } ,  
+             { q : " E s t a d o   ' m o d i f i e d ' ? " , o : [ " E l i m i n a d o " , " E n   s t a g i n g " , " C a m b i a d o   p e r o   n o   e n   s t a g i n g " , " E n   r e m o t o " ] , a : 2 , e : " F a l t a    
+ h a c e r   g i t   a d d . " } ,  
+             { q : " V e r   h i s t o r i a l ? " , o : [ " g i t   l o g " , " g i t   s h o w " , " g i t   c o m m i t " , " g i t   s t a t u s " ] , a : 0 , e : " g i t   l o g   l i s t a   l o s   c o m m i t s . " } ,  
+             { q : " g i t   p u s h   h a c e : " , o : [ " G u a r d a   l o c a l " , " E n v i a   c o m m i t s   a l   r e m o t o " , " T r a e   d e l   r e m o t o " , " C r e a   r a m a " ] , a : 1 , e : " E m p u j a   t u s    
+ c o m m i t s   a   G i t H u b . " } ,  
+             { q : " g i t   p u l l   e q u i v a l e   a : " , o : [ " g i t   a d d   +   c o m m i t " , " g i t   f e t c h   +   m e r g e " , " g i t   p u s h   +   c o m m i t " , " g i t   c l o n e " ] , a : 1 , e : " T r a e    
+ c a m b i o s   y   l o s   f u s i o n a   e n   t u   r a m a   l o c a l .   E s   t r a m p a   d e   p a r c i a l . " } ,  
+             { q : " g i t   c l o n e   h a c e : " , o : [ " R e p o   v a c i o " , " C o p i a   r e m o t a   c o n   t o d o   s u   h i s t o r i a l " , " F o t o g r a f i a " , " F u s i o n a    
+ r a m a s " ] , a : 1 , e : " D e s c a r g a   t o d o   e l   r e p o   r e m o t o . " } ,  
+             { q : " P a r a   q u e   e s   g i t   b r a n c h ? " , o : [ " V e r   h i s t o r i a l " , " E n v i a r   a l   r e m o t o " , " C r e a r   r a m a    
+ a i s l a d a " , " D e s c a r g a r " ] , a : 2 , e : " P e r m i t e   t r a b a j a r   s i n   r o m p e r   m a i n . " } ,  
+             { q : " g i t   a d d   .   v s   g i t   a d d   a r c h i v o ? " , o : [ " B o r r a d o r " , " A g r e g a   t o d o   v s   u n o   e s p e c i f i c o " , " E n v i a   a l   r e m o t o " , " S i n    
+ d i f e r e n c i a " ] , a : 1 , e : " E l   p u n t o   ( . )   a g r e g a   t o d o s   l o s   a r c h i v o s   m o d i f i c a d o s   d e   u n a   v e z . " } ,  
+             { q : " V e n t a j a   d e   T y p e S c r i p t ? " , o : [ " C o m p a t i b i l i d a d " , " T i p a d o   e s t a t i c o   ( e r r o r e s   e n    
+ c o m p i l a c i o n ) " , " R e n d i m i e n t o " , " S o p o r t e   A P I " ] , a : 1 , e : " D e t e c t a   b u g s   a l   e s c r i b i r . " } ,  
+             { q : " C u a l   N O   e s   p r i m i t i v o   e n   T S ? " , o : [ " s t r i n g " , " n u m b e r " , " a n y " , " b o o l e a n " ] , a : 2 , e : " a n y   d e s a c t i v a   l a   v e r i f i c a c i o n   d e    
+ t i p o s ,   n o   e s   p r i m i t i v o . " } ,  
+             { q : " Q u e   e s   u n k n o w n   e n   T S ? " , o : [ " C o m o   a n y   p e r o   s i n   r e s t r i c c i o n e s " , " V e r s i o n   s e g u r a   d e   a n y ,   o b l i g a   a   v e r i f i c a r   e l    
+ t i p o " , " U n   n u l l " , " O b s o l e t o " ] , a : 1 , e : " E s   s e g u r o :   o b l i g a   a   h a c e r   u n   t y p e o f   a n t e s   d e   u s a r l o . " } ,  
+             { q : " E x t e n s i o n   p a r a   T S   c o n   R e a c t ? " , o : [ " . j s " , " . j s x " , " . t s " , " . t s x " ] , a : 3 , e : " . t s x   e s   r e q u e r i d o   c u a n d o   h a y   e t i q u e t a s    
+ J S X   d e n t r o   d e   T y p e S c r i p t . " } ,  
+             { q : " S P A   e s : " , o : [ " R e c a r g a   H T M L   e n   c a d a   c l i c k " , " C a r g a   u n a   v e z   y   a c t u a l i z a   d i n a m i c a m e n t e   c o n   J S " , " C o n e x i o n    
+ c o n s t a n t e " , " S i n   J S " ] , a : 1 , e : " S i n g l e   P a g e   A p p l i c a t i o n :   n a v e g a c i o n   s i n   r e c a r g a s   d e   p a g i n a . " } ,  
+             { q : " Q u e   e s   u n a   P r o m e s a ? " , o : [ " V a r i a b l e   c o n   v a r i o s   v a l o r e s " , " O b j e t o   d e   r e s u l t a d o   f u t u r o   d e   o p e r a c i o n    
+ a s i n c r o n a " , " F u n c i o n   p a r a l e l a " , " L o o p   l e n t o " ] , a : 1 , e : " P u e d e   e s t a r   e n   p e n d i n g ,   f u l f i l l e d   o   r e j e c t e d . " } ,  
+             { q : " P a r a   q u e   s i r v e   a s y n c / a w a i t ? " , o : [ " C o r r e r   p a r a l e l o " , " E s c r i b i r   a s i n c r o n o   l e g i b l e   s i n   b l o q u e a r   e l    
+ h i l o " , " G e n e r a d o r e s " , " S e r v e r - s i d e   J S " ] , a : 1 , e : " A z u c a r   s i n t a c t i c a   p a r a   m a n e j a r   P r o m e s a s   d e   f o r m a   l i m p i a . " } ,  
+             { q : " U n i c o   r e s p o n s a b l e   d e l   P r o d u c t   B a c k l o g ? " , o : [ " S c r u m   M a s t e r " , " D e v e l o p e r s " , " P r o d u c t    
+ O w n e r " , " S t a k e h o l d e r s " ] , a : 2 , e : " E l   P O   d e f i n e   y   p r i o r i z a   e l   t r a b a j o   q u e   a p o r t a   v a l o r . " } ,  
+             { q : " O b j e t i v o   d e   l a   D a i l y ? " , o : [ " M o s t r a r   a l   c l i e n t e " , " P l a n i f i c a r   S p r i n t " , " S i n c r o n i z a r   d e v e l o p e r s   y   v e r   b l o q u e o s    
+ ( 1 5 m i n   m a x ) " , " R e t r o s p e c t i v a " ] , a : 2 , e : " R e u n i o n   e x c l u s i v a   d e l   e q u i p o   d e   d e s a r r o l l o . " } ,  
+             { q : " S p r i n t   R e v i e w   v s   S p r i n t   R e t r o s p e c t i v e : " , o : [ " R e v i e w   ( e q u i p o   m e j o r a ) ,   R e t r o   ( p r o d u c t o   a   c l i e n t e ) " , " R e v i e w    
+ ( p r o d u c t o   a   c l i e n t e ) ,   R e t r o   ( e q u i p o   m e j o r a   p r o c e s o ) " , " S o n   l a   m i s m a   r e u n i o n " , " A m b a s   s o n   p a r a   c l i e n t e s " ] , a : 1 , e : " T r a m p a    
+ t i p i c a :   R e v i e w   =   P r o d u c t o ,   R e t r o   =   P r o c e s o / E q u i p o . " } ,  
+             { q : " E t i q u e t a   p a r a   i n c l u i r   J S ? " , o : [ " l i n k " , " s c r i p t " , " j a v a s c r i p t " , " j s " ] , a : 1 , e : " L a   e t i q u e t a   S C R I P T   c o n   s r c = ' . . . '    
+ i n c l u y e   J S . " } ,  
+             { q : " A r q u i t e c t u r a   C l i e n t e - S e r v i d o r : " , o : [ " M i s m o   p r o c e s o " , " C o m u n i c a c i o n   p o r   r e d   ( H T T P ) " , " S i n   c o m u n i c a c i o n " , " S i e m p r e    
+ m i s m a   m a q u i n a " ] , a : 1 , e : " E s t a n   s e p a r a d o s   y   h a b l a n   p o r   r e d . " } ,  
+             { q : " O p e r a d o r   s p r e a d   ( . . . )   e n   R e a c t : " , o : [ " H a c e r   l o o p s   c o r t o s " , " D e s p a r r a m a r   a r r a y / o b j e t o   s i n   m u t a r   e l    
+ o r i g i n a l " , " C o n v e r t i r   p r o m e s a s " , " V a r i a b l e s   f i j a s " ] , a : 1 , e : " C l a v e   p a r a   c o p i a r   a r r a y s   e n   e l   e s t a d o :   [ . . . a r r ,   n u e v o ] . " } ,  
+             { q : " D i f e r e n c i a   e n t r e   E s c a l a b i l i d a d   V e r t i c a l   y   H o r i z o n t a l ? " , o : [ " V e r t i c a l   e s   h a r d w a r e ,   h o r i z o n t a l   m a s    
+ i n s t a n c i a s / n o d o s " , " S o n   l o   m i s m o " , " V e r t i c a l   e s   f r o n t e n d ,   h o r i z o n t a l   b a c k e n d " , " V e r t i c a l   u s a   l a   n u b e " ] , a : 0 , e : " V e r t i c a l    
+ ( m a s   R A M / C P U ) .   H o r i z o n t a l   ( m a s   c o m p u s / s e r v i d o r e s ) . " } ,  
+             { q : " R e a s i g n a r   u n a   v a r i a b l e   c o n s t : " , o : [ " F u n c i o n a   n o r m a l " , " T S   l o   r e c h a z a   p e r o   J S   n o " , " P r o d u c e   T y p e E r r o r   e n    
+ e j e c u c i o n " , " C r e a   n u e v a   v a r i a b l e " ] , a : 2 , e : " c o n s t   p r o h i b e   r e a s i g n a c i o n .   E x p l o t a   e n   r u n t i m e   e n   J S   p u r o . " } ,  
+             { q : " D i f e r e n c i a   l e t   v s   v a r : " , o : [ " S i n   d i f e r e n c i a " , " l e t   t i e n e   s c o p e   d e   b l o q u e ,   v a r   s c o p e   d e   f u n c i o n " , " v a r   e s   m a s    
+ m o d e r n o " , " l e t   p e r m i t e   r e a s i g n a r ,   v a r   n o " ] , a : 1 , e : " l e t   m u e r e   f u e r a   d e   l a s   l l a v e s   { } .   v a r   t i e n e   h o i s t i n g   y   t r a e   b u g s . " } ,  
+             { q : " f e t c h ( )   h a c e : " , o : [ " L e e   d i s c o   l o c a l " , " P e t i c i o n   H T T P   q u e   d e v u e l v e   u n a   P r o m e s a " , " E j e c u t a   s e r v e r " , " C o n v i e r t e   a    
+ J S O N " ] , a : 1 , e : " A P I   n a t i v a   p a r a   h a c e r   r e q u e s t .   f e t c h   N O   l a n z a   e x c e p c i o n   c o n   4 0 4   o   5 0 0 . " } ,  
+             { q : " g i t   m e r g e   s i r v e   p a r a : " , o : [ " B o r r a r   r a m a s " , " C o m b i n a r   e l   h i s t o r i a l   d e   d o s   r a m a s " , " C l o n a r   r e p o s " , " H a c e r    
+ c o m m i t s " ] , a : 1 , e : " I n t e g r a   l o s   c a m b i o s   d e   u n a   r a m a   s e c u n d a r i a   a   l a   p r i n c i p a l . " } ,  
+             { q : " P a r a   q u e   s e   u s a   u n a   ' I n t e r f a c e '   e n   T y p e S c r i p t ? " , o : [ " P a r a   c r e a r   c l a s e s   v i s u a l e s " , " P a r a   d e f i n i r   l a    
+ f o r m a / e s t r u c t u r a   e s t r i c t a   d e   u n   o b j e t o " , " P a r a   h a c e r   f e t c h e s " , " P a r a   e x p o r t a r   v a r i a b l e s " ] , a : 1 , e : " P e r m i t e   d e c i r l e   a   T S    
+ e x a c t a m e n t e   q u e   p r o p i e d a d e s   t i e n e   q u e   t e n e r   u n   o b j e t o . " } ,  
+             { q : " C u a l   e s   l a   d u r a c i o n   r e c o m e n d a d a   d e   u n   S p r i n t ? " , o : [ " 1   a   4   d i a s " , " 1   a   4   s e m a n a s " , " 1   a   4   m e s e s " , " T o d o   e l    
+ p r o y e c t o " ] , a : 1 , e : " E n   S c r u m   l o s   s p r i n t s   s o n   f i j o s   d e   1   a   4   s e m a n a s . " } ,  
+             { q : " Q u e   s i g n i f i c a   l a   ' S '   e n   I N V E S T   p a r a   H i s t o r i a s   d e   U s u a r i o ? " , o : [ " S e c u r e " , " S c a l a b l e " , " S m a l l    
+ ( P e q u e � � a ) " , " S p r i n t " ] , a : 2 , e : " D e b e   s e r   p e q u e � � a   p a r a   q u e   s e   p u e d a   t e r m i n a r   d e n t r o   d e   u n   s o l o   s p r i n t . " } ,  
+             { q : " Q u e   b u s c a   e l   P l a n n i n g   P o k e r   a l   e s t i m a r ? " , o : [ " H o r a s   e x a c t a s " , " T a m a � � o   r e l a t i v o   d e l   e s f u e r z o " , " Q u i e n   l o   h a c e    
+ m a s   r a p i d o " , " E l i m i n a r   b u g s " ] , a : 1 , e : " U s a   F i b o n a c c i .   E v a l u a   c o m p l e j i d a d / e s f u e r z o   r e l a t i v o ,   n o   t i e m p o   d e   r e l o j . " } ,  
+             { q : " C u a l   e s   l a   d i f e r e n c i a   e n t r e   W i r e f r a m e   y   M o c k u p ? " , o : [ " W i r e f r a m e   t i e n e   e s t i l o s " , " W i r e f r a m e   e s   e s t r u c t u r a   d e    
+ b a j a   f i d e l i d a d ;   M o c k u p   s u m a   c o l o r e s / t i p o g r a f i a s   p e r o   n o   e s   f u n c i o n a l " , " S o n   s i n o n i m o s " , " M o c k u p   e s    
+ i n t e r a c t i v o " ] , a : 1 , e : " W i r e f r a m e   =   e s q u e l e t o .   M o c k u p   =   P i e l .   P r o t o t i p o   =   M o v i m i e n t o . " } ,  
+             { q : " E n   M i c r o s e r v i c i o s ,   c a d a   s e r v i c i o . . . " , o : [ " D e b e   c o m p a r t i r   l a   m i s m a   b a s e   d e   d a t o s " , " T i e n e   s u   p r o p i a   l o g i c a   y    
+ b a s e   d e   d a t o s   ( a i s l a m i e n t o   d e   f a l l o s ) " , " N o   p u e d e   h a b l a r   c o n   o t r o s " , " E s   u n   h i l o   d e   N o d e " ] , a : 1 , e : " V e n t a j a :   u n   f a l l o   e n    
+ s e r v i c i o   A   n o   t u m b a   a l   s e r v i c i o   B . " } ,  
+             { q : " E n   u n a   a r q u i t e c t u r a   M u l t i c a p a ,   l a   c o m u n i c a c i o n . . . " , o : [ " E s   t o d o s   c o n t r a   t o d o s " , " C a d a   c a p a   s e   c o m u n i c a   s o l o    
+ c o n   l a   i n m e d i a t a m e n t e   i n f e r i o r " , " U s a   G r a p h Q L " , " E s   b i d i r e c c i o n a l   g l o b a l " ] , a : 1 , e : " E j :   P r e s e n t a c i o n   h a b l a   c o n   N e g o c i o .    
+ N e g o c i o   c o n   P e r s i s t e n c i a . " } ,  
+             { q : " E l   C S S   s i r v e   p a r a : " , o : [ " C r e a r   l a   b a s e   d e   d a t o s " , " D a r   l o g i c a " , " E s t i l i z a r   e l   H T M L   ( c o l o r e s ,   t a m a n o s ,    
+ f l e x b o x ) " , " M a n e j a r   l a s   r u t a s " ] , a : 2 , e : " C a s c a d i n g   S t y l e   S h e e t s   m a n e j a   t o d o   e l   d i s e n o   v i s u a l   d e   l a   w e b . " } ,  
+             { q : " P a r a   r e c o r r e r   u n   a r r a y   y   d e v o l v e r   u n o   N U E V O   m o d i f i c a d o ,   s e    
+ u s a : " , o : [ " f o r E a c h " , " m a p " , " r e d u c e " , " w h i l e " ] , a : 1 , e : " m a p   d e v u e l v e   a r r a y .   f o r E a c h   n o   d e v u e l v e   n a d a   ( r e t o r n a   u n d e f i n e d ) . " } ,  
+             { q : " g i t   r e s t o r e   - - s t a g e d   h a c e : " , o : [ " B o r r a   e l   a r c h i v o " , " S a c a   u n   a r c h i v o   d e l   a r e a   d e   s t a g i n g   ( d e s h a c e   e l   g i t    
+ a d d ) " , " S u b e   e l   c o m m i t " , " R e s t a u r a   u n a   r a m a   b o r r a d a " ] , a : 1 , e : " C o m a n d o   u t i l   s i   a g r e g a s t e   p o r   a c c i d e n t e   u n   a r c h i v o   a l    
+ i n d e x . " } ,  
+             { q : " C u a l   e s   e l   r o l   d e l   S c r u m   M a s t e r ? " , o : [ " E s   e l   j e f e   d e   p r o y e c t o " , " P r i o r i z a   e l   B a c k l o g " , " F a c i l i t a d o r ,   e l i m i n a    
+ i m p e d i m e n t o s   y   a s e g u r a   q u e   s e   s i g a   S c r u m " , " C o d i f i c a   e l   8 0 % " ] , a : 2 , e : " E l   S M   e s   u n   l i d e r   s e r v i c i a l .   E l   P O   p r i o r i z a   e l    
+ b a c k l o g . " } ,  
+             { q : " U n   s i s t e m a   d e   c o n t r o l   d e   v e r s i o n e s   C e n t r a l i z a d o   ( C V S / S V N )   t i e n e   c o m o   p r o b l e m a . . . " , o : [ " E s   m u y   m o d e r n o " , " P u n t o    
+ u n i c o   d e   f a l l o " , " N o   t i e n e   r a m a s " , " O c u p a   m u c h a   R A M   l o c a l " ] , a : 1 , e : " S i   e l   s e r v e r   s e   c a e ,   n a d i e   p u e d e   c o m m i t e a r .   G i t    
+ ( D i s t r i b u i d o )   s o l u c i o n a   e s t o   p o r q u e   c a d a   c l i e n t e   t i e n e   c o p i a   c o m p l e t a . " }  
+     ] ;  
+      
+     v a r   B 2   =   [  
+             { q : " u s e E f f e c t   c o n   [ ]   c o r r e : " , o : [ " E n   c a d a   r e n d e r " , " S O L O   a l   m o n t a r   e l   c o m p o n e n t e   ( u n a   s o l a   v e z ) " , " C o m p a r t i r    
+ e s t a d o " , " N u n c a " ] , a : 1 , e : " T r a m p a   t i p i c a :   s i n   a r r a y   c o r r e   S I E M P R E   ( d e s p u e s   d e   c a d a   r e n d e r ) .   C o n   [ ]   s o l o   a l   m o n t a r . " } ,  
+             { q : " L a s   p r o p s   s o n : " , o : [ " E s t a d o   i n t e r n o " , " D a t o s   q u e   e l   p a d r e   p a s a   a l   h i j o   ( s o l o   l e c t u r a )   p a r a    
+ c o n f i g u r a r l o " , " M e m o r i a   i n t e r n a " , " B l o q u e s   U I " ] , a : 1 , e : " F l u y e n   d e   a r r i b a   h a c i a   a b a j o   y   e l   c o m p o n e n t e   h i j o   N O   l a s    
+ m o d i f i c a . " } ,  
+             { q : " P o r   q u e   n o   u s a r   . p u s h ( )   e n   e l   e s t a d o ? " , o : [ " L e n t o " , " R e a c t   c o m p a r a   r e f e r e n c i a s ;   s i   m u t a s   e l   o r i g i n a l   n o    
+ d e t e c t a   e l   c a m b i o   y   n o   r e - r e n d e r i z a " , " S o l o   e n   a r r a y s   v a c i o s " , " E s   i n m u t a b l e   e n   J S " ] , a : 1 , e : " S i e m p r e   h a y   q u e   c r e a r   u n    
+ n u e v o   a r r a y :   [ . . . l i b r o s ,   n u e v o ] . " } ,  
+             { q : " u s e C o n t e x t   s o l u c i o n a : " , o : [ " F e t c h e s   a u t o m a t i c o s " , " E s t a d o   l o c a l " , " P r o p   D r i l l i n g   ( p a s a r   d a t o s   g l o b a l e s   d i r e c t o    
+ s i n   i n t e r m e d i a r i o s ) " , " V i r t u a l   D O M " ] , a : 2 , e : " P e r m i t e   c o n s u m i r   d a t o s   d e   l a   ' n u b e '   d e s d e   c u a l q u i e r   n i v e l   d e   p r o f u n d i d a d . " } ,  
+             { q : " � � Q u � �   e s   e l   e s t a d o   d e   u n   c o m p o n e n t e ? " , o : [ " F u n c i o n e s   e x t e r n a s " , " I n f o r m a c i o n   i n t e r n a   q u e   p u e d e   c a m b i a r   y   h a c e    
+ q u e   s e   a c t u a l i c e   ( r e - r e n d e r i c e ) " , " L a s   p r o p s " , " E l   H T M L   f i n a l " ] , a : 1 , e : " E s t a d o   =   M e m o r i a   q u e   m u t a   l a   v i s t a . " } ,  
+             { q : " Q u e   e s   V i r t u a l   D O M ? " , o : [ " C o p i a   e n   l a   n u b e " , " C o p i a   l i g e r a   d e l   D O M   e n   m e m o r i a   p a r a   c a l c u l a r   c a m b i o s   m i n i m o s   a l    
+ D O M   r e a l " , " D O M   s i n   J S " , " P l u g i n " ] , a : 1 , e : " M e j o r a   e l   r e n d i m i e n t o   e v i t a n d o   r e p i n t a r   t o d a   l a   p a g i n a   e n t e r a . " } ,  
+             { q : " u s e E f f e c t   [ u s e r I d ]   c o r r e : " , o : [ " S o l o   a l   m o n t a r " , " A l   m o n t a r   y   c a d a   v e z   q u e   u s e r I d   c a m b i a " , " C a d a    
+ r e n d e r " , " N u n c a " ] , a : 1 , e : " L a s   d e p e n d e n c i a s   d i c t a n   c u a n d o   e l   e f e c t o   s e   v u e l v e   a   e j e c u t a r . " } ,  
+             { q : " Q u e   e s   J S X ? " , o : [ " B a s e   d e   d a t o s " , " E x t e n s i o n   n a v e g a d o r " , " S i n t a x i s   q u e   p a r e c e   H T M L   p e r o   e s   J S   ( e x p r e s i o n e s    
+ e n t r e   l l a v e s ) " , " S i s t e m a   d e   r o u t i n g " ] , a : 2 , e : " B a b e l   o   V i t e   l o   t r a n s f o r m a n   e n   R e a c t . c r e a t e E l e m e n t ( ) . " } ,  
+             { q : " < a >   v s   < L i n k >   e n   R e a c t   R o u t e r : " , o : [ " S o n   l o   m i s m o " , " < a >   r e c a r g a   l a   p a g i n a   c o m p l e t a ;   < L i n k >   c a m b i a   d e   v i s t a    
+ s i n   r e c a r g a r   ( S P A   r e a l ) " , " < L i n k >   u s a   P O S T " , " < a >   e s   m a s   s e g u r o " ] , a : 1 , e : " T r a m p a   t i p i c a :   u s a r   < a >   r o m p e   l a   S i n g l e   P a g e    
+ A p p l i c a t i o n . " } ,  
+             { q : " Z o d   s e   u s a   p a r a : " , o : [ " P e t i c i o n e s   H T T P " , " E s q u e m a s   e s t r i c t o s   d e   v a l i d a c i o n   d e   d a t o s   ( e j :   f o r m a t o s ,   m a x ,    
+ m i n ) " , " E s t a d o   g l o b a l " , " R e n d e r i z a r   l i s t a s " ] , a : 1 , e : " I d e a l   p a r a   v a l i d a r   f o r m u l a r i o s .   E n   C 1 7   s e   a c o r d o   q u e   s a f e P a r s e   s e    
+ u s a   t a n t o   e n   f r o n t   c o m o   e n   b a c k . " } ,  
+             { q : " R e g l a   d e   o r o :   � � Q u � �   N O   v a   e n   u n   C o n t e x t ? " , o : [ " D a t o s   d e l   u s u a r i o   l o g u e a d o " , " T e m a   c l a r o / o s c u r o " , " D a t o s   d e l    
+ d o m i n i o   q u e   p i d e   u n a   s o l a   v i s t a   ( v a n   a l   b a c k e n d   /   u s e F e t c h ) " , " F i l t r o s   g l o b a l e s " ] , a : 2 , e : " C o n t e x t   e s   p a r a   U I    
+ t r a n s v e r s a l .   S i   e s   i n f o   d e   B a s e   d e   D a t o s   p a r a   u n a   v i s t a ,   u s a   f e t c h . " } ,  
+             { q : " C o m p o n e n t e   C o n t r o l a d o   e s . . . " , o : [ " A q u e l   s i n   J S " , " U n   i n p u t   c u y o   v a l o r   l o   g u a r d a   e l   e s t a d o   d e   R e a c t   ( v a l u e   +    
+ o n C h a n g e ) " , " C o m p o n e n t e   c o n   p e r m i s o s   d e   a d m i n " , " U n   d i v   c o n   e s t i l o s " ] , a : 1 , e : " R e a c t   s e   v u e l v e   l a   ' u n i c a   f u e n t e   d e   v e r d a d '    
+ d e l   f o r m u l a r i o . " } ,  
+             { q : " E l   f l u j o   d e   d a t o s   e n   R e a c t   e s : " , o : [ " B i d i r e c c i o n a l " , " U n i d i r e c c i o n a l   ( d e   p a d r e   a    
+ h i j o ) " , " C i r c u l a r " , " A l e a t o r i o " ] , a : 1 , e : " E l   h i j o   n o   p u e d e   m o d i f i c a r   s u s   p r o p i a s   p r o p s ,   s o l o   l l a m a r   a   u n   s e t S t a t e   q u e   e l    
+ p a d r e   l e   p a s e . " } ,  
+             { q : " P a r a   q u e   s i r v e   u n   F r a g m e n t o   e n   R e a c t   ( < > < / > ) ? " , o : [ " I n y e c t a r   C S S " , " A g r u p a r   m u l t i p l e s   e l e m e n t o s   s i n   a g r e g a r   u n    
+ n o d o   e x t r a   ( c o m o   u n   d i v )   a l   D O M   r e a l " , " C o m e n t a r i o s   e n   J S X " , " B o r r a r   V i r t u a l   D O M " ] , a : 1 , e : " C u m p l e   l a   r e g l a   d e   ' r e t o r n a r    
+ u n   s o l o   e l e m e n t o   p a d r e ' . " } ,  
+             { q : " P o r   q u e   v e s   e l   f e t c h   d o s   v e c e s   e n   d e s a r r o l l o ? " , o : [ " E s   u n   b u g   g r a v e   d e   u s e E f f e c t " , " S t r i c t M o d e   m o n t a   d o s   v e c e s    
+ a   p r o p o s i t o   p a r a   b u s c a r   e r r o r e s .   E n   p r o d u c c i o n   n o   p a s a . " , " C O R S " , " E l   s e r v i d o r   e s t a   r e b o t a n d o " ] , a : 1 , e : " E s   i n t e n c i o n a l   d e    
+ R e a c t   S t r i c t M o d e . " } ,  
+             { q : " � � D � � n d e   s e   p u e d e   l l a m a r   u n   H o o k ? " , o : [ " D e n t r o   d e   u n   i f " , " E n   u n   b u c l e   f o r " , " E n   e l   n i v e l   s u p e r i o r   d e   u n    
+ c o m p o n e n t e   o   c u s t o m   h o o k   ( n u n c a   c o n d i c i o n a l ) " , " E n   c u a l q u i e r   c l a s e   J S " ] , a : 2 , e : " R e a c t   l o s   i d e n t i f i c a   p o r   e l   O R D E N   e n   q u e    
+ s e   l l a m a n . " } ,  
+             { q : " � � Q u i � � n   a p l i c a   l a s   p o l i t i c a s   d e   C O R S ? " , o : [ " E l   b a c k e n d   N o d e " , " E l   n a v e g a d o r   ( p r o t e g e   a l   u s u a r i o ,   n o   a l    
+ s e r v i d o r ) " , " E l   r o u t e r " , " L a   b a s e   d e   d a t o s " ] , a : 1 , e : " P o r   e s o   P o s t m a n   o   c u r l   n u n c a   d a n   e r r o r   d e   C O R S .   B l o q u e a   e l   n a v e g a d o r    
+ d e l   u s u a r i o . " } ,  
+             { q : " � � Q u � �   e s   u n   r e q u e s t   P r e f l i g h t   ( O P T I O N S ) ? " , o : [ " E r r o r   5 0 0 " , " R e q u e s t   p r e v i o   q u e   m a n d a   e l   n a v e g a d o r   p a r a    
+ c o n f i r m a r   p e r m i s o s   a n t e s   d e   m a n d a r   m e t o d o s   c o m p l e j o s   ( P U T ,   P O S T   j s o n ,   a u t h ) " , " U n   a t a q u e " , " V a l i d a c i o n   d e    
+ t o k e n " ] , a : 1 , e : " S i   e l   b a c k e n d   r e s p o n d e   b i e n   e l   O P T I O N S ,   e l   n a v e g a d o r   m a n d a   e l   r e q u e s t   r e a l . " } ,  
+             { q : " R i e s g o   p r i n c i p a l   d e   g u a r d a r   e l   J W T   e n   l o c a l S t o r a g e : " , o : [ " S e   p i e r d e   f a c i l " , " E l   b a c k e n d   n o   l o   l e e " , " A t a q u e   X S S    
+ ( c u a l q u i e r   s c r i p t   i n y e c t a d o   p u e d e   l e e r   e l   t o k e n ) " , " O c u p a   R A M " ] , a : 2 , e : " E l   c u r s o   t o m a   l a   d e c i s i o n   d e   a c e p t a r l o   c o m o    
+ r i e s g o   m i t i g a d o   ( t o k e n   c o r t o   d e   2 h ,   e s c a p a d o   H T M L ) . " } ,  
+             { q : " D i f e r e n c i a   c o n c e p t u a l   e n t r e   U X   e   U I : " , o : [ " S o n   i g u a l e s " , " U X   e s   b a c k e n d " , " U X   e s   l a   e x p e r i e n c i a   c o m p l e t a   d e l    
+ u s u a r i o ;   U I   e s   l o   v i s u a l   e n   e l   d i s p o s i t i v o " , " U I   i n c l u y e   e m o c i o n e s " ] , a : 2 , e : " O c u l t a r   u n   b o t o n   a   u n   u s u a r i o   q u e   n o   t i e n e    
+ p e r m i s o s   m e j o r a   l a   U X ,   p e r o   N O   d a   s e g u r i d a d   r e a l   ( e l   b a c k e n d   d e b e   p r o t e g e r   i g u a l   c o n   4 0 3 ) . " } ,  
+             { q : " A l   r e c a r g a r   l a   p a g i n a   ( F 5 ) ,   � � c o m o   s a b e   l a   a p p   q u i e n   s o s ? " , o : [ " L o   c a l c u l a   Z o d " , " L e   p r e g u n t a   a l   b a c k   ( e j :   G E T    
+ / a u t h / y o )   u s a n d o   e l   t o k e n   g u a r d a d o   p a r a   r e h i d r a t a r   e l   A u t h C o n t e x t " , " N o   s e   p u e d e   s a b e r " , " V i e n e   e n   l a   U R L " ] , a : 1 , e : " F 5    
+ b o r r a   t o d o   e l   e s t a d o   d e   R e a c t .   E l   t o k e n   e n   l o c a l S t o r a g e   p e r m i t e   v o l v e r   a   p r e g u n t a r   a l   s e r v e r . " } ,  
+             { q : " E n   R e a c t   R o u t e r ,   q u e   h a c e   u s e N a v i g a t e ? " , o : [ " D e s c a r g a   i n f o r m a c i o n " , " D e v u e l v e   u n a   f u n c i o n   p a r a   c a m b i a r   d e   r u t a    
+ p r o g r a m a t i c a m e n t e   ( e j :   d e s p u e s   d e   u n   s u b m i t ) " , " A r m a   e l   m e n u " , " M a n e j a   Z o d " ] , a : 1 , e : " E s   m u y   u t i l   e n   f u n c i o n e s ,   c u a n d o   n o    
+ s e   p u e d e   u s a r   e l   c o m p o n e n t e   < L i n k >   d i r e c t a m e n t e . " }  
+     ] ;  
+      
+     v a r   B 3   =   [  
+             { q : " C o n c e p t o   d e   D o c k e r : " , o : [ " V M   v i a   h a r d w a r e " , " C o n t r o l   d e   v e r s i o n e s " , " E m p a q u e t a r   a p p   y   d e p e n d e n c i a s   e n    
+ c o n t e n e d o r e s   a i s l a d o s   ( i d e n t i c o s   e n   c u a l q u i e r   e n t o r n o ) " , " S e r v i d o r   A W S " ] , a : 2 , e : " R e s u e l v e   e l   f a m o s o   ' e n   m i   c o m p u    
+ a n d a ' . " } ,  
+             { q : " C o n t e n e d o r   v s   M a q u i n a   V i r t u a l   ( V M ) : " , o : [ " S o n   l o   m i s m o " , " V M   v i r t u a l i z a   e l   H a r d w a r e   ( G B s ,   S O   c o m p l e t o ) .    
+ C o n t e n e d o r   v i r t u a l i z a   e l   S O   ( c o m p a r t e   k e r n e l ,   M B s ) . " , " C o n t e n e d o r   e s   m a s   l e n t o " , " V M   u s a   D o c k e r " ] , a : 1 , e : " C o n t e n e d o r e s    
+ s o n   m u c h i s i m o   m a s   l i g e r o s   y   r a p i d o s   d e   p r e n d e r   ( s e g u n d o s   v s   m i n u t o s ) . " } ,  
+             { q : " I m a g e n   v s   C o n t e n e d o r : " , o : [ " N o   h a y   d i f e r e n c i a " , " I m a g e n   e s   l a   f o t o ,   C o n t e n e d o r   e s   e l   b a c k e n d " , " I m a g e n   =   m o l d e    
+ i n m u t a b l e   ( c l a s e ) ;   C o n t e n e d o r   =   i n s t a n c i a   e n   e j e c u c i o n . " , " I m a g e n   s e   b a j a   d e   g i t " ] , a : 2 , e : " D e   u n a   i m a g e n   s a l e n   i n f i n i t o s    
+ c o n t e n e d o r e s   i g u a l e s . " } ,  
+             { q : " E n   R E S T ,   e l   m e t o d o   P U T   h a c e : " , o : [ " G E T " , " P O S T " , " R e e m p l a z o   d e   u n   r e c u r s o   C O M P L E T O   ( e s    
+ i d e m p o t e n t e ) " , " M o d i f i c a c i o n   p a r c i a l " ] , a : 2 , e : " P A T C H   h a c e   m o d i f i c a c i o n   p a r c i a l .   P U T   r e e m p l a z a   t o d o .   A m b o s   d e v u e l v e n   l o    
+ m i s m o   s i   l o s   t i r a s   1 0   v e c e s   ( i d e m p o t e n t e s ) .   P O S T   N O   e s   i d e m p o t e n t e   ( c r e a   1 0   r e c u r s o s ) . " } ,  
+             { q : " A P I   S t a t e l e s s   ( s i n   e s t a d o )   s i g n i f i c a : " , o : [ " G u a r d a   s e s i o n   e n   B D " , " C a d a   r e q u e s t   t r a e   t o d a   l a   i n f o r m a c i o n    
+ n e c e s a r i a ;   e l   s e r v i d o r   n o   r e c u e r d a   r e q u e s t s   a n t e r i o r e s . " , " N o   h a y   b a s e   d e   d a t o s " , " R e t o r n a   4 0 4 " ] , a : 1 , e : " E l   J W T   h a c e   e s t o    
+ p o s i b l e :   m a n d a s   t u   i d e n t i d a d   e n t e r a   e n   c a d a   p e t i c i o n . " } ,  
+             { q : " E l   n e x t ( )   e n   u n   m i d d l e w a r e : " , o : [ " R e d i r i g e " , " E r r o r   5 0 0 " , " S i   n o   r e s p o n d e ,   p a s a   e l   c o n t r o l   a l   s i g u i e n t e   e s l a b o n    
+ d e   l a   c a d e n a " , " R e i n i c i a " ] , a : 2 , e : " n e x t ( e r r o r )   s a l t e a   t o d o   y   v a   d i r e c t o   a l   m a n e j a d o r   d e   e r r o r e s   f i n a l . " } ,  
+             { q : " P r i s m a   O R M   s i r v e   p a r a : " , o : [ " M a p e a r   B D   r e l a c i o n a l   a   o b j e t o s   T y p e S c r i p t   e v i t a n d o   e s c r i b i r   S Q L    
+ m a n u a l " , " T r a n s a c c i o n e s   e n   M o n g o D B " , " T r a d u c i r   f r o n t   y   b a c k " , " A r m a r   w i r e f r a m e s " ] , a : 0 , e : " � � Q u e   N O   h a c e   u n   O R M ?   N O    
+ o p t i m i z a   c o n s u l t a s ,   N O   d i s e � � a   t u   B D ,   y   n o   t e   s a l v a   d e   e n t e n d e r   S Q L   b a s e . " } ,  
+             { q : " A u t e n t i c a c i o n   v s   A u t o r i z a c i o n : " , o : [ " F r o n t   v s   B a c k " , " A u t e n t i c a c i o n   =   Q u i e n   s o s   ( 4 0 1 ) .   A u t o r i z a c i o n   =   Q u e    
+ p o d e s   h a c e r   ( 4 0 3 ) . " , " L o   m i s m o " , " A u t h   u s a   J W T ,   e l   o t r o   n o " ] , a : 1 , e : " T r a m p a   d e l   p a r c i a l   ( 4 0 1   v s   4 0 3 ) . " } ,  
+             { q : " T r e s   p a r t e s   d e   u n   J W T : " , o : [ " H e a d e r ,   P a y l o a d ,   S i g n a t u r e " , " H e a d e r ,   S i g n a t u r e ,   P a y l o a d " , " T o k e n ,   C l a i m ,    
+ P a y l o a d " , " N i n g u n a " ] , a : 0 , e : " E l   J W T   E S T A   F I R M A D O ,   N O   E N C R I P T A D O .   C u a l q u i e r a   p u e d e   l e e r   e l   p a y l o a d   ( B a s e 6 4 ) .   N o   p o n g a s    
+ c o n t r a s e � � a s   a h i . " } ,  
+             { q : " C u a l   e s   l a   f u n c i o n   d e l   ' s a l t '   e n   b c r y p t ? " , o : [ " A c e l e r a r   e l   h a s h e o " , " V a l o r   a l e a t o r i o   q u e   s e   m e z c l a   a n t e s   d e    
+ h a s h e a r   p a r a   q u e   d o s   p a s s w o r d s   i g u a l e s   d e n   h a s h e s   d i s t i n t o s " , " D e s e n c r i p t a r   l a   c l a v e " , " G e n e r a r   J W T " ] , a : 1 , e : " I n u t i l i z a    
+ l o s   a t a q u e s   d e   R a i n b o w   T a b l e s .   B c r y p t   e s   l e n t o   A   P R O P O S I T O   p a r a   f r e n a r   a t a q u e s   d e   f u e r z a   b r u t a . " } ,  
+             { q : " H a s h   v s   C i f r a d o : " , o : [ " S i n o n i m o s " , " H a s h   e s   i r r e v e r s i b l e   ( e j :   p a s s ) .   C i f r a d o   e s   r e v e r s i b l e   c o n   c l a v e . " , " H a s h    
+ e s   r a p i d o " , " C i f r a d o   e s   M D 5 " ] , a : 1 , e : " N u n c a   s e   d e b e   p o d e r   d e s e n c r i p t a r   u n a   c o n t r a s e � � a   ( r e g l a   d e   s e g u r i d a d   e s t a n d a r ) . " } ,  
+             { q : " C o m o   s e   p r e v i e n e n   l o s   a t a q u e s   d e   S Q L   I n j e c t i o n ? " , o : [ " B o r r a n d o   d a t o s " , " P a r a m e t r i z a n d o   c o n s u l t a s   ( P r i s m a    
+ s e p a r a   l a   l o g i c a   d e   l o s   d a t o s   i n g r e s a d o s ) " , " U s a n d o   m d 5 " , " C o n   J W T " ] , a : 1 , e : " N u n c a   c o n c a t e n a r   s t r i n g s   d i r e c t a m e n t e   e n   l a    
+ c o n s u l t a   S Q L   ( ' S E L E C T   *   F R O M   u s e r s   W H E R E   i d   =   '   +   u s e r I d ) . " } ,  
+             { q : " P i r a m i d e   d e   T e s t i n g : " , o : [ " E 2 E   a b a j o ,   U n i t a r i o   a r r i b a " , " U n i t a r i o s   e n   l a   b a s e   ( m u c h o s ,   r a p i d o s ) ,   I n t e g r a c i o n    
+ e n   m e d i o ,   E 2 E   ( U I )   e n   l a   p u n t a   ( p o c o s ,   c a r o s ,   l e n t o s ) . " , " U n i t a r i o s   s i m u l a n   f r o n t " , " E 2 E   u s a   J e s t " ] , a : 1 , e : " U n i t a r i o    
+ p r u e b a   f u n c i o n e s   a i s l a d a s   u s a n d o   m o c k s . " } ,  
+             { q : " Q u e   e s   u n   M o c k   ( e j :   v i . f n ( ) )   e n   T e s t i n g ? " , o : [ " E n t o r n o   p r o d u c c i o n " , " T e s t   c o m p l e t o " , " V e r s i o n   f a l s a / r e e m p l a z o    
+ d e   d e p e n d e n c i a   p a r a   a i s l a r   l a   p r u e b a   y   r e g i s t r a r   s i   f u e   l l a m a d a " , " E r r o r   i n t e n c i o n a l " ] , a : 2 , e : " P e r m i t e   t e s t e a r   e l    
+ C o n t r o l l e r   s i n   n e c e s i d a d   d e   l e v a n t a r   r e a l m e n t e   l a   B a s e   d e   D a t o s   P r i s m a . " } ,  
+             { q : " C i c l o   d e   T D D   ( T e s t - D r i v e n   D e v e l o p m e n t ) : " , o : [ " V e r d e   - >   R e f a c t o r " , " P l a n e a r   - >   C o d e a r " , " R o j o   ( f a l l a   e l   t e s t )   - >    
+ V e r d e   ( e s c r i b i r   c o d i g o   j u s t o   p a r a   p a s a r )   - >   R e f a c t o r " , " E 2 E   - >   U n i t a r i o " ] , a : 2 , e : " P r i m e r o   e l   t e s t   f a l l a .   G a r a n t i z a   q u e    
+ p r o b a s   q u e   t u s   r e q u e r i m i e n t o s   f a l l a n   c u a n d o   n o   e s t a n   i m p l e m e n t a d o s . " } ,  
+             { q : " T e s t i n g   L i b r a r y :   g e t B y   v s   q u e r y B y " , o : [ " S o n   i g u a l e s " , " g e t B y   f a l l a   y   c o r t a   e l   t e s t   s i   n o   l o   e n c u e n t r a .   q u e r y B y    
+ d e v u e l v e   n u l l   ( s i r v e   p a r a   p r o b a r   a u s e n c i a ) " , " q u e r y B y   f a l l a " , " A m b o s   d e v u e l v e n   P r o m e s a " ] , a : 1 , e : " S i   q u e r e s   a s e g u r a r   q u e    
+ e l   b o t o n   d e   A d m i n   N O   s e   m u e s t r a   a l   C l i e n t e ,   u s a s   e x p e c t ( q u e r y B y T e x t ( ' B o r r a r ' ) ) . t o B e N u l l ( ) . " } ,  
+             { q : " � � Q u � �   h a c e   o n D e l e t e :   C a s c a d e   e n   P r i s m a ? " , o : [ " P r o t e g e   l a   D B " , " S i   b o r r o   a l   p a d r e ,   s e   b o r r a n   a u t o m a t i c a m e n t e    
+ t o d o s   l o s   r e g i s t r o s   h i j o s   a s o c i a d o s " , " E v i t a   e l   b o r r a d o   ( e s   e l   R e s t r i c t ) " , " C i f r a   e n   c a s c a d a " ] , a : 1 , e : " E s   m u y    
+ d e s t r u c t i v o .   E l   d e f a u l t   d e   P r i s m a   p a r a   r e l a c i o n e s   o b l i g a t o r i a s   e s   R e s t r i c t   ( n o   t e   d e j a   b o r r a r ) . " } ,  
+             { q : " E n   u n a   a r q u i t e c t u r a   e n   c a p a s   d e l   B a c k e n d ,   � � q u i � � n   d e c i d e   e l   S t a t u s   C o d e   ( e j :   4 0 4 ,   2 0 0 ) ? " , o : [ " E l    
+ R e p o s i t o r y " , " E l   S e r v i c e " , " E l   C o n t r o l l e r   ( t r a d u c e   d o m i n i o   a   H T T P ) " , " L a s   R o u t e s " ] , a : 2 , e : " E l   S e r v i c e   t i e n e   l a   l o g i c a    
+ p u r a ,   N O   d e b e   s a b e r   n a d a   d e   p e t i c i o n e s   H T T P ,   r e q ,   r e s ,   n i   s t a t u s   c o d e s . " } ,  
+             { q : " S t a t u s   2 0 1   y   2 0 4 : " , o : [ " 2 0 1   E r r o r ,   2 0 4   E x i t o " , " 2 0 1   C r e a t e d   ( P O S T   e x i t o s o ) .   2 0 4   N o   C o n t e n t   ( D E L E T E   e x i t o s o   s i n    
+ b o d y   d e   r e s p u e s t a ) . " , " 2 0 1   O K ,   2 0 4   E r r o r " , " S o n   d e   F r o n t " ] , a : 1 , e : " 2 0 0   e s   O K   g e n e r i c o .   2 0 1   e s   e s p e c i f i c o   p a r a   c r e a c i o n .    
+ 4 0 9   e s   C o n f l i c t o   ( c h o c a   c o n   D B ,   e j :   d u p l i c a d o ) . " } ,  
+             { q : " U n i t a r i o   v s   I n t e g r a c i � � n   ( T e s t ) : " , o : [ " M i d e n   l o   m i s m o " , " U n i t a r i o   p r u e b a   s i   1   p i e z a   f u n c i o n a   a i s l a d a .    
+ I n t e g r a c i � � n   p r u e b a   q u e   v a r i a s   p i e z a s   e n g r a n e n   b i e n   j u n t a s   ( A P I   +   D B ) . " , " U n i t a r i o   e s   f r o n t e n d " , " U n i t a r i o   e s    
+ l e n t o " ] , a : 1 , e : " U n i t a r i o   n o   t e   s a l v a   s i   l a s   p i e z a s   n o   e n c a j a n   ( e l   c l a s i c o   c h i s t e   d e   l a s   d o s   p u e r t a s   q u e   n o   c i e r r a n ) . " }  
+     ] ;  
+      
+     / /   = = =   P O O L   S T A T E   = = =  
+     v a r   q P o o l   =   {   1 :   [ ] ,   2 :   [ ] ,   3 :   [ ]   } ;  
+     v a r   e x a m N u m   =   {   1 :   0 ,   2 :   0 ,   3 :   0   } ;  
+     v a r   q S t a t e   =   { } ;  
+     v a r   E X A M _ S I Z E   =   1 0 ;    
+      
+     f u n c t i o n   s h u f f l e ( a r r )   {  
+             v a r   a   =   a r r . s l i c e ( ) ;  
+             f o r   ( v a r   i   =   a . l e n g t h   -   1 ;   i   >   0 ;   i - - )   {  
+                     v a r   j   =   M a t h . f l o o r ( M a t h . r a n d o m ( )   *   ( i   +   1 ) ) ;  
+                     v a r   t   =   a [ i ] ;   a [ i ]   =   a [ j ] ;   a [ j ]   =   t ;  
+             }  
+             r e t u r n   a ;  
+     }  
+      
+     f u n c t i o n   q N e w ( m o d )   {  
+             v a r   b a n k   =   m o d   = = =   1   ?   B 1   :   m o d   = = =   2   ?   B 2   :   B 3 ;  
+             i f   ( q P o o l [ m o d ] . l e n g t h   <   E X A M _ S I Z E )   {  
+                     q P o o l [ m o d ]   =   s h u f f l e ( b a n k ) ;  
+                     e x a m N u m [ m o d ]   =   0 ;    
+             }  
+             e x a m N u m [ m o d ] + + ;  
+             v a r   p i c k e d   =   q P o o l [ m o d ] . s p l i c e ( 0 ,   E X A M _ S I Z E ) ;  
+              
+             q S t a t e [ m o d ]   =   {   q u e s t i o n s :   p i c k e d ,   i d x :   0 ,   c o r r e c t :   0 ,   t o t a l :   0   } ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - s c o r e ' ) . t e x t C o n t e n t   =   ' 0   /   0 ' ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - e x a m - t a g ' ) . t e x t C o n t e n t   =   ' E x a m e n   # '   +   e x a m N u m [ m o d ] ;  
+              
+             q R e n d e r ( m o d ) ;  
+     }  
+      
+     f u n c t i o n   q R e n d e r ( m o d )   {  
+             v a r   s   =   q S t a t e [ m o d ] ;  
+             v a r   q   =   s . q u e s t i o n s [ s . i d x ] ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - e x p ' ) . s t y l e . d i s p l a y   =   ' n o n e ' ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - n e x t ' ) . s t y l e . d i s p l a y   =   ' n o n e ' ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - p r o g ' ) . s t y l e . w i d t h   =   ( ( s . i d x   /   s . q u e s t i o n s . l e n g t h )   *   1 0 0 )   +   ' % ' ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - p o o l ' ) . t e x t C o n t e n t   =   ' Q u e d a n   '   +   q P o o l [ m o d ] . l e n g t h   +   '   p r e g u n t a s   e n   e l    
+ p o z o ' ;  
+      
+             v a r   l e t t e r s   =   [ ' A ' , ' B ' , ' C ' , ' D ' ] ;  
+             v a r   o p t s   =   ' ' ;  
+             f o r   ( v a r   i   =   0 ;   i   <   q . o . l e n g t h ;   i + + )   {  
+                     o p t s   + =   ' < b u t t o n   c l a s s = " o p t - b t n "   i d = " m '   +   m o d   +   ' o p t '   +   i   +   ' "   o n c l i c k = " q P i c k ( '   +   m o d   +   ' , '   +   i   +   ' ) " > '   +  
+                             ' < s t r o n g   s t y l e = " m a r g i n - r i g h t : 8 p x ; c o l o r : v a r ( - - m u t e d - f o r e g r o u n d ) ; " > '   +   l e t t e r s [ i ]   +   ' . < / s t r o n g > '   +   q . o [ i ]    
+ +   ' < / b u t t o n > ' ;  
+             }  
+      
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - q c a r d ' ) . i n n e r H T M L   =  
+                     ' < d i v   s t y l e = " f o n t - s i z e : 0 . 7 8 r e m ; f o n t - w e i g h t : 7 0 0 ; c o l o r : v a r ( - - p r i m a r y ) ; t e x t - t r a n s f o r m : u p p e r c a s e ; l e t t e r - s p a c i n g : 0  
+ . 0 8 e m ; m a r g i n - b o t t o m : 1 0 p x ; " > '   +  
+                     ' P r e g u n t a   '   +   ( s . i d x   +   1 )   +   '   d e   '   +   s . q u e s t i o n s . l e n g t h   +   ' < / d i v > '   +  
+                     ' < d i v   s t y l e = " f o n t - s i z e : 1 . 1 r e m ; f o n t - w e i g h t : 7 0 0 ; m a r g i n - b o t t o m : 2 2 p x ; l i n e - h e i g h t : 1 . 5 ; " > '   +   q . q   +   ' < / d i v > '   +   o p t s ;  
+     }  
+      
+     f u n c t i o n   q P i c k ( m o d ,   s e l )   {  
+             v a r   s   =   q S t a t e [ m o d ] ;  
+             v a r   q   =   s . q u e s t i o n s [ s . i d x ] ;  
+             s . t o t a l + + ;  
+             i f   ( s e l   = = =   q . a )   s . c o r r e c t + + ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - s c o r e ' ) . t e x t C o n t e n t   =   s . c o r r e c t   +   '   /   '   +   s . t o t a l ;  
+      
+             f o r   ( v a r   i   =   0 ;   i   <   q . o . l e n g t h ;   i + + )   {  
+                     v a r   b t n   =   d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' o p t '   +   i ) ;  
+                     i f   ( ! b t n )   c o n t i n u e ;  
+                     b t n . d i s a b l e d   =   t r u e ;  
+                     i f   ( i   = = =   q . a )   {   b t n . c l a s s N a m e   =   ' o p t - b t n   o p t - c o r r e c t ' ;   }  
+                     e l s e   i f   ( i   = = =   s e l )   {   b t n . c l a s s N a m e   =   ' o p t - b t n   o p t - w r o n g ' ;   }  
+                     e l s e   {   b t n . c l a s s N a m e   =   ' o p t - b t n   o p t - d i m ' ;   }  
+             }  
+      
+             v a r   b o x   =   d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - e x p ' ) ;  
+             v a r   o k   =   s e l   = = =   q . a ;  
+             b o x . s t y l e . d i s p l a y   =   ' b l o c k ' ;  
+             b o x . c l a s s N a m e   =   o k   ?   ' e x p - o k '   :   ' e x p - b a d ' ;  
+             b o x . i n n e r H T M L   =   ' < s t r o n g > '   +   ( o k   ?   ' C o r r e c t o ! '   :   ' I n c o r r e c t o ' )   +   ' < / s t r o n g > < b r > '   +   q . e ;  
+      
+             v a r   n b   =   d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - n e x t ' ) ;  
+             n b . s t y l e . d i s p l a y   =   ' b l o c k ' ;  
+             n b . t e x t C o n t e n t   =   s . i d x   = = =   s . q u e s t i o n s . l e n g t h   -   1   ?   ' V e r   r e s u l t a d o s '   :   ' S i g u i e n t e   p r e g u n t a ' ;  
+     }  
+      
+     f u n c t i o n   q N e x t ( m o d )   {  
+             v a r   s   =   q S t a t e [ m o d ] ;  
+             i f   ( s . i d x   = = =   s . q u e s t i o n s . l e n g t h   -   1 )   {   q R e s u l t s ( m o d ) ;   }   e l s e   {   s . i d x + + ;   q R e n d e r ( m o d ) ;   }  
+     }  
+      
+     f u n c t i o n   q R e s u l t s ( m o d )   {  
+             v a r   s   =   q S t a t e [ m o d ] ;  
+             v a r   p c t   =   M a t h . r o u n d ( ( s . c o r r e c t   /   s . t o t a l )   *   1 0 0 ) ;  
+             v a r   c o l o r   =   p c t   > =   8 0   ?   ' # 1 0 b 9 8 1 '   :   p c t   > =   6 0   ?   ' # f 5 9 e 0 b '   :   ' # e f 4 4 4 4 ' ;  
+             v a r   m s g   =   p c t   > =   8 0   ?   ' E x c e l e n t e   d o m i n i o . '   :   p c t   > =   6 0   ?   ' B i e n ,   p e r o   f a l t a   r e p a s o . '   :   ' R e l e e   l a   t e o r i a   d e l    
+ m o d u l o . ' ;  
+             v a r   n b t n   =   q P o o l [ m o d ] . l e n g t h   <   E X A M _ S I Z E   ?   ' R e l l e n a r   P o z o   y   N u e v o   E x a m e n '   :   ' N u e v o   E x a m e n   ( 1 0 0 %   N u e v o ) ' ;  
+              
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - q c a r d ' ) . i n n e r H T M L   =  
+                     ' < d i v   s t y l e = " t e x t - a l i g n : c e n t e r ; p a d d i n g : 4 0 p x   2 0 p x ; " > '   +  
+                     ' < d i v   s t y l e = " f o n t - s i z e : 3 r e m ; f o n t - w e i g h t : 9 0 0 ; c o l o r : '   +   c o l o r   +   ' ; m a r g i n - b o t t o m : 8 p x ; " > '   +   p c t   +   ' % < / d i v > '   +  
+                     ' < d i v   s t y l e = " f o n t - s i z e : 1 . 1 r e m ; f o n t - w e i g h t : 6 0 0 ; m a r g i n - b o t t o m : 8 p x ; " > '   +   s . c o r r e c t   +   '   c o r r e c t a s   d e   '   +   s . t o t a l    
+ +   ' < / d i v > '   +  
+                     ' < d i v   s t y l e = " c o l o r : v a r ( - - m u t e d - f o r e g r o u n d ) ; m a r g i n - b o t t o m : 2 8 p x ; " > '   +   m s g   +   ' < / d i v > '   +  
+                     ' < b u t t o n   c l a s s = " p r i m a r y - b t n "   o n c l i c k = " q N e w ( '   +   m o d   +   ' ) " > '   +   n b t n   +   ' < / b u t t o n > < / d i v > ' ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - e x p ' ) . s t y l e . d i s p l a y   =   ' n o n e ' ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - n e x t ' ) . s t y l e . d i s p l a y   =   ' n o n e ' ;  
+             d o c u m e n t . g e t E l e m e n t B y I d ( ' m '   +   m o d   +   ' - p r o g ' ) . s t y l e . w i d t h   =   ' 1 0 0 % ' ;  
+     }  
+     < / s c r i p t >  
+     < / b o d y >  
+     < / h t m l >  
+  
+  
+ 
 </body>
 </html>
