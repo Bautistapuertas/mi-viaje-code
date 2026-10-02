@@ -47,7 +47,7 @@
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
         <div>
             <span style="font-size:1.4rem;font-weight:900;">Guia por Modulos — Desarrollo 2026</span>
-            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">Teoria + Simulacro por modulo (V2 Definitiva)</span>
+            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">Teoria + Simulacro por modulo (V3 Definitiva)</span>
         </div>
         <a href="study_guide.html" style="font-size:0.85rem;color:var(--primary);text-decoration:none;font-weight:600;">Ver guia completa →</a>
     </div>
@@ -133,6 +133,19 @@
                 <li><strong>Sprint Retrospective:</strong> Al final. El equipo reflexiona sobre como mejorar su proceso.</li>
             </ul>
         </div>
+    
+        <div class="card">
+            <div class="section-title">SDLC, Requerimientos y UX/UI</div>
+            <ul class="txt">
+                <li><strong>Cascada vs Agil:</strong> Cascada es lineal y estricto. Agil es iterativo e incremental (ej: Scrum).</li>
+                <li><strong>Historias de Usuario (INVEST):</strong> Independiente, Negociable, Valiosa, Estimable, <span class="tag">Small</span> (chica), Testeable.</li>
+                <li><strong>MoSCoW:</strong> Priorizacion de requerimientos (Must, Should, Could, Won't).</li>
+                <li><strong>Planning Poker:</strong> Busca consenso estimando el <strong>tamaño relativo</strong>, no horas reloj.</li>
+                <li><strong>Wireframe vs Mockup:</strong> Wireframe es baja fidelidad (estructura). Mockup suma diseno visual (no funcional). Prototipo es interactivo.</li>
+                <li><strong>Escalabilidad:</strong> Vertical (mejorar hardware) vs Horizontal (agregar nodos/instancias).</li>
+                <li><strong>Microservicios:</strong> Independientes, aislamiento de fallos, pero infraestructura compleja.</li>
+            </ul>
+        </div>
     </div>
 
     <div id="m1-sec-quiz" style="display:none;">
@@ -206,6 +219,16 @@
                 <li><strong>react-router-dom:</strong> Navegacion entre "paginas" sin recargar. Usa BrowserRouter, Routes, Route y Link (reemplaza la etiqueta a).</li>
                 <li><strong>Formularios controlados:</strong> Los inputs estan atados al estado con value y onChange. React tiene control total.</li>
                 <li><strong>Zod:</strong> Libreria para validar datos con esquemas estrictos (email, longitud minima, etc.).</li>
+            </ul>
+        </div>
+    
+        <div class="card">
+            <div class="section-title">CORS, Seguridad y Tokens</div>
+            <ul class="txt">
+                <li><strong>CORS:</strong> Lo aplica el <strong>Navegador</strong> (protege al usuario, no al servidor). Postman no lo aplica.</li>
+                <li><strong>Preflight (OPTIONS):</strong> Request previo que manda el navegador para metodos complejos (PUT, DELETE) para consultar permisos.</li>
+                <li><strong>LocalStorage vs XSS:</strong> Guardar el token en localStorage tiene el riesgo de ser robado por un script malicioso inyectado en el HTML.</li>
+                <li><strong>Validacion Front vs Back:</strong> Esconder un boton en el front es solo UX. La <strong>seguridad real</strong> y la regla viven en el Backend.</li>
             </ul>
         </div>
     </div>
