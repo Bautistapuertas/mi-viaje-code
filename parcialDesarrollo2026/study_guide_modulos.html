@@ -47,7 +47,7 @@
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
         <div>
             <span style="font-size:1.4rem;font-weight:900;">Guia por Modulos — Desarrollo 2026</span>
-            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">Teoria + Simulacro por modulo (V3 Definitiva)</span>
+            <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">Teoria + Simulacro por modulo (V2 Definitiva)</span>
         </div>
         <a href="study_guide.html" style="font-size:0.85rem;color:var(--primary);text-decoration:none;font-weight:600;">Ver guia completa →</a>
     </div>
@@ -138,8 +138,8 @@
             <div class="section-title">SDLC, Requerimientos y UX/UI</div>
             <ul class="txt">
                 <li><strong>Cascada vs Agil:</strong> Cascada es lineal y estricto. Agil es iterativo e incremental (ej: Scrum).</li>
-                <li><strong>Historias de Usuario (INVEST):</strong> Independiente, Negociable, Valiosa, Estimable, <span class="tag">Small</span> (chica), Testeable.</li>
-                <li><strong>MoSCoW:</strong> Priorizacion de requerimientos (Must, Should, Could, Won't).</li>
+                <li><strong>Historias de Usuario:</strong> Explicar una funcion desde la vista del humano: <em>"Como [Rol] quiero [Accion] para [Beneficio]"</em>. La regla <strong>INVEST</strong> dice que deben ser Independientes, Valiosas, y sobre todo <span class="tag">Small</span> (chicas para entrar en un sprint) y Testeables.</li>
+                <li><strong>MoSCoW:</strong> Tecnica para priorizar tareas cuando no hay tiempo para todo. <strong>M</strong>ust (Vital, sin esto el sistema no sirve), <strong>S</strong>hould (Importante, pero puede esperar), <strong>C</strong>ould (Un lujo si sobra tiempo), <strong>W</strong>on't (Descartado para esta entrega).</li>
                 <li><strong>Planning Poker:</strong> Busca consenso estimando el <strong>tamaño relativo</strong>, no horas reloj.</li>
                 <li><strong>Wireframe vs Mockup:</strong> Wireframe es baja fidelidad (estructura). Mockup suma diseno visual (no funcional). Prototipo es interactivo.</li>
                 <li><strong>Escalabilidad:</strong> Vertical (mejorar hardware) vs Horizontal (agregar nodos/instancias).</li>
@@ -186,7 +186,7 @@
                 <li><strong>Componentes:</strong> Funciones de JavaScript que retornan JSX. Son los bloques de construccion de la UI.</li>
                 <li><strong>JSX:</strong> Sintaxis que mezcla HTML dentro de JavaScript. El compilador lo transforma a llamadas JS puras.</li>
                 <li><strong>Props:</strong> Argumentos que el componente padre pasa al hijo para configurar su comportamiento. Son de solo lectura dentro del hijo.</li>
-                <li><strong>Virtual DOM:</strong> Copia ligera del DOM real en memoria. React la usa para hacer Diffing y aplicar solo los cambios minimos al DOM real.</li>
+                <li><strong>Virtual DOM:</strong> Es un "borrador" ligero del HTML en la memoria. En vez de borrar y repintar toda la pagina (lento), React compara borradores (Diffing), encuentra la unica etiqueta que cambio, y va al DOM real a modificar SOLO esa porcion (super rapido).</li>
             </ul>
         </div>
         <div class="card">
@@ -210,7 +210,7 @@
             <div class="section-title">useContext — Estado Global y Prop Drilling</div>
             <ul class="txt">
                 <li><strong>Prop Drilling:</strong> Pasar props por multiples niveles de componentes que no los necesitan directamente. Es codigo dificil de mantener.</li>
-                <li><strong>useContext:</strong> Permite que cualquier componente del arbol acceda a datos globales (usuario logueado, tema) directamente, sin pasar por intermediarios.</li>
+                <li><strong>useContext:</strong> Actua como una "nube global" para evitar el <em>Prop Drilling</em> (pasar props de mano en mano por componentes que ni las usan). El Nieto puede descargar el dato directamente sin molestar a todos los componentes intermedios.</li>
             </ul>
         </div>
         <div class="card">
@@ -225,7 +225,7 @@
         <div class="card">
             <div class="section-title">CORS, Seguridad y Tokens</div>
             <ul class="txt">
-                <li><strong>CORS:</strong> Lo aplica el <strong>Navegador</strong> (protege al usuario, no al servidor). Postman no lo aplica.</li>
+                <li><strong>CORS:</strong> Es el "patovica" del <strong>Navegador</strong> (Chrome, Edge). Si tu Front pide datos a otro puerto, Chrome te esconde la respuesta por seguridad. El Backend debe habilitar CORS para decirle a Chrome "deja pasar a este Front, es amigo". ¡El backend NUNCA bloquea por CORS! Por eso Postman o curl nunca dan este error.</li>
                 <li><strong>Preflight (OPTIONS):</strong> Request previo que manda el navegador para metodos complejos (PUT, DELETE) para consultar permisos.</li>
                 <li><strong>LocalStorage vs XSS:</strong> Guardar el token en localStorage tiene el riesgo de ser robado por un script malicioso inyectado en el HTML.</li>
                 <li><strong>Validacion Front vs Back:</strong> Esconder un boton en el front es solo UX. La <strong>seguridad real</strong> y la regla viven en el Backend.</li>
