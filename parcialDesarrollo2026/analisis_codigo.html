@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Código - DS 2026</title>
+    <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+    <style>
+        body { font-family: sans-serif; background: var(--background); color: var(--foreground); margin: 0; padding: 0; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 26px; margin-bottom: 18px; }
+        .code-box { background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; font-size: 0.95rem; overflow-x: auto; margin-bottom: 16px; line-height: 1.5; }
+        .keyword { color: #569cd6; } /* const, function */
+        .func { color: #dcdcaa; } /* setLibros, push */
+        .string { color: #ce9178; } /* 'string' */
+        .comment { color: #6a9955; } /* // comment */
+        .opt-btn { display: block; width: 100%; text-align: left; padding: 13px 17px; border-radius: 10px; border: 2px solid var(--border); background: transparent; color: var(--foreground); font-size: 0.95rem; cursor: pointer; margin-bottom: 9px; transition: border-color 0.15s; }
+        .opt-btn:hover:not(:disabled) { border-color: var(--primary); }
+        .opt-btn:disabled { cursor: default; }
+        .opt-correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+        .opt-wrong { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+        .opt-dim { opacity: 0.4; }
+        .exp-box { background: #f0f9ff; border: 2px solid #3b82f6; color: #0c4a6e; border-radius: 10px; padding: 20px; margin-top: 14px; font-size: 0.95rem; line-height: 1.7; display: none; }
+    </style>
+</head>
+<body>
+
+<div style="position:sticky;top:0;z-index:50;background:var(--card);border-bottom:1px solid var(--border);padding:14px 32px;">
+    <span style="font-size:1.4rem;font-weight:900;">Entendiendo el Código — Desarrollo 2026</span>
+    <span style="font-size:0.85rem;color:var(--muted-foreground);margin-left:12px;">"¿Qué hace este bloque de código?"</span>
+</div>
+
+<div style="max-width:900px;margin:0 auto;padding:28px 24px 80px;" id="container">
+    <div style="margin-bottom:20px; color:var(--muted-foreground);">
+        Estos son los escenarios clásicos que los profesores usan para evaluar si entendés <strong>cómo funcionan las cosas por debajo</strong>, en vez de evaluar memoria. Elegí qué creés que hace cada bloque y lee la explicación profunda.
+    </div>
+
+    <!-- Caso 1 -->
+    <div class="card">
+        <h3 style="font-size:1.2rem; font-weight:800; color:var(--primary); margin-bottom:12px;">Caso 1: Mutación en React</h3>
+<div class="code-box">
+<span class="keyword">const</span> [libros, setLibros] = <span class="func">useState</span>([<span class="string">'Harry Potter'</span>]);
+
+<span class="keyword">function</span> <span class="func">agregarLibro</span>() {
+    libros.<span class="func">push</span>(<span class="string">'El Señor de los Anillos'</span>);
+    <span class="func">setLibros</span>(libros);
+}
+</div>
+        <div style="font-weight:bold; margin-bottom:12px;">Al ejecutar agregarLibro(), ¿qué sucede en la pantalla?</div>
+        <button class="opt-btn" id="c1-o0" onclick="check(1, 0)">A. La pantalla se actualiza y muestra ambos libros.</button>
+        <button class="opt-btn" id="c1-o1" onclick="check(1, 1)">B. Da un error porque push no existe en React.</button>
+        <button class="opt-btn" id="c1-o2" onclick="check(1, 2)">C. La pantalla NO se actualiza, sigue mostrando solo 'Harry Potter'.</button>
+
+        <div id="c1-exp" class="exp-box">
+            <strong>Correcto: C. La pantalla NO se actualiza.</strong><br><br>
+            <strong>¿Por qué? (La explicación profunda):</strong> React necesita saber cuándo volver a dibujar (re-renderizar) la pantalla. Para no gastar recursos comparando cada elemento del array, React hace una "comparación por referencia" (pregunta: <em>"¿Este array es el mismo objeto en memoria que antes?"</em>). <br><br>
+            Al usar <code>push()</code>, modificaste el array original, pero su "caja" en memoria es la misma. Cuando le pasás ese mismo array a <code>setLibros(libros)</code>, React dice: <em>"Ah, me pasaste exactamente la misma caja que ya tenía. Como es la misma, asumo que nada cambió y no hago el esfuerzo de actualizar la pantalla"</em>.<br><br>
+            <strong>La forma correcta:</strong> <code>setLibros([...libros, 'El Señor de los Anillos'])</code>. Esto crea una caja NUEVA en memoria, y ahí React sí se da cuenta del cambio.
+        </div>
+    </div>
+
+    <!-- Caso 2 -->
+    <div class="card">
+        <h3 style="font-size:1.2rem; font-weight:800; color:var(--primary); margin-bottom:12px;">Caso 2: El Loop Infinito de useEffect</h3>
+<div class="code-box">
+<span class="keyword">const</span> [contador, setContador] = <span class="func">useState</span>(0);
+
+<span class="func">useEffect</span>(() => {
+    <span class="func">setContador</span>(contador + 1);
+});
+</div>
+        <div style="font-weight:bold; margin-bottom:12px;">¿Qué hace este código cuando se carga el componente?</div>
+        <button class="opt-btn" id="c2-o0" onclick="check(2, 0)">A. Suma 1 al contador y se detiene.</button>
+        <button class="opt-btn" id="c2-o1" onclick="check(2, 1)">B. Causa un bucle infinito que congela la pestaña del navegador.</button>
+        <button class="opt-btn" id="c2-o2" onclick="check(2, 2)">C. Da un error de sintaxis porque falta el return.</button>
+
+        <div id="c2-exp" class="exp-box">
+            <strong>Correcto: B. Causa un bucle infinito.</strong><br><br>
+            <strong>¿Por qué?:</strong> Acá tenés que entender la regla principal del ciclo de vida de React: <em>Cada vez que el estado cambia, el componente se vuelve a dibujar (renderizar).</em><br><br>
+            Al no ponerle el array de dependencias <code>[]</code> al final del <code>useEffect</code>, este efecto se ejecuta <strong>después de CADA renderizado</strong>. <br>
+            La secuencia es así: <br>
+            1. React dibuja la pantalla.<br>
+            2. Corre el useEffect y ejecuta <code>setContador(1)</code>.<br>
+            3. Como el estado cambió, React vuelve a dibujar la pantalla.<br>
+            4. Corre el useEffect de nuevo y ejecuta <code>setContador(2)</code>.<br>
+            5. Vuelve a dibujar... ¡y así hasta el infinito!<br><br>
+            Para arreglarlo, habría que poner <code>}, []);</code> para que corra una sola vez.
+        </div>
+    </div>
+
+    <!-- Caso 3 -->
+    <div class="card">
+        <h3 style="font-size:1.2rem; font-weight:800; color:var(--primary); margin-bottom:12px;">Caso 3: Promesas y Bases de Datos (Backend)</h3>
+<div class="code-box">
+<span class="keyword">async function</span> <span class="func">obtenerUsuario</span>(id) {
+    <span class="keyword">const</span> usuario = prisma.usuario.<span class="func">findUnique</span>({ where: { id: id } });
+    <span class="keyword">if</span> (!usuario) {
+        <span class="keyword">return</span> <span class="string">"No encontrado"</span>;
+    }
+    <span class="keyword">return</span> usuario.nombre;
+}
+</div>
+        <div style="font-weight:bold; margin-bottom:12px;">Si el usuario NO existe en la base de datos, ¿qué devuelve la función?</div>
+        <button class="opt-btn" id="c3-o0" onclick="check(3, 0)">A. Devuelve el string "No encontrado".</button>
+        <button class="opt-btn" id="c3-o1" onclick="check(3, 1)">B. Lanza una excepción y detiene el servidor.</button>
+        <button class="opt-btn" id="c3-o2" onclick="check(3, 2)">C. Ignora el if y devuelve 'undefined' porque olvidó usar 'await'.</button>
+
+        <div id="c3-exp" class="exp-box">
+            <strong>Correcto: C. Ignora el if. Faltó el 'await'.</strong><br><br>
+            <strong>¿Por qué?:</strong> Ir a buscar datos a Prisma (o usar <code>fetch</code>) es una operación lenta. JavaScript no se queda esperando a que la base de datos conteste. Devuelve un "pagaré" llamado <strong>Promesa</strong>.<br><br>
+            Como la función no tiene la palabra <code>await</code> antes de <code>prisma.usuario...</code>, la variable <code>usuario</code> no guarda los datos del usuario, sino que guarda la Promesa (el "pagaré").<br><br>
+            En JavaScript, una Promesa (aunque esté pendiente) siempre se evalúa como verdadera (truthy) en un <code>if</code>. Por lo tanto, <code>!usuario</code> da falso, el <code>if</code> se saltea, e intenta devolver <code>usuario.nombre</code>, que va a dar <em>undefined</em> porque la promesa no tiene nombre.<br>
+            <strong>Regla:</strong> Siempre que hables con una BD o API externa, poné <code>await</code>.
+        </div>
+    </div>
+
+    <!-- Caso 4 -->
+    <div class="card">
+        <h3 style="font-size:1.2rem; font-weight:800; color:var(--primary); margin-bottom:12px;">Caso 4: Middleware en Express (Backend)</h3>
+<div class="code-box">
+app.<span class="func">get</span>(<span class="string">'/api/perfil'</span>, (req, res, next) => {
+    <span class="keyword">const</span> tokenValido = <span class="keyword">false</span>;
+    
+    <span class="keyword">if</span> (!tokenValido) {
+        <span class="func">next</span>(<span class="keyword">new</span> Error(<span class="string">"Token invalido"</span>));
+    }
+    
+    res.<span class="func">json</span>({ data: <span class="string">"Perfil secreto"</span> });
+});
+</div>
+        <div style="font-weight:bold; margin-bottom:12px;">¿Qué sucede al ejecutar este endpoint?</div>
+        <button class="opt-btn" id="c4-o0" onclick="check(4, 0)">A. Manda el error al errorHandler y ahí termina.</button>
+        <button class="opt-btn" id="c4-o1" onclick="check(4, 1)">B. Manda el error, pero el código sigue corriendo y crashea por "Headers already sent".</button>
+        <button class="opt-btn" id="c4-o2" onclick="check(4, 2)">C. Responde 200 OK con el perfil secreto.</button>
+
+        <div id="c4-exp" class="exp-box">
+            <strong>Correcto: B. Crashea por intentar responder dos veces.</strong><br><br>
+            <strong>¿Por qué?:</strong> En Node/Express, llamar a <code>next(error)</code> avisa que hubo un error y salta al errorHandler, pero <strong>no interrumpe la ejecución del resto de tu función</strong> (porque next es solo una llamada a otra función, no un `return` mágico).<br><br>
+            Al no poner un <code>return</code> adentro del <code>if</code>, Express ejecuta <code>next(error)</code> (que eventualmente manda una respuesta de error al cliente), y acto seguido ejecuta <code>res.json({ data: "Perfil secreto" })</code>. <br>
+            Como el servidor intenta responderle dos cosas distintas al cliente en el mismo ciclo HTTP, Node tira el famoso error: <em>"Cannot set headers after they are sent to the client"</em> y explota.<br><br>
+            <strong>La forma correcta:</strong> <code>return next(new Error(...));</code>
+        </div>
+    </div>
+</div>
+
+<script>
+    const answers = {
+        1: 2, // C
+        2: 1, // B
+        3: 2, // C
+        4: 1  // B
+    };
+
+    function check(q, sel) {
+        let correct = answers[q];
+        for(let i=0; i<3; i++) {
+            let btn = document.getElementById('c'+q+'-o'+i);
+            btn.disabled = true;
+            if (i === correct) btn.className = 'opt-btn opt-correct';
+            else if (i === sel) btn.className = 'opt-btn opt-wrong';
+            else btn.className = 'opt-btn opt-dim';
+        }
+        document.getElementById('c'+q+'-exp').style.display = 'block';
+    }
+</script>
+</body>
+</html>
